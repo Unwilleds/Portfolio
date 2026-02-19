@@ -1,0 +1,108 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Lloyd Espineli Portfolio</title> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"> <style> * { margin: 0; padding: 0; box-sizing: border-box; font-family: Poppins, sans-serif; }
+
+body {
+background: #0e0e14;
+color: #ffffff;
+overflow-x: hidden;
+}
+
+section {
+padding: 60px 10%;
+}
+
+.glow {
+box-shadow: 0 0 15px #5f7cff;
+}
+
+header {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 40px;
+}
+
+.profile-pic {
+width: 260px;
+height: 260px;
+border-radius: 50%;
+overflow: hidden;
+border: 3px solid #5f7cff;
+animation: float 4s ease-in-out infinite;
+}
+
+.profile-pic img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.hero-text h1 {
+font-size: 48px;
+color: #5f7cff;
+}
+
+.hero-text p {
+margin-top: 15px;
+line-height: 1.6;
+max-width: 500px;
+color: #cccccc;
+}
+
+.info {
+margin-top: 20px;
+color: #aaaaaa;
+}
+
+.card {
+background: #151522;
+border-radius: 15px;
+padding: 25px;
+margin-bottom: 20px;
+transition: 0.3s;
+}
+
+.card:hover {
+transform: translateY(-8px);
+box-shadow: 0 0 20px #5f7cff;
+}
+
+h2 {
+color: #5f7cff;
+margin-bottom: 20px;
+}
+
+.skills span {
+display: inline-block;
+background: #1f1f33;
+padding: 10px 15px;
+border-radius: 20px;
+margin: 5px;
+box-shadow: 0 0 10px #5f7cff33;
+}
+
+footer {
+text-align: center;
+padding: 30px;
+color: #777;
+}
+
+@keyframes float {
+0% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+100% { transform: translateY(0); }
+}
+
+.fade {
+opacity: 0;
+transform: translateY(20px);
+transition: 1s;
+}
+
+.fade.show {
+opacity: 1;
+transform: translateY(0);
+}
+</style>
+
+</head> <body> <header> <div class="hero-text fade"> <h1>Lloyd Espineli C.</h1> <p>18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p> <div class="info"> <p>Phone: +63 966 348 3648</p> <p>Email: lloyd.espineli@gmail.com</p> <p>Address: 32 Urbano St. Bagbag, Novaliches QC</p> </div> </div> <div class="profile-pic glow fade"> <img src="photo.jpg" alt="Profile"> </div> </header> <section class="fade"> <h2>Work Experience</h2> <div class="card"> <h3>Assistant Swimming Instructor</h3> <p>Macuha Swim Team. 2024</p> <p>Coached basic to advanced swimming strokes. Handled students aged 5 to 20. Built strong communication skills.</p> </div> <div class="card"> <h3>Computer Shop Attendant</h3> <p>Titans Underground. 2025</p> <p>Used time and billing system. Managed customer sessions, processed payments, assisted with concerns, and balanced cash.</p> </div> <div class="card"> <h3>Cashier</h3> <p>MNM Fish Dealer. 2025</p> <p>Handled cash transactions, recorded sales manually, gave correct change, assisted customers, and balanced cash.</p> </div> </section> <section class="fade"> <h2>Education</h2> <div class="card"> <p>BSIT. Quezon City University. 2024 to 2028</p> </div> <div class="card"> <p>ICT. Gardner College Diliman. 2022 to 2024</p> </div> <div class="card"> <p>San Bartolome High School. 2018 to 2022</p> </div> </section> <section class="fade"> <h2>Skills</h2> <div class="skills"> <span>Good Communication Skills</span> <span>Good Computer Skills</span> <span>Critical Thinking</span> <span>Fast Learner</span> <span>Adaptability</span> </div> </section> <footer> <p>Made by Lloyd Espineli</p> </footer> <script> const fades = document.querySelectorAll('.fade'); const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('show'); } }); }); fades.forEach(fade => observer.observe(fade)); </script> </body> </html>
