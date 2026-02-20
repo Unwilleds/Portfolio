@@ -18,51 +18,49 @@ scroll-behavior:smooth;
 position:relative;
 }
 nav {
-position:fixed;
-top:0; left:0;
-width:100%;
-padding:15px 10%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(5px);
-z-index:1000;
-transition:0.3s;
+position:fixed; top:0; left:0;
+width:100%; padding:15px 10%;
+display:flex; justify-content:space-between; align-items:center;
+background:rgba(0,0,0,0.5); backdrop-filter:blur(5px);
+z-index:1000; transition:0.3s;
 }
 nav.scrolled { background:rgba(0,0,0,0.85); }
-nav .logo { font-weight:600; font-size:20px; }
+nav .logo { font-weight:600; font-size:20px; text-shadow:0 0 8px #FF8ACC; }
 nav .nav-links a { color:#fff; text-decoration:none; margin-left:20px; transition:0.3s; position:relative; }
-nav .nav-links a.active::after {
-content:""; position:absolute; left:0; bottom:-5px; width:100%; height:2px; background:#00ffff;
-}
-nav .nav-links a:hover { color:#00ffff; }
+nav .nav-links a.active::after { content:""; position:absolute; left:0; bottom:-5px; width:100%; height:2px; background:#FF8ACC; border-radius:2px; }
+nav .nav-links a:hover { color:#FF8ACC; text-shadow:0 0 6px #FF8ACC; }
 .main { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:100px 10% 60px; }
-.hero, .section { opacity:0; transform:translateY(50px); transition:all 0.8s ease-out; }
+.hero, .section, .projects { opacity:0; transform:translateY(50px); transition:all 0.8s ease-out; }
 .hero { background:rgba(0,0,0,0.6); border-radius:20px; padding:40px 50px; display:flex; align-items:center; gap:30px; max-width:900px; width:100%; box-shadow:0 0 25px rgba(255,255,255,0.25); margin-bottom:50px; }
 .profile-wrap { width:200px; height:200px; border-radius:50%; overflow:hidden; border:3px solid #fff; box-shadow:0 0 25px rgba(255,255,255,0.9); animation:float 4s ease-in-out infinite; }
 .profile-wrap img { width:100%; height:100%; object-fit:cover; }
 .hero-info { max-width:500px; }
-.hero-info h1 { font-size:38px; margin-bottom:5px; }
+.hero-info h1 { font-size:38px; margin-bottom:5px; text-shadow:0 0 10px #FF8ACC, 0 0 20px #00FFFF; }
 .typing { font-size:16px; color:#ddd; margin-bottom:10px; min-height:22px; }
 .desc { font-size:15px; line-height:1.5; color:#e0e0e0; margin-bottom:15px; }
 .contact p { font-size:14px; margin-bottom:6px; color:#cfcfcf; }
 .buttons { margin-top:15px; display:flex; gap:12px; flex-wrap:wrap; }
-.buttons a { text-decoration:none; padding:10px 22px; border-radius:30px; font-size:14px; color:#fff; border:2px solid #fff; transition:0.3s; box-shadow:0 0 15px rgba(255,255,255,0.6); }
-.buttons a:hover { background:#fff; color:#000; transform:scale(1.05); box-shadow:0 0 25px rgba(255,255,255,1); }
+.buttons a { text-decoration:none; padding:10px 22px; border-radius:30px; font-size:14px; color:#fff; border:2px solid #FF8ACC; transition:0.3s; box-shadow:0 0 15px rgba(255,140,204,0.6); }
+.buttons a:hover { background:#FF8ACC; color:#000; transform:scale(1.05); box-shadow:0 0 25px rgba(255,140,204,1); }
 .socials { margin-top:15px; display:flex; gap:15px; }
 .socials a { color:#fff; font-size:20px; transition:0.3s; }
-.socials a:hover { transform:scale(1.2); color:#00ffff; }
+.socials a:hover { transform:scale(1.2); color:#FF8ACC; text-shadow:0 0 8px #FF8ACC; }
 .section { background:rgba(0,0,0,0.55); border-radius:20px; padding:30px 40px; max-width:900px; width:100%; box-shadow:0 0 20px rgba(255,255,255,0.2); margin-bottom:30px; }
-.section h2 { margin-bottom:15px; color:#fff; }
+.section h2 { margin-bottom:15px; color:#fff; text-shadow:0 0 8px #00FFFF; }
 .card { background:rgba(255,255,255,0.05); border-radius:15px; padding:15px 20px; margin-bottom:12px; transition:0.3s; }
-.card:hover { box-shadow:0 0 20px rgba(255,255,255,0.4); transform:translateY(-5px); }
-.skills span { display:inline-block; background:rgba(255,255,255,0.1); padding:8px 14px; border-radius:20px; margin:5px; font-size:13px; box-shadow:0 0 10px rgba(255,255,255,0.4); }
+.card:hover { box-shadow:0 0 25px rgba(0,255,255,0.7); transform:translateY(-5px); }
+.skills span { display:inline-block; background:rgba(255,255,255,0.1); padding:8px 14px; border-radius:20px; margin:5px; font-size:13px; box-shadow:0 0 10px rgba(0,255,255,0.4); }
 .skill-bar { background:rgba(255,255,255,0.1); border-radius:20px; height:12px; margin:8px 0; overflow:hidden; }
-.skill-fill { height:100%; width:0%; background:#00ffff; border-radius:20px; transition:width 1.5s ease-in-out; }
-footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border-top:1px solid #fff; }
-#backToTop { position:fixed; bottom:20px; right:20px; background:#00ffff; color:#000; padding:10px 15px; border:none; border-radius:50px; cursor:pointer; display:none; box-shadow:0 0 10px rgba(0,255,255,0.5); z-index:1000; transition:0.3s; }
+.skill-fill { height:100%; width:0%; background:#FF8ACC; border-radius:20px; transition:width 1.5s ease-in-out; }
+.projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin-bottom:40px; }
+.project-card { position:relative; border-radius:15px; overflow:hidden; cursor:pointer; box-shadow:0 0 15px rgba(255,255,255,0.3); transition:0.3s; }
+.project-card img { width:100%; height:100%; object-fit:cover; display:block; }
+.project-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,140,204,0.8); color:#000; display:flex; flex-direction:column; justify-content:center; align-items:center; opacity:0; transition:0.3s; text-align:center; font-weight:600; padding:10px; }
+.project-card:hover .project-overlay { opacity:1; }
+footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border-top:1px solid #fff; text-shadow:0 0 6px #FF8ACC; }
+#backToTop { position:fixed; bottom:20px; right:20px; background:#FF8ACC; color:#000; padding:10px 15px; border:none; border-radius:50px; cursor:pointer; display:none; box-shadow:0 0 10px rgba(255,140,204,0.5); z-index:1000; transition:0.3s; }
 #backToTop:hover { transform:scale(1.1); }
+
 @keyframes gradientMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 @keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
@@ -76,11 +74,13 @@ footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border
     <a href="#hero">Home</a>
     <a href="#work">Experience</a>
     <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <div class="main">
+
 <div class="hero" id="hero" data-animate>
   <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
   <div class="hero-info">
@@ -126,10 +126,25 @@ footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border
   <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
 </div>
 
+<div class="section projects" id="projects" data-animate>
+  <h2>Projects</h2>
+  <div class="project-card">
+    <img src="project1.jpg" alt="Project 1">
+    <div class="project-overlay">Project 1<br>Link or Description</div>
+  </div>
+  <div class="project-card">
+    <img src="project2.jpg" alt="Project 2">
+    <div class="project-overlay">Project 2<br>Link or Description</div>
+  </div>
+  <div class="project-card">
+    <img src="project3.jpg" alt="Project 3">
+    <div class="project-overlay">Project 3<br>Link or Description</div>
+  </div>
+</div>
+
 </div>
 
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
-
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
 <script>
@@ -152,8 +167,9 @@ document.querySelectorAll('.skill-fill').forEach(el=>skillObserver.observe(el));
 // Navbar scroll background
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.classList.add('scrolled');}else{navbar.classList.remove('scrolled');}});
+
 // Nav active link
-const sections=document.querySelectorAll('section, .hero');
+const sections=document.querySelectorAll('.section, .hero');
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{const sectionTop=sec.offsetTop-60;if(window.scrollY>=sectionTop){current=sec.id;}});navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')=='#'+current){link.classList.add('active');}});});
 
