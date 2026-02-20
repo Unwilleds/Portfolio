@@ -55,18 +55,73 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 
-/* Game Styles */
-#game-open-btn{position:fixed;bottom:20px;left:20px;background:#00F0FF;color:#000;padding:12px 18px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1500;transition:0.3s;}
-#game-open-btn:hover{transform:scale(1.1);}
+/* Game Styles - ENHANCED */
+#game-open-btn{position:fixed;bottom:20px;left:20px;background:#00F0FF;color:#000;padding:12px 18px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1500;transition:0.3s;font-weight:600;}
+#game-open-btn:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(0,240,255,0.9);}
+#game-open-btn i{margin-right:5px;}
 
-#game-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);padding:30px;border-radius:20px;text-align:center;z-index:2000;width:90%;max-width:500px;color:#E0E0E0;display:none;box-shadow:0 0 25px rgba(0,240,255,0.7);}
-#game-header{margin-bottom:15px;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #B159FF;}
-#pp-display,#prestige-display,#combo-display{margin:6px 0;font-weight:600;}
-#click-icon{width:80px;height:80px;background:#00F0FF;border-radius:20px;margin:15px auto;cursor:pointer;position:relative;box-shadow:0 0 20px rgba(0,240,255,0.5);transition:transform 0.2s;}
-#click-icon:hover{transform:scale(1.2);}
-.buff-btn{margin:5px;padding:6px 12px;border:none;border-radius:8px;background:#B159FF;color:#000;cursor:pointer;transition:0.3s;}
-.buff-btn:hover{transform:scale(1.05);}
-.particle{position:absolute;width:6px;height:6px;background:#B159FF;border-radius:50%;pointer-events:none;opacity:1;animation:float 0.7s linear forwards;}
+#game-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(11,15,42,0.98);padding:25px;border-radius:20px;text-align:center;z-index:2000;width:95%;max-width:600px;color:#E0E0E0;display:none;box-shadow:0 0 35px rgba(0,240,255,0.8);border:2px solid #00F0FF;max-height:90vh;overflow-y:auto;}
+#game-header{margin-bottom:15px;font-size:22px;color:#00F0FF;text-shadow:0 0 8px #B159FF;display:flex;justify-content:space-between;align-items:center;}
+#close-game{background:none;border:none;color:#00F0FF;font-size:24px;cursor:pointer;transition:0.3s;}
+#close-game:hover{transform:scale(1.2);color:#B159FF;}
+
+#stats-container{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;background:rgba(0,0,0,0.3);padding:15px;border-radius:15px;}
+.stat-box{text-align:center;padding:8px;border-radius:10px;background:rgba(0,240,255,0.1);}
+.stat-box h4{font-size:12px;color:#B0B0B0;margin-bottom:3px;}
+.stat-box p{font-weight:700;font-size:18px;color:#00F0FF;}
+
+#game-area{position:relative;height:200px;background:rgba(0,0,0,0.4);border-radius:15px;margin:15px 0;overflow:hidden;border:1px solid #00F0FF;}
+.game-shape{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.1s;user-select:none;box-shadow:0 0 15px rgba(0,240,255,0.7);animation: pulse 1.5s infinite;}
+.game-shape:hover{transform:scale(1.15);z-index:10;}
+.game-shape:active{transform:scale(0.95);}
+.shape-circle{background:linear-gradient(135deg, #00F0FF, #0099FF);}
+.shape-square{background:linear-gradient(135deg, #B159FF, #7B2CBF);border-radius:15px;}
+.shape-triangle{background:linear-gradient(135deg, #FF6B6B, #EE5A24);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);}
+.shape-star{background:linear-gradient(135deg, #FFD166, #FF9E6D);clip-path:polygon(50% 0%, 63% 38%, 100% 38%, 69% 59%, 82% 100%, 50% 75%, 18% 100%, 31% 59%, 0% 38%, 37% 38%);}
+.shape-gold{background:linear-gradient(135deg, #FFD700, #FFA500);box-shadow:0 0 25px rgba(255,215,0,0.9);animation: goldPulse 0.8s infinite;}
+
+@keyframes pulse{0%,100%{box-shadow:0 0 15px rgba(0,240,255,0.7);}50%{box-shadow:0 0 25px rgba(0,240,255,1);}}
+@keyframes goldPulse{0%,100%{box-shadow:0 0 20px rgba(255,215,0,0.7);}50%{box-shadow:0 0 35px rgba(255,215,0,1);}}
+
+#tabs{display:flex;gap:5px;margin:15px 0;flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px;border:none;border-radius:10px;background:rgba(0,240,255,0.1);color:#E0E0E0;cursor:pointer;transition:0.3s;font-weight:500;}
+.tab-btn.active{background:#00F0FF;color:#000;box-shadow:0 0 15px rgba(0,240,255,0.7);}
+.tab-btn:hover:not(.active){background:rgba(0,240,255,0.2);}
+
+.tab-content{display:none;text-align:left;}
+.tab-content.active{display:block;}
+
+.upgrade-item{background:rgba(255,255,255,0.05);border-radius:12px;padding:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;transition:0.3s;border-left:3px solid #B159FF;}
+.upgrade-item:hover{background:rgba(0,240,255,0.1);transform:translateX(3px);}
+.upgrade-info h4{color:#00F0FF;margin-bottom:3px;font-size:15px;}
+.upgrade-info p{font-size:12px;color:#B0B0B0;}
+.upgrade-cost{font-weight:700;color:#FF6B6B;font-size:14px;}
+.buy-btn{background:#00F0FF;color:#000;border:none;padding:6px 15px;border-radius:20px;cursor:pointer;font-weight:600;transition:0.3s;}
+.buy-btn:hover{transform:scale(1.05);box-shadow:0 0 15px rgba(0,240,255,0.8);}
+.buy-btn:disabled{background:#555;color:#888;cursor:not-allowed;transform:none;}
+
+.event-notification{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg, #B159FF, #00F0FF);color:#000;padding:12px 25px;border-radius:50px;font-weight:600;box-shadow:0 0 25px rgba(0,240,255,0.9);z-index:3000;animation: slideDown 0.3s, fadeOut 0.5s 2.5s forwards;}
+@keyframes slideDown{from{top:-50px;opacity:0;}to{top:20px;opacity:1;}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px);}}
+
+.buff-indicator{display:inline-block;margin:3px 5px;padding:4px 10px;border-radius:15px;font-size:12px;font-weight:600;background:rgba(0,240,255,0.2);border:1px solid #00F0FF;}
+.buff-active{background:rgba(0,240,255,0.4);box-shadow:0 0 10px rgba(0,240,255,0.6);}
+
+#prestige-info{background:rgba(177,89,255,0.15);border-radius:12px;padding:12px;margin-top:10px;border:1px solid #B159FF;}
+#prestige-info p{margin:5px 0;font-size:13px;}
+.prestige-mult{color:#FFD700;font-weight:700;}
+
+.particle{position:absolute;width:6px;height:6px;background:#B159FF;border-radius:50%;pointer-events:none;opacity:1;animation: floatParticle 0.7s linear forwards;}
+@keyframes floatParticle{to{transform:translate(var(--tx), var(--ty));opacity:0;}}
+
+/* Responsive game */
+@media(max-width:600px){
+  #game-container{width:95%;padding:15px;}
+  #stats-container{grid-template-columns:repeat(2,1fr);}
+  #game-area{height:180px;}
+  .upgrade-item{flex-direction:column;align-items:flex-start;gap:8px;}
+  .buy-btn{align-self:flex-end;}
+}
 </style>
 </head>
 <body>
@@ -132,21 +187,131 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
-<button id="game-open-btn">Open Game</button>
+<button id="game-open-btn"><i class="fas fa-gamepad"></i>Neon Clicker</button>
 
+<!-- ENHANCED GAME CONTAINER -->
 <div id="game-container">
-  <div id="game-header">Clicker Game</div>
-  <div id="pp-display">PP: 0</div>
-  <div id="prestige-display">Prestige: 0</div>
-  <div id="combo-display">Combo: x1</div>
-  <div id="click-icon"></div>
-  <button class="buff-btn" id="doublePP">Double PP (5 clicks)</button>
-  <button class="buff-btn" id="autoPP">AutoPP (5 sec)</button>
-  <button class="buff-btn" id="resetPrestige">Rebirth / Prestige</button>
+  <div id="game-header">
+    <span>✨ Neon Clicker</span>
+    <button id="close-game"><i class="fas fa-times"></i></button>
+  </div>
+  
+  <div id="stats-container">
+    <div class="stat-box">
+      <h4>PP</h4>
+      <p id="pp-display">0</p>
+    </div>
+    <div class="stat-box">
+      <h4>Prestige</h4>
+      <p id="prestige-display">0</p>
+    </div>
+    <div class="stat-box">
+      <h4>Combo</h4>
+      <p id="combo-display">x1</p>
+    </div>
+  </div>
+  
+  <div id="buffs-container" style="margin:10px 0;min-height:25px;"></div>
+  
+  <div id="game-area"></div>
+  
+  <div id="tabs">
+    <button class="tab-btn active" data-tab="shop">Shop</button>
+    <button class="tab-btn" data-tab="upgrades">Upgrades</button>
+    <button class="tab-btn" data-tab="prestige">Prestige</button>
+  </div>
+  
+  <div id="shop" class="tab-content active">
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>⚡ Click Power +1</h4>
+        <p>Base PP per click</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="click-power-cost">10 PP</div>
+        <button class="buy-btn" id="buy-click-power">Buy</button>
+      </div>
+    </div>
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>🤖 Auto Clicker</h4>
+        <p>+1 PP/sec automatically</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="auto-clicker-cost">50 PP</div>
+        <button class="buy-btn" id="buy-auto-clicker">Buy</button>
+      </div>
+    </div>
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>🎯 Shape Spawner</h4>
+        <p>+1 shape on screen</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="spawner-cost">100 PP</div>
+        <button class="buy-btn" id="buy-spawner">Buy</button>
+      </div>
+    </div>
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>⭐ Golden Chance</h4>
+        <p>5% chance for golden shapes (5x PP)</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="golden-cost">250 PP</div>
+        <button class="buy-btn" id="buy-golden">Buy</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="upgrades" class="tab-content">
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>🔥 Combo Booster</h4>
+        <p>Combo lasts 50% longer</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="combo-cost">150 PP</div>
+        <button class="buy-btn" id="buy-combo">Buy</button>
+      </div>
+    </div>
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>💫 Shape Variety</h4>
+        <p>Unlock new shape types</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="variety-cost">300 PP</div>
+        <button class="buy-btn" id="buy-variety">Buy</button>
+      </div>
+    </div>
+    <div class="upgrade-item">
+      <div class="upgrade-info">
+        <h4>⚡ Fever Mode</h4>
+        <p>Random events occur 2x more often</p>
+      </div>
+      <div>
+        <div class="upgrade-cost" id="fever-cost">500 PP</div>
+        <button class="buy-btn" id="buy-fever">Buy</button>
+      </div>
+    </div>
+  </div>
+  
+  <div id="prestige" class="tab-content">
+    <div id="prestige-info">
+      <p><strong>Prestige Multiplier:</strong> <span class="prestige-mult" id="prestige-mult">1.0x</span></p>
+      <p>Each prestige gives +50% permanent PP multiplier</p>
+      <p style="margin-top:8px;color:#FF6B6B;">⚠️ Resets PP, combos, and upgrades (except prestige)</p>
+    </div>
+    <button class="buy-btn" id="prestige-btn" style="margin-top:15px;width:100%;background:#B159FF;color:#000;">
+      Rebirth for <span id="prestige-requirement">1,000</span> PP
+    </button>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
+// ============ PORTFOLIO SCRIPTS (UNCHANGED) ============
 // Typing effect
 const text=["BSIT Student","Aspiring IT Professional","Open for Part Time Work"];
 let index=0,charIndex=0;
@@ -195,71 +360,586 @@ particlesJS("particles-js",{
   "retina_detect":true
 });
 
-// Game Logic
-let PP = 0;
-let prestige = 0;
-let combo = 1;
-let clickStreak = 0;
-let doubleActive=false;
-let autoActive=false;
-
-const ppDisplay=document.getElementById('pp-display');
-const prestigeDisplay=document.getElementById('prestige-display');
-const comboDisplay=document.getElementById('combo-display');
-const clickIcon=document.getElementById('click-icon');
-const gameContainer=document.getElementById('game-container');
-const gameOpenBtn=document.getElementById('game-open-btn');
-
-// Open game button
-gameOpenBtn.addEventListener('click',()=>{gameContainer.style.display='block';});
-
-// Click icon logic
-clickIcon.addEventListener('click', e=>{
-  let gain=1*combo;
-  if(doubleActive) gain*=2;
-  PP+=gain;
-  clickStreak++;
-  if(clickStreak%10===0) combo++;
-  ppDisplay.textContent='PP: '+PP;
-  comboDisplay.textContent='Combo: x'+combo;
-  createParticles(e.clientX,e.clientY);
-});
-
-// Buffs
-document.getElementById('doublePP').addEventListener('click',()=>{
-  doubleActive=true;
-  setTimeout(()=>doubleActive=false,5000);
-});
-document.getElementById('autoPP').addEventListener('click',()=>{
-  if(autoActive) return;
-  autoActive=true;
-  const interval=setInterval(()=>{PP++;ppDisplay.textContent='PP: '+PP;},500);
-  setTimeout(()=>{clearInterval(interval);autoActive=false;},5000);
-});
-document.getElementById('resetPrestige').addEventListener('click',()=>{
-  prestige++;
-  PP=0;
-  combo=1;
-  clickStreak=0;
-  ppDisplay.textContent='PP: '+PP;
-  prestigeDisplay.textContent='Prestige: '+prestige;
-  comboDisplay.textContent='Combo: x'+combo;
-});
-
-// Particle effect
-function createParticles(x,y){
-  for(let i=0;i<10;i++){
-    const p=document.createElement('div');
-    p.classList.add('particle');
-    document.body.appendChild(p);
-    p.style.left=(x-3)+'px';
-    p.style.top=(y-3)+'px';
-    const dx=(Math.random()-0.5)*50;
-    const dy=(Math.random()-0.5)*50;
-    p.animate([{transform:`translate(0,0)`,opacity:1},{transform:`translate(${dx}px,${dy}px)`,opacity:0}],{duration:700,easing:'ease-out'});
-    setTimeout(()=>p.remove(),700);
+// ============ ENHANCED GAME LOGIC ============
+class NeonClicker {
+  constructor() {
+    // Core stats
+    this.PP = 0;
+    this.prestige = 0;
+    this.combo = 1;
+    this.comboTimer = null;
+    this.lastClickTime = 0;
+    
+    // Game mechanics
+    this.clickPower = 1;
+    this.autoClickers = 0;
+    this.maxShapes = 3;
+    this.goldenChance = 0;
+    this.comboDuration = 1.0; // multiplier for combo decay time
+    this.shapeVarietyUnlocked = false;
+    this.feverMode = false;
+    
+    // Prestige multiplier: 1.5^prestige
+    this.prestigeMult = 1;
+    
+    // Active buffs
+    this.buffs = {};
+    
+    // Shape management
+    this.shapes = [];
+    this.shapeTypes = ['circle'];
+    this.eventChance = 0.02; // base chance per second
+    
+    // DOM elements
+    this.ppDisplay = document.getElementById('pp-display');
+    this.prestigeDisplay = document.getElementById('prestige-display');
+    this.comboDisplay = document.getElementById('combo-display');
+    this.prestigeMultDisplay = document.getElementById('prestige-mult');
+    this.gameArea = document.getElementById('game-area');
+    this.buffsContainer = document.getElementById('buffs-container');
+    
+    // Upgrade costs (base)
+    this.costs = {
+      clickPower: 10,
+      autoClicker: 50,
+      spawner: 100,
+      golden: 250,
+      combo: 150,
+      variety: 300,
+      fever: 500
+    };
+    
+    // Upgrade levels
+    this.levels = {
+      clickPower: 0,
+      autoClicker: 0,
+      spawner: 0,
+      golden: 0,
+      combo: 0,
+      variety: 0,
+      fever: 0
+    };
+    
+    this.init();
+  }
+  
+  init() {
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        document.getElementById(e.target.dataset.tab).classList.add('active');
+      });
+    });
+    
+    // Close game button
+    document.getElementById('close-game').addEventListener('click', () => {
+      document.getElementById('game-container').style.display = 'none';
+    });
+    
+    // Setup buy buttons
+    this.setupBuyButtons();
+    
+    // Prestige button
+    document.getElementById('prestige-btn').addEventListener('click', () => this.prestigeRebirth());
+    
+    // Start game loops
+    this.startAutoClicker();
+    this.startShapeSpawner();
+    this.startEventChecker();
+    this.startComboDecay();
+    
+    // Initial UI update
+    this.updateUI();
+  }
+  
+  setupBuyButtons() {
+    // Click Power
+    document.getElementById('buy-click-power').addEventListener('click', () => {
+      const cost = this.getCost('clickPower');
+      if(this.PP >= cost) {
+        this.PP -= cost;
+        this.clickPower++;
+        this.levels.clickPower++;
+        this.updateUI();
+        this.showNotification('⚡ Click Power Upgraded!');
+      }
+    });
+    
+    // Auto Clicker
+    document.getElementById('buy-auto-clicker').addEventListener('click', () => {
+      const cost = this.getCost('autoClicker');
+      if(this.PP >= cost) {
+        this.PP -= cost;
+        this.autoClickers++;
+        this.levels.autoClicker++;
+        this.updateUI();
+        this.showNotification('🤖 Auto Clicker Added!');
+      }
+    });
+    
+    // Shape Spawner
+    document.getElementById('buy-spawner').addEventListener('click', () => {
+      const cost = this.getCost('spawner');
+      if(this.PP >= cost) {
+        this.PP -= cost;
+        this.maxShapes++;
+        this.levels.spawner++;
+        this.updateUI();
+        this.showNotification('🎯 More Shapes on Screen!');
+      }
+    });
+    
+    // Golden Chance
+    document.getElementById('buy-golden').addEventListener('click', () => {
+      const cost = this.getCost('golden');
+      if(this.PP >= cost && this.goldenChance < 0.25) {
+        this.PP -= cost;
+        this.goldenChance += 0.05;
+        this.levels.golden++;
+        this.updateUI();
+        this.showNotification('⭐ Golden Shape Chance Increased!');
+      }
+    });
+    
+    // Combo Booster
+    document.getElementById('buy-combo').addEventListener('click', () => {
+      const cost = this.getCost('combo');
+      if(this.PP >= cost && this.levels.combo < 3) {
+        this.PP -= cost;
+        this.comboDuration += 0.5;
+        this.levels.combo++;
+        this.updateUI();
+        this.showNotification('🔥 Combo Lasts Longer!');
+      }
+    });
+    
+    // Shape Variety
+    document.getElementById('buy-variety').addEventListener('click', () => {
+      const cost = this.getCost('variety');
+      if(this.PP >= cost && !this.shapeVarietyUnlocked) {
+        this.PP -= cost;
+        this.shapeVarietyUnlocked = true;
+        this.shapeTypes = ['circle', 'square', 'triangle'];
+        this.levels.variety++;
+        this.updateUI();
+        this.showNotification('💫 New Shapes Unlocked!');
+      }
+    });
+    
+    // Fever Mode
+    document.getElementById('buy-fever').addEventListener('click', () => {
+      const cost = this.getCost('fever');
+      if(this.PP >= cost && !this.feverMode) {
+        this.PP -= cost;
+        this.feverMode = true;
+        this.levels.fever++;
+        this.updateUI();
+        this.showNotification('⚡ Fever Mode Activated!');
+      }
+    });
+  }
+  
+  getCost(upgrade) {
+    // Exponential cost scaling: base * (1.15 ^ level)
+    return Math.floor(this.costs[upgrade] * Math.pow(1.15, this.levels[upgrade]));
+  }
+  
+  addPP(amount) {
+    // Apply prestige multiplier
+    const finalAmount = Math.floor(amount * this.prestigeMult);
+    this.PP += finalAmount;
+    this.updateUI();
+    return finalAmount;
+  }
+  
+  // Shape creation and management
+  createShape() {
+    if(this.shapes.length >= this.maxShapes) return;
+    
+    const shape = document.createElement('div');
+    shape.className = 'game-shape';
+    
+    // Random type
+    const type = this.shapeTypes[Math.floor(Math.random() * this.shapeTypes.length)];
+    shape.classList.add(`shape-${type}`);
+    
+    // Random size (25-60px)
+    const size = Math.floor(Math.random() * 35) + 25;
+    shape.style.width = `${size}px`;
+    shape.style.height = `${size}px`;
+    shape.style.fontSize = `${size * 0.4}px`;
+    
+    // Random position
+    const x = Math.random() * (this.gameArea.offsetWidth - size);
+    const y = Math.random() * (this.gameArea.offsetHeight - size);
+    shape.style.left = `${x}px`;
+    shape.style.top = `${y}px`;
+    
+    // Movement properties
+    shape.dataset.vx = (Math.random() - 0.5) * (0.5 + this.levels.spawner * 0.1);
+    shape.dataset.vy = (Math.random() - 0.5) * (0.5 + this.levels.spawner * 0.1);
+    
+    // PP value based on size and type
+    let baseValue = Math.floor(size / 10);
+    if(type === 'star') baseValue *= 1.5;
+    
+    // Golden chance
+    const isGolden = Math.random() < this.goldenChance;
+    if(isGolden) {
+      shape.classList.add('shape-gold');
+      baseValue *= 5;
+    }
+    
+    shape.dataset.value = baseValue;
+    shape.dataset.golden = isGolden;
+    
+    // Click handler
+    shape.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.handleShapeClick(shape, baseValue, isGolden);
+    });
+    
+    this.gameArea.appendChild(shape);
+    this.shapes.push(shape);
+    
+    // Start movement animation
+    this.animateShape(shape);
+  }
+  
+  animateShape(shape) {
+    if(!this.gameArea.contains(shape)) return;
+    
+    let x = parseFloat(shape.style.left);
+    let y = parseFloat(shape.style.top);
+    let vx = parseFloat(shape.dataset.vx);
+    let vy = parseFloat(shape.dataset.vy);
+    
+    // Bounce off walls
+    const maxX = this.gameArea.offsetWidth - shape.offsetWidth;
+    const maxY = this.gameArea.offsetHeight - shape.offsetHeight;
+    
+    if(x <= 0 || x >= maxX) vx *= -1;
+    if(y <= 0 || y >= maxY) vy *= -1;
+    
+    x += vx;
+    y += vy;
+    
+    // Keep in bounds
+    x = Math.max(0, Math.min(maxX, x));
+    y = Math.max(0, Math.min(maxY, y));
+    
+    shape.style.left = `${x}px`;
+    shape.style.top = `${y}px`;
+    
+    requestAnimationFrame(() => this.animateShape(shape));
+  }
+  
+  handleShapeClick(shape, baseValue, isGolden) {
+    // Calculate PP gain
+    let gain = baseValue * this.clickPower * this.combo;
+    
+    // Apply active buffs
+    if(this.buffs.double) gain *= 2;
+    if(this.buffs.fever) gain *= 1.5;
+    
+    // Add PP
+    const earned = this.addPP(gain);
+    
+    // Combo system
+    const now = Date.now();
+    if(now - this.lastClickTime < 1000) {
+      this.combo = Math.min(this.combo + 0.1, 10); // Max 10x combo
+    } else {
+      this.combo = 1.0;
+    }
+    this.lastClickTime = now;
+    
+    // Visual feedback
+    this.createClickParticles(shape);
+    if(isGolden) {
+      this.showNotification('✨ GOLDEN BONUS! +5x PP');
+    }
+    
+    // Remove shape and create new one
+    shape.remove();
+    this.shapes = this.shapes.filter(s => s !== shape);
+    setTimeout(() => this.createShape(), 300);
+    
+    this.updateUI();
+  }
+  
+  createClickParticles(element) {
+    const rect = element.getBoundingClientRect();
+    const gameRect = this.gameArea.getBoundingClientRect();
+    
+    for(let i = 0; i < 8; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      
+      // Position relative to game area
+      const x = rect.left - gameRect.left + rect.width/2;
+      const y = rect.top - gameRect.top + rect.height/2;
+      
+      p.style.left = `${x}px`;
+      p.style.top = `${y}px`;
+      
+      // Random direction
+      const tx = (Math.random() - 0.5) * 60;
+      const ty = (Math.random() - 0.5) * 60 - 30; // upward bias
+      
+      p.style.setProperty('--tx', `${tx}px`);
+      p.style.setProperty('--ty', `${ty}px`);
+      
+      this.gameArea.appendChild(p);
+      setTimeout(() => p.remove(), 700);
+    }
+  }
+  
+  // Auto clicker system
+  startAutoClicker() {
+    setInterval(() => {
+      if(this.autoClickers > 0) {
+        const gain = this.autoClickers * (this.feverMode ? 1.5 : 1);
+        this.addPP(gain);
+      }
+    }, 1000);
+  }
+  
+  // Shape spawner
+  startShapeSpawner() {
+    const spawnRate = Math.max(800, 2000 - this.levels.spawner * 200);
+    setInterval(() => {
+      if(this.shapes.length < this.maxShapes) {
+        this.createShape();
+      }
+    }, spawnRate);
+    
+    // Initial shapes
+    for(let i = 0; i < Math.min(2, this.maxShapes); i++) {
+      setTimeout(() => this.createShape(), i * 300);
+    }
+  }
+  
+  // Random events system
+  startEventChecker() {
+    const checkRate = this.feverMode ? 2000 : 4000;
+    
+    setInterval(() => {
+      if(Math.random() < (this.eventChance * (this.feverMode ? 2 : 1))) {
+        this.triggerRandomEvent();
+      }
+    }, checkRate);
+  }
+  
+  triggerRandomEvent() {
+    const events = [
+      {
+        name: '💫 Fever Burst',
+        effect: () => {
+          this.buffs.fever = true;
+          setTimeout(() => {
+            this.buffs.fever = false;
+            this.updateBuffsUI();
+          }, 8000);
+          this.updateBuffsUI();
+          return 'All gains +50% for 8 seconds!';
+        }
+      },
+      {
+        name: '⚡ Double Click',
+        effect: () => {
+          this.buffs.double = true;
+          setTimeout(() => {
+            this.buffs.double = false;
+            this.updateBuffsUI();
+          }, 6000);
+          this.updateBuffsUI();
+          return 'Clicks give 2x PP for 6 seconds!';
+        }
+      },
+      {
+        name: '🌟 Shape Storm',
+        effect: () => {
+          // Spawn 3 extra shapes temporarily
+          for(let i = 0; i < 3; i++) {
+            setTimeout(() => this.createShape(), i * 200);
+          }
+          return 'Bonus shapes spawned!';
+        }
+      },
+      {
+        name: '💰 PP Rain',
+        effect: () => {
+          const bonus = 25 + Math.floor(this.PP * 0.1);
+          this.addPP(bonus);
+          return `+${bonus} PP from the sky!`;
+        }
+      }
+    ];
+    
+    const event = events[Math.floor(Math.random() * events.length)];
+    const message = event.effect();
+    this.showNotification(`${event.name}: ${message}`);
+  }
+  
+  // Combo decay system
+  startComboDecay() {
+    setInterval(() => {
+      if(this.combo > 1 && Date.now() - this.lastClickTime > 1500 * this.comboDuration) {
+        this.combo = Math.max(1, this.combo - 0.2);
+        this.updateUI();
+      }
+    }, 500);
+  }
+  
+  // Prestige system
+  prestigeRebirth() {
+    const requirement = 1000 * Math.pow(1.8, this.prestige);
+    
+    if(this.PP < requirement) {
+      this.showNotification(`❌ Need ${requirement.toLocaleString()} PP to prestige!`);
+      return;
+    }
+    
+    if(!confirm(`Rebirth for +50% permanent multiplier?\n\nCurrent: ${this.prestigeMult.toFixed(1)}x\nNew: ${(this.prestigeMult * 1.5).toFixed(1)}x`)) {
+      return;
+    }
+    
+    // Apply prestige
+    this.prestige++;
+    this.prestigeMult = Math.pow(1.5, this.prestige);
+    
+    // Reset progress (except prestige)
+    this.PP = 0;
+    this.combo = 1;
+    this.lastClickTime = 0;
+    
+    // Reset upgrades (optional - could keep some)
+    this.levels = {
+      clickPower: 0,
+      autoClicker: 0,
+      spawner: 0,
+      golden: 0,
+      combo: 0,
+      variety: 0,
+      fever: 0
+    };
+    
+    // Reset mechanics
+    this.clickPower = 1;
+    this.autoClickers = 0;
+    this.maxShapes = 3;
+    this.goldenChance = 0;
+    this.comboDuration = 1.0;
+    this.shapeVarietyUnlocked = false;
+    this.shapeTypes = ['circle'];
+    this.feverMode = false;
+    
+    // Clear shapes
+    this.shapes.forEach(s => s.remove());
+    this.shapes = [];
+    
+    // Reset buffs
+    this.buffs = {};
+    
+    // Update UI
+    this.updateUI();
+    this.showNotification(`✨ PRESTIGE COMPLETE! Multiplier: ${this.prestigeMult.toFixed(1)}x`);
+  }
+  
+  // UI Updates
+  updateUI() {
+    this.ppDisplay.textContent = this.PP.toLocaleString();
+    this.prestigeDisplay.textContent = this.prestige;
+    this.comboDisplay.textContent = `x${this.combo.toFixed(1)}`;
+    this.prestigeMultDisplay.textContent = `${this.prestigeMult.toFixed(1)}x`;
+    
+    // Update costs
+    document.getElementById('click-power-cost').textContent = `${this.getCost('clickPower')} PP`;
+    document.getElementById('auto-clicker-cost').textContent = `${this.getCost('autoClicker')} PP`;
+    document.getElementById('spawner-cost').textContent = `${this.getCost('spawner')} PP`;
+    document.getElementById('golden-cost').textContent = `${this.getCost('golden')} PP`;
+    document.getElementById('combo-cost').textContent = `${this.getCost('combo')} PP`;
+    document.getElementById('variety-cost').textContent = `${this.getCost('variety')} PP`;
+    document.getElementById('fever-cost').textContent = `${this.getCost('fever')} PP`;
+    
+    // Prestige requirement
+    const prestigeReq = 1000 * Math.pow(1.8, this.prestige);
+    document.getElementById('prestige-requirement').textContent = prestigeReq.toLocaleString();
+    
+    // Disable buttons if can't afford
+    document.getElementById('buy-click-power').disabled = this.PP < this.getCost('clickPower');
+    document.getElementById('buy-auto-clicker').disabled = this.PP < this.getCost('autoClicker');
+    document.getElementById('buy-spawner').disabled = this.PP < this.getCost('spawner');
+    document.getElementById('buy-golden').disabled = this.PP < this.getCost('golden') || this.goldenChance >= 0.25;
+    document.getElementById('buy-combo').disabled = this.PP < this.getCost('combo') || this.levels.combo >= 3;
+    document.getElementById('buy-variety').disabled = this.PP < this.getCost('variety') || this.shapeVarietyUnlocked;
+    document.getElementById('buy-fever').disabled = this.PP < this.getCost('fever') || this.feverMode;
+    document.getElementById('prestige-btn').disabled = this.PP < prestigeReq;
+    
+    this.updateBuffsUI();
+  }
+  
+  updateBuffsUI() {
+    this.buffsContainer.innerHTML = '';
+    
+    if(this.buffs.double) {
+      const buff = document.createElement('span');
+      buff.className = 'buff-indicator buff-active';
+      buff.textContent = '⚡ 2x Clicks';
+      this.buffsContainer.appendChild(buff);
+    }
+    
+    if(this.buffs.fever) {
+      const buff = document.createElement('span');
+      buff.className = 'buff-indicator buff-active';
+      buff.textContent = '🔥 Fever Mode';
+      this.buffsContainer.appendChild(buff);
+    }
+    
+    if(this.combo > 1) {
+      const buff = document.createElement('span');
+      buff.className = 'buff-indicator';
+      buff.textContent = `🎯 Combo x${this.combo.toFixed(1)}`;
+      this.buffsContainer.appendChild(buff);
+    }
+  }
+  
+  showNotification(message) {
+    // Remove existing notifications
+    document.querySelectorAll('.event-notification').forEach(n => n.remove());
+    
+    const notif = document.createElement('div');
+    notif.className = 'event-notification';
+    notif.textContent = message;
+    document.body.appendChild(notif);
+    
+    // Auto remove
+    setTimeout(() => notif.remove(), 3000);
   }
 }
+
+// Initialize game when button clicked
+let game;
+document.getElementById('game-open-btn').addEventListener('click', () => {
+  const container = document.getElementById('game-container');
+  container.style.display = 'block';
+  
+  // Initialize game only once
+  if(!game) {
+    game = new NeonClicker();
+  }
+});
+
+// Close game with ESC key
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    document.getElementById('game-container').style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
