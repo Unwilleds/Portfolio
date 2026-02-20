@@ -15,9 +15,7 @@ nav .logo{font-weight:600;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #00F0
 nav .nav-links a{color:#E0E0E0;text-decoration:none;margin-left:20px;transition:0.3s;position:relative;}
 nav .nav-links a.active::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:#B159FF;border-radius:2px;}
 nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
-
 .main{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 10% 60px;}
-
 .hero, .section{opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;position:relative;}
 .hero{background:rgba(0,0,0,0.35);border-radius:20px;padding:40px 50px;display:flex;align-items:center;gap:30px;max-width:900px;width:100%;box-shadow:0 0 25px rgba(0,255,255,0.2);margin-bottom:50px;}
 .profile-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #00F0FF;box-shadow:0 0 25px rgba(0,240,255,0.8);animation:float 4s ease-in-out infinite;transition:0.3s;}
@@ -34,61 +32,24 @@ nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
 .socials{margin-top:15px;display:flex;gap:15px;}
 .socials a{color:#E0E0E0;font-size:20px;transition:0.3s;}
 .socials a:hover{transform:scale(1.2);color:#B159FF;text-shadow:0 0 8px #B159FF;}
-
 .section{background:rgba(0,0,0,0.35);border-radius:20px;padding:30px 40px;max-width:900px;width:100%;box-shadow:0 0 20px rgba(0,240,255,0.1);margin-bottom:30px;}
 .section h2{margin-bottom:15px;color:#00F0FF;text-shadow:0 0 8px #B159FF;}
-
 .card{background:rgba(255,255,255,0.05);border-radius:15px;padding:15px 20px;margin-bottom:12px;transition:0.3s;display:flex;justify-content:space-between;align-items:center;position:relative;}
 .card:hover{box-shadow:0 0 25px rgba(0,240,255,0.7);transform:translateY(-5px);}
 .card .year{font-weight:600;font-size:16px;color:#B159FF;margin-right:15px;}
-
 .skills span{display:inline-block;background:rgba(0,240,255,0.1);padding:8px 14px;border-radius:20px;margin:5px;font-size:13px;box-shadow:0 0 10px rgba(0,240,255,0.4);}
 .skill-bar{background:rgba(0,240,255,0.05);border-radius:20px;height:12px;margin:8px 0;overflow:hidden;}
 .skill-fill{height:100%;width:0%;background:#B159FF;border-radius:20px;transition:width 1.5s ease-in-out;}
-
 footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:1px solid #00F0FF;text-shadow:0 0 6px #B159FF;}
 #backToTop{position:fixed;bottom:20px;right:20px;background:#00F0FF;color:#000;padding:10px 15px;border:none;border-radius:50px;cursor:pointer;display:none;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1000;transition:0.3s;}
 #backToTop:hover{transform:scale(1.1);}
-
 #particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
-
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
-
-#game-container{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:300px;
-  max-width:90vw;
-  height:auto;
-  padding:20px;
-  background:rgba(0,0,0,0.75);
-  border-radius:20px;
-  box-shadow:0 0 25px rgba(0,240,255,0.5);
-  text-align:center;
-  z-index:2000;
-  color:#E0E0E0;
-}
-
-#game-canvas{
-  width:100%;
-  height:300px;
-  background:rgba(0,0,0,0.1);
-  border-radius:15px;
-  margin-bottom:10px;
-  cursor:pointer;
-}
-
-#prestige-btn, #reset-game{
-  padding:8px 15px;
-  margin:5px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:600;
-}
-
+#game-container{position:fixed;bottom:20px;right:20px;width:350px;max-width:95vw;background:rgba(0,0,0,0.85);padding:20px;border-radius:20px;box-shadow:0 0 25px rgba(0,240,255,0.5);color:#E0E0E0;z-index:2000;transition:0.3s;}
+#game-toggle{position:absolute;top:-40px;right:0;background:#00F0FF;color:#000;padding:5px 12px;border:none;border-radius:10px;cursor:pointer;font-weight:600;}
+#game-canvas{width:100%;height:300px;background:rgba(0,0,0,0.1);border-radius:15px;margin-bottom:10px;cursor:pointer;}
+#prestige-btn,#reset-game{padding:8px 15px;margin:5px;border:none;border-radius:10px;cursor:pointer;font-weight:600;}
 #prestige-btn{background:#B159FF;color:#000;}
 #reset-game{background:#00F0FF;color:#000;}
 </style>
@@ -108,7 +69,6 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <div id="particles-js"></div>
 
 <div class="main">
-
 <div class="hero" id="hero" data-animate>
   <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
   <div class="hero-info">
@@ -153,16 +113,16 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
   <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
   <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
 </div>
-
 </div>
 
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
 <div id="game-container">
+  <button id="game-toggle">Hide Game</button>
   <h3>Click the Circles!</h3>
   <canvas id="game-canvas"></canvas>
-  <p>PP: <span id="score">0</span> | Prestige: <span id="prestige">0</span></p>
+  <p>PP: <span id="score">0</span> | Prestige: <span id="prestige">0</span> | Combo: <span id="combo">x1</span></p>
   <button id="reset-game">Reset</button>
   <button id="prestige-btn">Prestige / Rebirth</button>
 </div>
@@ -201,77 +161,95 @@ backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})
 
 // Particles.js
 particlesJS("particles-js",{
-  "particles":{
-    "number":{"value":60,"density":{"enable":true,"value_area":800}},
-    "color":{"value":["#00F0FF","#B159FF"]},
-    "shape":{"type":"circle"},
-    "opacity":{"value":0.6,"random":true},
-    "size":{"value":3,"random":true},
-    "line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},
-    "move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}
-  },
+  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":["#00F0FF","#B159FF"]},"shape":{"type":"circle"},"opacity":{"value":0.6,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},"move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}},
   "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}},
   "retina_detect":true
 });
 
-// Advanced Game
+// ---------------- Advanced Game ----------------
 const canvas=document.getElementById('game-canvas');
 const ctx=canvas.getContext('2d');
-let score=0,prestige=0,ppMultiplier=1;
-let circles=[];
+let score=0,prestige=0,ppMultiplier=1,combo=0,comboTimeout;
+let circles=[],particles=[];
 
 function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
 window.addEventListener('resize',resizeCanvas);
 resizeCanvas();
 
+// Circle class
 class Circle{
   constructor(x,y,r,color){this.x=x;this.y=y;this.r=r;this.color=color;this.vx=(Math.random()*2+1)*(Math.random()<0.5?-1:1);this.vy=(Math.random()*2+1)*(Math.random()<0.5?-1:1);}
   draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.color;ctx.shadowBlur=15;ctx.shadowColor=this.color;ctx.fill();}
   move(){this.x+=this.vx;this.y+=this.vy;if(this.x-this.r<0||this.x+this.r>canvas.width)this.vx*=-1;if(this.y-this.r<0||this.y+this.r>canvas.height)this.vy*=-1;}
 }
 
+// Particle class for click effects
+class Particle{
+  constructor(x,y,color){this.x=x;this.y=y;this.r=Math.random()*4+2;this.color=color;this.vx=(Math.random()-0.5)*4;this.vy=(Math.random()-0.5)*4;this.alpha=1;}
+  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.color;ctx.globalAlpha=this.alpha;ctx.fill();ctx.globalAlpha=1;}
+  update(){this.x+=this.vx;this.y+=this.vy;this.alpha-=0.02;}
+}
+
 function spawnCircles(n){
-  circles=[];
   for(let i=0;i<n;i++){
-    let r=Math.random()*20+15;
+    let r=Math.random()*25+15;
     let x=Math.random()*(canvas.width-2*r)+r;
     let y=Math.random()*(canvas.height-2*r)+r;
-    let color=i%2===0?"#00F0FF":"#B159FF";
+    let color=Math.random()<0.5?"#00F0FF":"#B159FF";
     circles.push(new Circle(x,y,r,color));
   }
 }
 spawnCircles(8);
 
-function draw(){
+function drawGame(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   circles.forEach(c=>{c.draw();c.move();});
-  requestAnimationFrame(draw);
+  particles.forEach((p,i)=>{p.draw();p.update();if(p.alpha<=0)particles.splice(i,1);});
+  requestAnimationFrame(drawGame);
 }
-draw();
+drawGame();
 
-canvas.addEventListener('click',function(e){
+// Click detection
+canvas.addEventListener('click',e=>{
   const rect=canvas.getBoundingClientRect();
-  const mx=e.clientX-rect.left,my=e.clientY-rect.top;
-  circles.forEach((c,index)=>{
-    let dx=mx-c.x,dy=my-c.y;
+  const mx=e.clientX-rect.left;
+  const my=e.clientY-rect.top;
+  let clicked=false;
+  circles.forEach((c,i)=>{
+    const dx=mx-c.x,dy=my-c.y;
     if(Math.sqrt(dx*dx+dy*dy)<c.r){
-      score+=1*ppMultiplier;
+      clicked=true;
+      score+=1*ppMultiplier*(combo||1);
       document.getElementById('score').textContent=score;
-      circles.splice(index,1);
-      spawnCircles(1);
+      for(let j=0;j<10;j++)particles.push(new Particle(c.x,c.y,c.color));
+      // combo system
+      combo++;
+      document.getElementById('combo').textContent='x'+combo;
+      clearTimeout(comboTimeout);
+      comboTimeout=setTimeout(()=>{combo=0;document.getElementById('combo').textContent='x1';},2000);
+      // move circle
+      c.x=Math.random()*(canvas.width-2*c.r)+c.r;
+      c.y=Math.random()*(canvas.height-2*c.r)+c.r;
     }
   });
+  if(!clicked){combo=0;document.getElementById('combo').textContent='x1';}
 });
 
-// Prestige
+// Reset & Prestige
+document.getElementById('reset-game').addEventListener('click',()=>{
+  score=0;combo=0;ppMultiplier=1;document.getElementById('score').textContent=score;
+});
 document.getElementById('prestige-btn').addEventListener('click',()=>{
-  if(score>=50){prestige++;ppMultiplier+=0.5;score=0;document.getElementById('score').textContent=score;document.getElementById('prestige').textContent=prestige;}
-  else{alert("Need at least 50 PP to Prestige!");}
+  if(score>=50){prestige++;ppMultiplier+=0.5;score=0;document.getElementById('prestige').textContent=prestige;document.getElementById('score').textContent=score;}
 });
 
-// Reset
-document.getElementById('reset-game').addEventListener('click',()=>{score=0;ppMultiplier=1;prestige=0;document.getElementById('score').textContent=score;document.getElementById('prestige').textContent=prestige;spawnCircles(8);});
+// Hide / show game
+const gameContainer=document.getElementById('game-container');
+const toggleBtn=document.getElementById('game-toggle');
+toggleBtn.addEventListener('click',()=>{
+  if(gameContainer.style.height!=='50px'){gameContainer.style.height='50px';canvas.style.display='none';toggleBtn.textContent='Show Game';} 
+  else{gameContainer.style.height='auto';canvas.style.display='block';toggleBtn.textContent='Hide Game';}
+});
 </script>
-
 </body>
 </html>
