@@ -3,39 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lloyd Espineli Portfolio</title>
+<title>Lloyd Espineli Neon Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-body{
-  min-height:100vh;
-  background:#0B0F2A;
-  color:#E0E0E0;
-  scroll-behavior:smooth;
-  position:relative;
-}
-nav{
-  position:fixed;top:0;left:0;width:100%;padding:15px 10%;
-  display:flex;justify-content:space-between;align-items:center;
-  background:rgba(11,15,42,0.6);backdrop-filter:blur(5px);z-index:1000;transition:0.3s;
-}
-nav.scrolled{background:rgba(11,15,42,0.9);}
+body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;position:relative;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;width:100%;padding:15px 10%;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,42,0.6);backdrop-filter:blur(5px);z-index:1000;transition:0.3s;}
+nav.scrolled{background:rgba(11,15,42,0.95);}
 nav .logo{font-weight:600;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #00F0FF;}
-nav .nav-links a{
-  color:#E0E0E0;text-decoration:none;margin-left:20px;transition:0.3s;position:relative;
-}
-nav .nav-links a.active::after{
-  content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:#B159FF;border-radius:2px;
-}
+nav .nav-links a{color:#E0E0E0;text-decoration:none;margin-left:20px;transition:0.3s;position:relative;}
+nav .nav-links a.active::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:#B159FF;border-radius:2px;}
 nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
 
 .main{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 10% 60px;}
 
-.hero, .section{opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;}
-.hero{background:rgba(0,0,0,0.4);border-radius:20px;padding:40px 50px;display:flex;align-items:center;gap:30px;max-width:900px;width:100%;box-shadow:0 0 25px rgba(0,255,255,0.2);margin-bottom:50px;position:relative;}
-.profile-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #00F0FF;box-shadow:0 0 25px rgba(0,240,255,0.8);animation:float 4s ease-in-out infinite;}
+.hero, .section{opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;position:relative;}
+.hero{background:rgba(0,0,0,0.35);border-radius:20px;padding:40px 50px;display:flex;align-items:center;gap:30px;max-width:900px;width:100%;box-shadow:0 0 25px rgba(0,255,255,0.2);margin-bottom:50px;}
+.profile-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #00F0FF;box-shadow:0 0 25px rgba(0,240,255,0.8);animation:float 4s ease-in-out infinite;transition:0.3s;}
 .profile-wrap img{width:100%;height:100%;object-fit:cover;}
+.profile-wrap:hover{transform:scale(1.05);}
 .hero-info{max-width:500px;}
 .hero-info h1{font-size:38px;margin-bottom:5px;color:#00F0FF;text-shadow:0 0 10px #00F0FF,0 0 20px #B159FF;}
 .typing{font-size:16px;color:#B0B0B0;margin-bottom:10px;min-height:22px;}
@@ -51,7 +38,7 @@ nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
 .section{background:rgba(0,0,0,0.35);border-radius:20px;padding:30px 40px;max-width:900px;width:100%;box-shadow:0 0 20px rgba(0,240,255,0.1);margin-bottom:30px;}
 .section h2{margin-bottom:15px;color:#00F0FF;text-shadow:0 0 8px #B159FF;}
 
-.card{background:rgba(255,255,255,0.05);border-radius:15px;padding:15px 20px;margin-bottom:12px;transition:0.3s;display:flex;justify-content:space-between;align-items:center;}
+.card{background:rgba(255,255,255,0.05);border-radius:15px;padding:15px 20px;margin-bottom:12px;transition:0.3s;display:flex;justify-content:space-between;align-items:center;position:relative;}
 .card:hover{box-shadow:0 0 25px rgba(0,240,255,0.7);transform:translateY(-5px);}
 .card .year{font-weight:600;font-size:16px;color:#B159FF;margin-right:15px;}
 
@@ -63,8 +50,9 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 #backToTop{position:fixed;bottom:20px;right:20px;background:#00F0FF;color:#000;padding:10px 15px;border:none;border-radius:50px;cursor:pointer;display:none;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1000;transition:0.3s;}
 #backToTop:hover{transform:scale(1.1);}
 
+#particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
+
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
-@keyframes gradientMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 </style>
 </head>
@@ -79,6 +67,8 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
     <a href="#contact">Contact</a>
   </div>
 </nav>
+
+<div id="particles-js"></div>
 
 <div class="main">
 
@@ -132,6 +122,9 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
+<!-- Particles.js library -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
 <script>
 // Typing effect
 const text=["BSIT Student","Aspiring IT Professional","Open for Part Time Work"];
@@ -162,6 +155,24 @@ window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{cons
 const backBtn=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{if(window.scrollY>300){backBtn.style.display='block';}else{backBtn.style.display='none';}});
 backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
+
+// Particles.js configuration
+particlesJS("particles-js",{
+  "particles":{
+    "number":{"value":60,"density":{"enable":true,"value_area":800}},
+    "color":{"value":["#00F0FF","#B159FF"]},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.6,"random":true},
+    "size":{"value":3,"random":true},
+    "line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},
+    "move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}
+  },
+  "interactivity":{
+    "detect_on":"canvas",
+    "events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}
+  },
+  "retina_detect":true
+});
 </script>
 
 </body>
