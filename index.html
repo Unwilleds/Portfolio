@@ -18,19 +18,19 @@ scroll-behavior:smooth;
 position:relative;
 }
 nav {
-position:fixed; top:0; left:0;
-width:100%; padding:15px 10%;
+position:fixed; top:0; left:0; width:100%; padding:15px 10%;
 display:flex; justify-content:space-between; align-items:center;
-background:rgba(0,0,0,0.5); backdrop-filter:blur(5px);
-z-index:1000; transition:0.3s;
+background:rgba(0,0,0,0.5); backdrop-filter:blur(5px); z-index:1000; transition:0.3s;
 }
 nav.scrolled { background:rgba(0,0,0,0.85); }
 nav .logo { font-weight:600; font-size:20px; text-shadow:0 0 8px #FF8ACC; }
 nav .nav-links a { color:#fff; text-decoration:none; margin-left:20px; transition:0.3s; position:relative; }
 nav .nav-links a.active::after { content:""; position:absolute; left:0; bottom:-5px; width:100%; height:2px; background:#FF8ACC; border-radius:2px; }
 nav .nav-links a:hover { color:#FF8ACC; text-shadow:0 0 6px #FF8ACC; }
+
 .main { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:100px 10% 60px; }
-.hero, .section, .projects { opacity:0; transform:translateY(50px); transition:all 0.8s ease-out; }
+
+.hero, .section { opacity:0; transform:translateY(50px); transition:all 0.8s ease-out; }
 .hero { background:rgba(0,0,0,0.6); border-radius:20px; padding:40px 50px; display:flex; align-items:center; gap:30px; max-width:900px; width:100%; box-shadow:0 0 25px rgba(255,255,255,0.25); margin-bottom:50px; }
 .profile-wrap { width:200px; height:200px; border-radius:50%; overflow:hidden; border:3px solid #fff; box-shadow:0 0 25px rgba(255,255,255,0.9); animation:float 4s ease-in-out infinite; }
 .profile-wrap img { width:100%; height:100%; object-fit:cover; }
@@ -45,18 +45,18 @@ nav .nav-links a:hover { color:#FF8ACC; text-shadow:0 0 6px #FF8ACC; }
 .socials { margin-top:15px; display:flex; gap:15px; }
 .socials a { color:#fff; font-size:20px; transition:0.3s; }
 .socials a:hover { transform:scale(1.2); color:#FF8ACC; text-shadow:0 0 8px #FF8ACC; }
+
 .section { background:rgba(0,0,0,0.55); border-radius:20px; padding:30px 40px; max-width:900px; width:100%; box-shadow:0 0 20px rgba(255,255,255,0.2); margin-bottom:30px; }
 .section h2 { margin-bottom:15px; color:#fff; text-shadow:0 0 8px #00FFFF; }
-.card { background:rgba(255,255,255,0.05); border-radius:15px; padding:15px 20px; margin-bottom:12px; transition:0.3s; }
+
+.card { background:rgba(255,255,255,0.05); border-radius:15px; padding:15px 20px; margin-bottom:12px; transition:0.3s; display:flex; justify-content:space-between; align-items:center; }
 .card:hover { box-shadow:0 0 25px rgba(0,255,255,0.7); transform:translateY(-5px); }
+.card .year { font-weight:600; font-size:16px; color:#FF8ACC; margin-right:15px; }
+
 .skills span { display:inline-block; background:rgba(255,255,255,0.1); padding:8px 14px; border-radius:20px; margin:5px; font-size:13px; box-shadow:0 0 10px rgba(0,255,255,0.4); }
 .skill-bar { background:rgba(255,255,255,0.1); border-radius:20px; height:12px; margin:8px 0; overflow:hidden; }
 .skill-fill { height:100%; width:0%; background:#FF8ACC; border-radius:20px; transition:width 1.5s ease-in-out; }
-.projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; margin-bottom:40px; }
-.project-card { position:relative; border-radius:15px; overflow:hidden; cursor:pointer; box-shadow:0 0 15px rgba(255,255,255,0.3); transition:0.3s; }
-.project-card img { width:100%; height:100%; object-fit:cover; display:block; }
-.project-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,140,204,0.8); color:#000; display:flex; flex-direction:column; justify-content:center; align-items:center; opacity:0; transition:0.3s; text-align:center; font-weight:600; padding:10px; }
-.project-card:hover .project-overlay { opacity:1; }
+
 footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border-top:1px solid #fff; text-shadow:0 0 6px #FF8ACC; }
 #backToTop { position:fixed; bottom:20px; right:20px; background:#FF8ACC; color:#000; padding:10px 15px; border:none; border-radius:50px; cursor:pointer; display:none; box-shadow:0 0 10px rgba(255,140,204,0.5); z-index:1000; transition:0.3s; }
 #backToTop:hover { transform:scale(1.1); }
@@ -74,7 +74,6 @@ footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border
     <a href="#hero">Home</a>
     <a href="#work">Experience</a>
     <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -107,9 +106,9 @@ footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border
 
 <div class="section" id="work" data-animate>
   <h2>Work Experience</h2>
-  <div class="card"><p>Assistant Swimming Instructor. Macuha Swim Team. 2024</p><p>Coached basic to advanced strokes. Handled students aged 5 to 20.</p></div>
-  <div class="card"><p>Computer Shop Attendant. Titans Underground. 2025</p><p>Used time and billing system. Managed sessions and payments.</p></div>
-  <div class="card"><p>Cashier. MNM Fish Dealer. 2025</p><p>Handled cash, recorded sales, and assisted customers.</p></div>
+  <div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team. Coached basic to advanced strokes. Handled students aged 5 to 20.</div></div>
+  <div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground. Used time and billing system. Managed sessions and payments.</div></div>
+  <div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer. Handled cash, recorded sales, and assisted customers.</div></div>
 </div>
 
 <div class="section" id="skills" data-animate>
@@ -124,22 +123,6 @@ footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border
   <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
   <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
   <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
-</div>
-
-<div class="section projects" id="projects" data-animate>
-  <h2>Projects</h2>
-  <div class="project-card">
-    <img src="project1.jpg" alt="Project 1">
-    <div class="project-overlay">Project 1<br>Link or Description</div>
-  </div>
-  <div class="project-card">
-    <img src="project2.jpg" alt="Project 2">
-    <div class="project-overlay">Project 2<br>Link or Description</div>
-  </div>
-  <div class="project-card">
-    <img src="project3.jpg" alt="Project 3">
-    <div class="project-overlay">Project 3<br>Link or Description</div>
-  </div>
 </div>
 
 </div>
