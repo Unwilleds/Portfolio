@@ -2,1852 +2,287 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Lloyd Espineli Neon Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;position:relative;overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;width:100%;padding:15px 10%;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,42,0.6);backdrop-filter:blur(5px);z-index:1000;transition:0.3s;}
-nav.scrolled{background:rgba(11,15,42,0.95);}
-nav .logo{font-weight:600;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #00F0FF;}
-nav .nav-links a{color:#E0E0E0;text-decoration:none;margin-left:20px;transition:0.3s;position:relative;}
-nav .nav-links a.active::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:#B159FF;border-radius:2px;}
-nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
-
-.main{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 10% 60px;}
-
-.hero, .section{opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;position:relative;}
-.hero{background:rgba(0,0,0,0.35);border-radius:20px;padding:40px 50px;display:flex;align-items:center;gap:30px;max-width:900px;width:100%;box-shadow:0 0 25px rgba(0,255,255,0.2);margin-bottom:50px;}
-.profile-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #00F0FF;box-shadow:0 0 25px rgba(0,240,255,0.8);animation:float 4s ease-in-out infinite;transition:0.3s;}
-.profile-wrap img{width:100%;height:100%;object-fit:cover;}
-.profile-wrap:hover{transform:scale(1.05);}
-.hero-info{max-width:500px;}
-.hero-info h1{font-size:38px;margin-bottom:5px;color:#00F0FF;text-shadow:0 0 10px #00F0FF,0 0 20px #B159FF;}
-.typing{font-size:16px;color:#B0B0B0;margin-bottom:10px;min-height:22px;}
-.desc{font-size:15px;line-height:1.5;color:#E0E0E0;margin-bottom:15px;}
-.contact p{font-size:14px;margin-bottom:6px;color:#B0B0B0;}
-.buttons{margin-top:15px;display:flex;gap:12px;flex-wrap:wrap;}
-.buttons a{text-decoration:none;padding:10px 22px;border-radius:30px;font-size:14px;color:#E0E0E0;border:2px solid #00F0FF;transition:0.3s;box-shadow:0 0 15px rgba(0,240,255,0.5);}
-.buttons a:hover{background:#00F0FF;color:#000;transform:scale(1.05);box-shadow:0 0 25px rgba(0,240,255,1);}
-.socials{margin-top:15px;display:flex;gap:15px;}
-.socials a{color:#E0E0E0;font-size:20px;transition:0.3s;}
-.socials a:hover{transform:scale(1.2);color:#B159FF;text-shadow:0 0 8px #B159FF;}
-
-.section{background:rgba(0,0,0,0.35);border-radius:20px;padding:30px 40px;max-width:900px;width:100%;box-shadow:0 0 20px rgba(0,240,255,0.1);margin-bottom:30px;}
-.section h2{margin-bottom:15px;color:#00F0FF;text-shadow:0 0 8px #B159FF;}
-
-.card{background:rgba(255,255,255,0.05);border-radius:15px;padding:15px 20px;margin-bottom:12px;transition:0.3s;display:flex;justify-content:space-between;align-items:center;position:relative;}
-.card:hover{box-shadow:0 0 25px rgba(0,240,255,0.7);transform:translateY(-5px);}
-.card .year{font-weight:600;font-size:16px;color:#B159FF;margin-right:15px;}
-
-.skills span{display:inline-block;background:rgba(0,240,255,0.1);padding:8px 14px;border-radius:20px;margin:5px;font-size:13px;box-shadow:0 0 10px rgba(0,240,255,0.4);}
-.skill-bar{background:rgba(0,240,255,0.05);border-radius:20px;height:12px;margin:8px 0;overflow:hidden;}
-.skill-fill{height:100%;width:0%;background:#B159FF;border-radius:20px;transition:width 1.5s ease-in-out;}
-
-footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:1px solid #00F0FF;}
-#backToTop{position:fixed;bottom:20px;right:20px;background:#00F0FF;color:#000;padding:10px 15px;border:none;border-radius:50px;cursor:pointer;display:none;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1000;transition:0.3s;}
-#backToTop:hover{transform:scale(1.1);}
-
-#particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-
-@keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
-@media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
-
-/* ============ GAME STYLES ============ */
-#game-open-btn{position:fixed;bottom:20px;left:20px;background:#00F0FF;color:#000;padding:12px 20px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 15px rgba(0,240,255,0.6);z-index:1500;transition:0.3s;font-weight:600;display:flex;align-items:center;gap:8px;}
-#game-open-btn:hover{transform:scale(1.08);box-shadow:0 0 25px rgba(0,240,255,1);}
-#game-open-btn i{animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
-
-#game-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(11,15,42,0.98);padding:20px;border-radius:20px;z-index:2000;width:95%;max-width:800px;color:#E0E0E0;display:none;box-shadow:0 0 40px rgba(0,240,255,0.8);border:2px solid #00F0FF;max-height:95vh;overflow-y:auto;}
-#game-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(0,240,255,0.3);flex-wrap:wrap;gap:10px;}
-#game-header h2{color:#00F0FF;font-size:20px;text-shadow:0 0 8px #00F0FF;}
-#game-header-buttons{display:flex;gap:10px;align-items:center;}
-#close-game, #settings-btn{background:none;border:none;color:#00F0FF;font-size:20px;cursor:pointer;transition:0.3s;}
-#close-game:hover, #settings-btn:hover{transform:scale(1.2);color:#B159FF;}
-
-#stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:15px;}
-.stat-box{background:rgba(0,0,0,0.4);padding:12px;border-radius:12px;text-align:center;border:1px solid rgba(0,240,255,0.3);}
-.stat-box h4{font-size:11px;color:#B0B0B0;margin-bottom:5px;}
-.stat-box p{font-weight:700;font-size:18px;color:#00F0FF;}
-.stat-box.prestige{border-color:#B159FF;}
-.stat-box.prestige p{color:#B159FF;}
-
-#game-area{position:relative;height:280px;background:linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,50,100,0.4));border-radius:15px;margin:15px 0;overflow:hidden;border:2px solid #00F0FF;cursor:crosshair;}
-
-.game-shape{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;transition:transform 0.08s;box-shadow:0 0 15px rgba(0,240,255,0.7);font-size:14px;font-weight:700;color:#000;}
-.game-shape:hover{transform:scale(1.15);z-index:10;}
-.game-shape:active{transform:scale(0.9);}
-.shape-circle{background:linear-gradient(135deg, #00F0FF, #0099FF);}
-.shape-square{background:linear-gradient(135deg, #B159FF, #7B2CBF);border-radius:15px;}
-.shape-triangle{background:linear-gradient(135deg, #FF6B6B, #EE5A24);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);}
-.shape-star{background:linear-gradient(135deg, #FFD166, #FF9E6D);clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);}
-.shape-gold{background:linear-gradient(135deg, #FFD700, #FFA500);box-shadow:0 0 25px rgba(255,215,0,1);animation:goldGlow 0.5s infinite alternate;}
-.shape-boss{background:linear-gradient(135deg, #FF006E, #8338EC);border-radius:20px;box-shadow:0 0 30px rgba(255,0,110,0.8);z-index:20;font-size:28px;}
-.shape-evolved{box-shadow:0 0 30px rgba(0,240,255,1);border:2px solid #00F0FF;}
-
-@keyframes goldGlow{from{box-shadow:0 0 20px rgba(255,215,0,0.8);}to{box-shadow:0 0 35px rgba(255,215,0,1);}}
-
-.multiplier-orb{position:absolute;width:40px;height:40px;background:radial-gradient(circle, #B159FF, #7B2CBF);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(177,89,255,0.8);animation:orbFloat 2s ease-in-out infinite;z-index:15;}
-@keyframes orbFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-
-#boss-health-bar{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:70%;height:10px;background:rgba(255,255,255,0.2);border-radius:5px;overflow:hidden;display:none;}
-#boss-health-fill{height:100%;width:100%;background:linear-gradient(90deg, #FF006E, #8338EC);transition:width 0.3s;}
-
-#buffs-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0;min-height:30px;}
-.buff-badge{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:rgba(0,240,255,0.2);border:1px solid #00F0FF;display:flex;align-items:center;gap:5px;}
-.buff-badge.gold{background:rgba(255,215,0,0.3);border-color:#FFD700;color:#FFD700;}
-.buff-badge.fever{background:rgba(255,107,107,0.3);border-color:#FF6B6B;color:#FF6B6B;}
-.buff-badge.chain{background:rgba(177,89,255,0.3);border-color:#B159FF;color:#B159FF;}
-
-#tabs{display:flex;gap:5px;margin:15px 0;flex-wrap:wrap;}
-.tab-btn{flex:1;min-width:70px;padding:8px;border:none;border-radius:10px;background:rgba(0,240,255,0.1);color:#E0E0E0;cursor:pointer;transition:0.2s;font-weight:500;font-size:13px;}
-.tab-btn.active{background:#00F0FF;color:#000;box-shadow:0 0 12px rgba(0,240,255,0.6);}
-.tab-btn:hover:not(.active){background:rgba(0,240,255,0.25);}
-
-.tab-content{display:none;}
-.tab-content.active{display:block;animation:fadeIn 0.3s;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-
-.upgrade-item{background:rgba(255,255,255,0.05);border-radius:12px;padding:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;transition:0.2s;border-left:3px solid #B159FF;}
-.upgrade-item:hover{background:rgba(0,240,255,0.1);}
-.upgrade-info h4{color:#00F0FF;margin-bottom:3px;font-size:14px;}
-.upgrade-info p{font-size:11px;color:#B0B0B0;}
-.upgrade-cost{font-weight:700;color:#FF6B6B;font-size:13px;margin-bottom:5px;}
-.buy-btn{background:#00F0FF;color:#000;border:none;padding:6px 14px;border-radius:20px;cursor:pointer;font-weight:600;font-size:12px;transition:0.2s;}
-.buy-btn:hover{transform:scale(1.05);box-shadow:0 0 12px rgba(0,240,255,0.7);}
-.buy-btn:disabled{background:#444;color:#777;cursor:not-allowed;transform:none;}
-
-#notification-area{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:3000;pointer-events:none;width:90%;max-width:500px;}
-.event-notification{background:linear-gradient(135deg, #B159FF, #00F0FF);color:#000;padding:10px 18px;border-radius:25px;font-weight:600;font-size:13px;box-shadow:0 0 20px rgba(0,240,255,0.8);margin-bottom:8px;animation:slideDown 0.3s, fadeOut 0.4s 2s forwards;}
-@keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
-@keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px);}}
-
-.particle{position:absolute;width:5px;height:5px;background:#B159FF;border-radius:50%;pointer-events:none;}
-
-#settings-modal, #import-export-modal, #aim-trainer-modal, #offline-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(11,15,42,0.98);padding:25px;border-radius:20px;z-index:2100;width:90%;max-width:500px;display:none;box-shadow:0 0 35px rgba(0,240,255,0.8);border:2px solid #00F0FF;max-height:90vh;overflow-y:auto;}
-#settings-header, #modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
-#settings-header h3, #modal-header h3{color:#00F0FF;}
-#close-settings, #close-modal{background:none;border:none;color:#00F0FF;font-size:20px;cursor:pointer;}
-
-.setting-row{display:flex;justify-content:space-between;align-items:center;padding:10px;background:rgba(255,255,255,0.05);border-radius:10px;margin:6px 0;}
-.setting-row label{font-size:13px;}
-
-.toggle{position:relative;display:inline-block;width:44px;height:24px;}
-.toggle input{opacity:0;width:0;height:0;}
-.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#444;border-radius:24px;transition:0.3s;}
-.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:#00F0FF;border-radius:50%;transition:0.3s;}
-input:checked+.slider{background:#00F0FF;}
-input:checked+.slider:before{transform:translateX(20px);background:#000;}
-
-#save-settings-btn, #modal-btn{width:100%;padding:10px;margin-top:15px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600;}
-
-#prestige-box{background:rgba(177,89,255,0.15);border:1px solid #B159FF;border-radius:12px;padding:15px;margin:10px 0;}
-#prestige-box p{margin:5px 0;font-size:13px;}
-#prestige-mult{color:#FFD700;font-weight:700;}
-
-#achievements-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-.achievement{background:rgba(255,255,255,0.05);border-radius:10px;padding:10px;text-align:center;border:1px solid rgba(177,89,255,0.3);}
-.achievement.unlocked{border-color:#00F0FF;box-shadow:0 0 10px rgba(0,240,255,0.3);}
-.achievement.locked{opacity:0.5;}
-.ach-icon{font-size:22px;margin-bottom:5px;}
-.ach-name{font-weight:600;font-size:12px;color:#00F0FF;}
-.ach-desc{font-size:10px;color:#B0B0B0;margin-top:3px;}
-.ach-tier{font-size:10px;margin-top:5px;padding:2px 6px;border-radius:10px;display:inline-block;}
-.ach-tier.bronze{background:#CD7F32;color:#000;}
-.ach-tier.silver{background:#C0C0C0;color:#000;}
-.ach-tier.gold{background:#FFD700;color:#000;}
-.ach-tier.diamond{background:#B9F2FF;color:#000;}
-
-#stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
-.stat-item{background:rgba(255,255,255,0.05);padding:10px;border-radius:10px;}
-.stat-item h4{font-size:12px;color:#B0B0B0;margin-bottom:5px;}
-.stat-item p{font-size:16px;font-weight:700;color:#00F0FF;}
-
-#challenges-list{display:flex;flex-direction:column;gap:8px;}
-.challenge-item{background:rgba(255,255,255,0.05);padding:12px;border-radius:10px;}
-.challenge-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.challenge-name{font-weight:600;font-size:13px;color:#00F0FF;}
-.challenge-reward{font-size:12px;color:#FFD700;}
-.progress-bar{background:rgba(255,255,255,0.1);height:8px;border-radius:4px;overflow:hidden;}
-.progress-fill{height:100%;background:linear-gradient(90deg, #00F0FF, #B159FF);transition:width 0.3s;}
-
-#buildings-list{display:flex;flex-direction:column;gap:8px;}
-.building-item{background:rgba(255,255,255,0.05);padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;}
-.building-info h4{color:#00F0FF;font-size:14px;margin-bottom:3px;}
-.building-info p{font-size:11px;color:#B0B0B0;}
-.building-count{font-weight:700;color:#B159FF;font-size:13px;}
-
-#collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-.collection-item{background:rgba(255,255,255,0.05);padding:10px;border-radius:10px;text-align:center;}
-.collection-item.locked{opacity:0.5;}
-.collection-icon{font-size:24px;margin-bottom:5px;}
-.collection-name{font-size:12px;font-weight:600;color:#00F0FF;}
-.collection-count{font-size:11px;color:#B0B0B0;margin-top:3px;}
-.collection-bonus{font-size:10px;color:#FFD700;margin-top:5px;}
-
-#powerups-bar{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0;}
-.powerup-btn{padding:6px 12px;border-radius:20px;border:none;cursor:pointer;font-weight:600;font-size:12px;transition:0.2s;}
-.powerup-btn.fever{background:rgba(255,107,107,0.3);border:1px solid #FF6B6B;color:#FF6B6B;}
-.powerup-btn.golden{background:rgba(255,215,0,0.3);border:1px solid #FFD700;color:#FFD700;}
-.powerup-btn.crit{background:rgba(177,89,255,0.3);border:1px solid #B159FF;color:#B159FF;}
-.powerup-btn:disabled{opacity:0.5;cursor:not-allowed;}
-
-#import-export-area{background:rgba(0,0,0,0.4);padding:15px;border-radius:10px;margin:10px 0;}
-#import-export-area textarea{width:100%;background:rgba(255,255,255,0.1);border:1px solid #00F0FF;color:#E0E0E0;padding:10px;border-radius:8px;font-family:monospace;font-size:12px;resize:none;}
-#import-export-buttons{display:flex;gap:10px;margin-top:10px;}
-#import-export-buttons button{flex:1;padding:8px;border:none;border-radius:15px;cursor:pointer;font-weight:600;}
-#import-export-buttons .export{background:#00F0FF;color:#000;}
-#import-export-buttons .import{background:#B159FF;color:#000;}
-
-#aim-trainer-area{position:relative;height:300px;background:rgba(0,0,0,0.6);border-radius:15px;overflow:hidden;border:2px solid #00F0FF;}
-.aim-target{position:absolute;width:50px;height:50px;background:radial-gradient(circle, #00F0FF, #0099FF);border-radius:50%;cursor:pointer;box-shadow:0 0 20px rgba(0,240,255,0.8);animation:targetPulse 0.5s infinite;}
-@keyframes targetPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
-#aim-timer{position:absolute;top:10px;right:10px;font-size:24px;font-weight:700;color:#00F0FF;}
-#aim-score{position:absolute;top:10px;left:10px;font-size:24px;font-weight:700;color:#FFD700;}
-
-#streak-display{background:rgba(255,215,0,0.15);border:1px solid #FFD700;border-radius:12px;padding:12px;margin:10px 0;text-align:center;}
-#streak-display h4{color:#FFD700;margin-bottom:8px;}
-.streak-days{display:flex;gap:5px;justify-content:center;}
-.streak-day{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:rgba(255,255,255,0.1);}
-.streak-day.claimed{background:#FFD700;color:#000;}
-.streak-day.today{border:2px solid #00F0FF;}
-
-#theme-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
-.theme-option{padding:10px;border-radius:10px;text-align:center;cursor:pointer;border:2px solid transparent;transition:0.3s;}
-.theme-option:hover{border-color:rgba(0,240,255,0.5);}
-.theme-option.active{border-color:#00F0FF;background:rgba(0,240,255,0.1);}
-.theme-preview{width:40px;height:40px;border-radius:8px;margin:0 auto 5px;}
-.theme-name{font-size:12px;font-weight:600;}
-
-@media(max-width:600px){
-  #stats-row{grid-template-columns:repeat(2,1fr);}
-  #achievements-grid, #collection-grid{grid-template-columns:repeat(2,1fr);}
-  #stats-grid{grid-template-columns:1fr;}
-  #game-area{height:220px;}
-  .upgrade-item{flex-direction:column;align-items:flex-start;gap:8px;}
-  .buy-btn{align-self:flex-end;}
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;width:100%;padding:15px 10%;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,42,0.6);backdrop-filter:blur(5px);z-index:1000;transition:.3s}
+nav.scrolled{background:rgba(11,15,42,.95)}
+nav .logo{font-weight:600;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #00F0FF}
+nav a{color:#E0E0E0;text-decoration:none;margin-left:20px;transition:.3s;position:relative}
+nav a.active::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:#B159FF}
+nav a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF}
+.main{display:flex;flex-direction:column;align-items:center;padding:100px 10% 60px}
+.hero,.section{opacity:0;transform:translateY(50px);transition:all .8s;position:relative;background:rgba(0,0,0,.35);border-radius:20px;padding:40px 50px;max-width:900px;width:100%;box-shadow:0 0 25px rgba(0,240,255,.2);margin-bottom:30px}
+.hero{display:flex;align-items:center;gap:30px}
+.profile-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #00F0FF;box-shadow:0 0 25px rgba(0,240,255,.8);animation:float 4s ease-in-out infinite}
+.profile-wrap img{width:100%;height:100%;object-fit:cover}
+.profile-wrap:hover{transform:scale(1.05)}
+.hero-info h1{font-size:38px;color:#00F0FF;text-shadow:0 0 10px #00F0FF,0 0 20px #B159FF;margin-bottom:5px}
+.typing{font-size:16px;color:#B0B0B0;margin-bottom:10px;min-height:22px}
+.desc{font-size:15px;line-height:1.5;margin-bottom:15px}
+.contact p{font-size:14px;margin-bottom:6px;color:#B0B0B0}
+.buttons{margin-top:15px;display:flex;gap:12px;flex-wrap:wrap}
+.buttons a{text-decoration:none;padding:10px 22px;border-radius:30px;font-size:14px;color:#E0E0E0;border:2px solid #00F0FF;transition:.3s;box-shadow:0 0 15px rgba(0,240,255,.5)}
+.buttons a:hover{background:#00F0FF;color:#000;transform:scale(1.05)}
+.socials{margin-top:15px;display:flex;gap:15px}
+.socials a{color:#E0E0E0;font-size:20px;transition:.3s}
+.socials a:hover{transform:scale(1.2);color:#B159FF;text-shadow:0 0 8px #B159FF}
+.section h2{margin-bottom:15px;color:#00F0FF;text-shadow:0 0 8px #B159FF}
+.card{background:rgba(255,255,255,.05);border-radius:15px;padding:15px 20px;margin-bottom:12px;transition:.3s;display:flex;justify-content:space-between;align-items:center}
+.card:hover{box-shadow:0 0 25px rgba(0,240,255,.7);transform:translateY(-5px)}
+.card .year{font-weight:600;font-size:16px;color:#B159FF;margin-right:15px}
+.skills span{display:inline-block;background:rgba(0,240,255,.1);padding:8px 14px;border-radius:20px;margin:5px;font-size:13px;box-shadow:0 0 10px rgba(0,240,255,.4)}
+.skill-bar{background:rgba(0,240,255,.05);border-radius:20px;height:12px;margin:8px 0;overflow:hidden}
+.skill-fill{height:100%;width:0;background:#B159FF;border-radius:20px;transition:width 1.5s}
+footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,.7);border-top:1px solid #00F0FF}
+#backToTop,#game-open-btn{position:fixed;padding:10px 20px;border:none;border-radius:50px;cursor:pointer;z-index:1000;transition:.3s;display:none}
+#backToTop{bottom:20px;right:20px;background:#00F0FF;color:#000;box-shadow:0 0 10px rgba(0,240,255,.5)}
+#game-open-btn{bottom:20px;left:20px;background:#00F0FF;color:#000;box-shadow:0 0 15px rgba(0,240,255,.6);font-weight:600;display:flex;align-items:center;gap:8px}
+#game-open-btn:hover,#backToTop:hover{transform:scale(1.1)}
+#game-open-btn i{animation:pulse 2s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+#particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#game-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(11,15,42,.98);padding:20px;border-radius:20px;z-index:2000;width:95%;max-width:800px;color:#E0E0E0;display:none;box-shadow:0 0 40px rgba(0,240,255,.8);border:2px solid #00F0FF;max-height:95vh;overflow-y:auto}
+#game-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(0,240,255,.3);flex-wrap:wrap;gap:10px}
+#game-header h2{color:#00F0FF;font-size:20px;text-shadow:0 0 8px #00F0FF}
+#game-header button{background:none;border:none;color:#00F0FF;font-size:20px;cursor:pointer;transition:.3s}
+#game-header button:hover{transform:scale(1.2);color:#B159FF}
+#stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:15px}
+.stat-box{background:rgba(0,0,0,.4);padding:12px;border-radius:12px;text-align:center;border:1px solid rgba(0,240,255,.3)}
+.stat-box h4{font-size:11px;color:#B0B0B0;margin-bottom:5px}
+.stat-box p{font-weight:700;font-size:18px;color:#00F0FF}
+.stat-box.prestige p{color:#B159FF}
+#game-area{position:relative;height:280px;background:linear-gradient(135deg,rgba(0,0,0,.6),rgba(0,50,100,.4));border-radius:15px;margin:15px 0;overflow:hidden;border:2px solid #00F0FF;cursor:crosshair}
+.game-shape{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;transition:transform .08s;box-shadow:0 0 15px rgba(0,240,255,.7);font-size:14px;font-weight:700;color:#000}
+.game-shape:hover{transform:scale(1.15);z-index:10}
+.shape-circle{background:linear-gradient(135deg,#00F0FF,#0099FF)}
+.shape-square{background:linear-gradient(135deg,#B159FF,#7B2CBF);border-radius:15px}
+.shape-triangle{background:linear-gradient(135deg,#FF6B6B,#EE5A24);clip-path:polygon(50% 0%,0% 100%,100% 100%)}
+.shape-star{background:linear-gradient(135deg,#FFD166,#FF9E6D);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.shape-gold{background:linear-gradient(135deg,#FFD700,#FFA500);box-shadow:0 0 25px rgba(255,215,0,1);animation:goldGlow .5s infinite alternate}
+.shape-boss{background:linear-gradient(135deg,#FF006E,#8338EC);border-radius:20px;box-shadow:0 0 30px rgba(255,0,110,.8);z-index:20;font-size:28px}
+@keyframes goldGlow{from{box-shadow:0 0 20px rgba(255,215,0,.8)}to{box-shadow:0 0 35px rgba(255,215,0,1)}}
+.multiplier-orb{position:absolute;width:40px;height:40px;background:radial-gradient(circle,#B159FF,#7B2CBF);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 0 20px rgba(177,89,255,.8);animation:orbFloat 2s ease-in-out infinite;z-index:15}
+@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+#boss-health-bar{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:70%;height:10px;background:rgba(255,255,255,.2);border-radius:5px;overflow:hidden;display:none}
+#boss-health-fill{height:100%;width:100%;background:linear-gradient(90deg,#FF006E,#8338EC);transition:width .3s}
+#buffs-bar,#powerups-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:10px 0;min-height:30px}
+.buff-badge,.powerup-btn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid;display:flex;align-items:center;gap:5px}
+.buff-badge{background:rgba(0,240,255,.2);border-color:#00F0FF}
+.buff-badge.gold{background:rgba(255,215,0,.3);border-color:#FFD700;color:#FFD700}
+.buff-badge.fever{background:rgba(255,107,107,.3);border-color:#FF6B6B;color:#FF6B6B}
+.buff-badge.chain{background:rgba(177,89,255,.3);border-color:#B159FF;color:#B159FF}
+.powerup-btn{border:none;cursor:pointer;transition:.2s}
+.powerup-btn.fever{background:rgba(255,107,107,.3);border:1px solid #FF6B6B;color:#FF6B6B}
+.powerup-btn.golden{background:rgba(255,215,0,.3);border:1px solid #FFD700;color:#FFD700}
+.powerup-btn.crit{background:rgba(177,89,255,.3);border:1px solid #B159FF;color:#B159FF}
+.powerup-btn:disabled{opacity:.5;cursor:not-allowed}
+#tabs{display:flex;gap:5px;margin:15px 0;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:70px;padding:8px;border:none;border-radius:10px;background:rgba(0,240,255,.1);color:#E0E0E0;cursor:pointer;transition:.2s;font-weight:500;font-size:13px}
+.tab-btn.active{background:#00F0FF;color:#000;box-shadow:0 0 12px rgba(0,240,255,.6)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.upgrade-item,.building-item,.challenge-item{background:rgba(255,255,255,.05);border-radius:12px;padding:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center;transition:.2s}
+.upgrade-item{border-left:3px solid #B159FF}
+.upgrade-item:hover{background:rgba(0,240,255,.1)}
+.upgrade-info h4,.building-info h4,.challenge-name{color:#00F0FF;margin-bottom:3px;font-size:14px}
+.upgrade-info p,.building-info p{font-size:11px;color:#B0B0B0}
+.upgrade-cost{font-weight:700;color:#FF6B6B;font-size:13px;margin-bottom:5px}
+.building-count,.challenge-reward{font-weight:700;color:#B159FF;font-size:13px}
+.buy-btn{background:#00F0FF;color:#000;border:none;padding:6px 14px;border-radius:20px;cursor:pointer;font-weight:600;font-size:12px;transition:.2s}
+.buy-btn:hover{transform:scale(1.05);box-shadow:0 0 12px rgba(0,240,255,.7)}
+.buy-btn:disabled{background:#444;color:#777;cursor:not-allowed;transform:none}
+#notification-area{position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:3000;pointer-events:none;width:90%;max-width:500px}
+.event-notification{background:linear-gradient(135deg,#B159FF,#00F0FF);color:#000;padding:10px 18px;border-radius:25px;font-weight:600;font-size:13px;box-shadow:0 0 20px rgba(0,240,255,.8);margin-bottom:8px;animation:slideDown .3s,fadeOut .4s 2s forwards}
+@keyframes slideDown{from{transform:translateX(-50%) translateY(-20px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px)}}
+.particle{position:absolute;width:5px;height:5px;background:#B159FF;border-radius:50%;pointer-events:none}
+.modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(11,15,42,.98);padding:25px;border-radius:20px;z-index:2100;width:90%;max-width:500px;display:none;box-shadow:0 0 35px rgba(0,240,255,.8);border:2px solid #00F0FF;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal-header h3{color:#00F0FF}
+.modal-header button{background:none;border:none;color:#00F0FF;font-size:20px;cursor:pointer}
+.setting-row{display:flex;justify-content:space-between;align-items:center;padding:10px;background:rgba(255,255,255,.05);border-radius:10px;margin:6px 0}
+.setting-row label{font-size:13px}
+.toggle{position:relative;display:inline-block;width:44px;height:24px}
+.toggle input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#444;border-radius:24px;transition:.3s}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;bottom:3px;background:#00F0FF;border-radius:50%;transition:.3s}
+input:checked+.slider{background:#00F0FF}
+input:checked+.slider:before{transform:translateX(20px);background:#000}
+.modal-btn{width:100%;padding:10px;margin-top:15px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600}
+#prestige-box{background:rgba(177,89,255,.15);border:1px solid #B159FF;border-radius:12px;padding:15px;margin:10px 0}
+#prestige-box p{margin:5px 0;font-size:13px}
+#prestige-mult{color:#FFD700;font-weight:700}
+#achievements-grid,#stats-grid,#collection-grid{display:grid;gap:8px}
+#achievements-grid,#collection-grid{grid-template-columns:repeat(2,1fr)}
+#stats-grid{grid-template-columns:repeat(2,1fr)}
+.achievement,.stat-item,.collection-item{background:rgba(255,255,255,.05);border-radius:10px;padding:10px;text-align:center}
+.achievement.unlocked{border-color:#00F0FF;box-shadow:0 0 10px rgba(0,240,255,.3);border:1px solid}
+.achievement.locked{opacity:.5;border:1px solid rgba(177,89,255,.3)}
+.ach-icon{font-size:22px;margin-bottom:5px}
+.ach-name{font-weight:600;font-size:12px;color:#00F0FF}
+.ach-desc{font-size:10px;color:#B0B0B0;margin-top:3px}
+.ach-tier{font-size:10px;margin-top:5px;padding:2px 6px;border-radius:10px;display:inline-block}
+.ach-tier.bronze{background:#CD7F32;color:#000}
+.ach-tier.silver{background:#C0C0C0;color:#000}
+.ach-tier.gold{background:#FFD700;color:#000}
+.stat-item h4{font-size:12px;color:#B0B0B0;margin-bottom:5px}
+.stat-item p{font-size:16px;font-weight:700;color:#00F0FF}
+.collection-item.locked{opacity:.5}
+.collection-icon{font-size:24px;margin-bottom:5px}
+.collection-name{font-size:12px;font-weight:600;color:#00F0FF}
+.collection-count{font-size:11px;color:#B0B0B0;margin-top:3px}
+.collection-bonus{font-size:10px;color:#FFD700;margin-top:5px}
+.progress-bar{background:rgba(255,255,255,.1);height:8px;border-radius:4px;overflow:hidden;margin-top:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00F0FF,#B159FF);transition:width .3s}
+#theme-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.theme-option{padding:10px;border-radius:10px;text-align:center;cursor:pointer;border:2px solid transparent;transition:.3s}
+.theme-option:hover{border-color:rgba(0,240,255,.5)}
+.theme-option.active{border-color:#00F0FF;background:rgba(0,240,255,.1)}
+.theme-preview{width:40px;height:40px;border-radius:8px;margin:0 auto 5px}
+.theme-name{font-size:12px;font-weight:600}
+#import-export-area{background:rgba(0,0,0,.4);padding:15px;border-radius:10px;margin:10px 0}
+#import-export-area textarea{width:100%;background:rgba(255,255,255,.1);border:1px solid #00F0FF;color:#E0E0E0;padding:10px;border-radius:8px;font-family:monospace;font-size:12px;resize:none}
+#import-export-buttons{display:flex;gap:10px;margin-top:10px}
+#import-export-buttons button{flex:1;padding:8px;border:none;border-radius:15px;cursor:pointer;font-weight:600}
+#import-export-buttons .export{background:#00F0FF;color:#000}
+#import-export-buttons .import{background:#B159FF;color:#000}
+#aim-trainer-area{position:relative;height:300px;background:rgba(0,0,0,.6);border-radius:15px;overflow:hidden;border:2px solid #00F0FF}
+.aim-target{position:absolute;width:50px;height:50px;background:radial-gradient(circle,#00F0FF,#0099FF);border-radius:50%;cursor:pointer;box-shadow:0 0 20px rgba(0,240,255,.8);animation:targetPulse .5s infinite}
+@keyframes targetPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+#aim-timer{position:absolute;top:10px;right:10px;font-size:24px;font-weight:700;color:#00F0FF}
+#aim-score{position:absolute;top:10px;left:10px;font-size:24px;font-weight:700;color:#FFD700}
+#streak-display{background:rgba(255,215,0,.15);border:1px solid #FFD700;border-radius:12px;padding:12px;margin:10px 0;text-align:center;display:none}
+#streak-display h4{color:#FFD700;margin-bottom:8px}
+.streak-days{display:flex;gap:5px;justify-content:center}
+.streak-day{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:rgba(255,255,255,.1)}
+.streak-day.claimed{background:#FFD700;color:#000}
+.streak-day.today{border:2px solid #00F0FF}
+@media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px}.profile-wrap{width:160px;height:160px}.hero-info h1{font-size:32px}#stats-row{grid-template-columns:repeat(2,1fr)}#game-area{height:220px}.upgrade-item{flex-direction:column;align-items:flex-start;gap:8px}.buy-btn{align-self:flex-end}}
 </style>
 </head>
 <body>
-
-<nav id="navbar">
-  <div class="logo">Lloyd Espineli</div>
-  <div class="nav-links">
-    <a href="#hero">Home</a>
-    <a href="#work">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
+<nav id="navbar"><div class="logo">Lloyd Espineli</div><div class="nav-links"><a href="#hero">Home</a><a href="#work">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div></nav>
 <div id="particles-js"></div>
-
 <div class="main">
-<div class="hero" id="hero" data-animate>
-  <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
-  <div class="hero-info">
-    <h1>Lloyd Espineli C.</h1>
-    <div class="typing" id="typing"></div>
-    <p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p>
-    <div class="contact" id="contact">
-      <p>Phone: +63 966 348 3648</p>
-      <p>Email: lloyd.espineli@gmail.com</p>
-      <p>Address: 32 Urbano St. Bagbag, Novaliches QC</p>
-    </div>
-    <div class="buttons">
-      <a href="mailto:lloyd.espineli@gmail.com">Email Me</a>
-      <a href="tel:+639663483648">Call Me</a>
-      <a href="cv.pdf" download>Download CV</a>
-    </div>
-    <div class="socials">
-      <a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/lyyspnlee_"><i class="fab fa-instagram"></i></a>
-      <a href="https://github.com/Unwilleds"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
+<div class="hero" id="hero" data-animate><div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
+<div class="hero-info"><h1>Lloyd Espineli C.</h1><div class="typing" id="typing"></div>
+<p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience.</p>
+<div class="contact" id="contact"><p>Phone: +63 966 348 3648</p><p>Email: lloyd.espineli@gmail.com</p><p>Address: 32 Urbano St. Bagbag, Novaliches QC</p></div>
+<div class="buttons"><a href="mailto:lloyd.espineli@gmail.com">Email Me</a><a href="tel:+639663483648">Call Me</a><a href="cv.pdf" download>Download CV</a></div>
+<div class="socials"><a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a><a href="https://www.instagram.com/lyyspnlee_"><i class="fab fa-instagram"></i></a><a href="https://github.com/Unwilleds"><i class="fab fa-github"></i></a></div></div></div>
+<div class="section" id="work" data-animate><h2>Work Experience</h2>
+<div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team.</div></div>
+<div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground.</div></div>
+<div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer.</div></div></div>
+<div class="section" id="skills" data-animate><h2>Skills</h2><div class="skills"><span>Communication</span><span>Computer Skills</span><span>Critical Thinking</span><span>Fast Learner</span><span>Adaptability</span></div>
+<div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div><div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div><div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div></div>
 </div>
-
-<div class="section" id="work" data-animate>
-  <h2>Work Experience</h2>
-  <div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team. Coached basic to advanced strokes. Handled students aged 5 to 20.</div></div>
-  <div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground. Used time and billing system. Managed sessions and payments.</div></div>
-  <div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer. Handled cash, recorded sales, and assisted customers.</div></div>
-</div>
-
-<div class="section" id="skills" data-animate>
-  <h2>Skills</h2>
-  <div class="skills">
-    <span>Good Communication Skills</span>
-    <span>Good Computer Skills</span>
-    <span>Critical Thinking</span>
-    <span>Fast Learner</span>
-    <span>Adaptability</span>
-  </div>
-  <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-  <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
-  <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
-</div>
-</div>
-
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 <button id="game-open-btn"><i class="fas fa-gamepad"></i> Play Game</button>
-
-<!-- GAME CONTAINER -->
 <div id="game-container">
-  <div id="game-header">
-    <h2>🎮 Neon Clicker Ultimate</h2>
-    <div id="game-header-buttons">
-      <button id="aim-trainer-btn" title="Aim Trainer"><i class="fas fa-bullseye"></i></button>
-      <button id="settings-btn" title="Settings"><i class="fas fa-cog"></i></button>
-      <button id="close-game" title="Close"><i class="fas fa-times"></i></button>
-    </div>
-  </div>
-  
-  <div id="stats-row">
-    <div class="stat-box">
-      <h4>PP</h4>
-      <p id="pp-display">0</p>
-    </div>
-    <div class="stat-box prestige">
-      <h4>Prestige</h4>
-      <p id="prestige-display">0</p>
-    </div>
-    <div class="stat-box">
-      <h4>Combo</h4>
-      <p id="combo-display">x1.0</p>
-    </div>
-    <div class="stat-box">
-      <h4>Multiplier</h4>
-      <p id="mult-display">1.0x</p>
-    </div>
-  </div>
-  
-  <div id="powerups-bar"></div>
-  <div id="buffs-bar"></div>
-  <div id="streak-display" style="display:none;"></div>
-  
-  <div id="game-area">
-    <div id="boss-health-bar"><div id="boss-health-fill"></div></div>
-  </div>
-  
-  <div id="tabs">
-    <button class="tab-btn active" data-tab="shop">Shop</button>
-    <button class="tab-btn" data-tab="buildings">Buildings</button>
-    <button class="tab-btn" data-tab="upgrades">Upgrades</button>
-    <button class="tab-btn" data-tab="prestige">Prestige</button>
-    <button class="tab-btn" data-tab="stats">Stats</button>
-    <button class="tab-btn" data-tab="challenges">Challenges</button>
-    <button class="tab-btn" data-tab="collection">Collection</button>
-    <button class="tab-btn" data-tab="achievements">Trophies</button>
-    <button class="tab-btn" data-tab="themes">Themes</button>
-    <button class="tab-btn" data-tab="save">Save/Load</button>
-  </div>
-  
-  <!-- SHOP -->
-  <div id="shop" class="tab-content active">
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>⚡ Click Power +1</h4>
-        <p>Increase PP per click</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-clickPower">10 PP</div>
-        <button class="buy-btn" data-upgrade="clickPower">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>🤖 Auto Clicker</h4>
-        <p>+1 PP per second</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-autoClicker">50 PP</div>
-        <button class="buy-btn" data-upgrade="autoClicker">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>🎯 Max Shapes +1</h4>
-        <p>More shapes on screen</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-maxShapes">100 PP</div>
-        <button class="buy-btn" data-upgrade="maxShapes">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>⭐ Golden Chance</h4>
-        <p>+5% chance for 5x PP</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-goldenChance">200 PP</div>
-        <button class="buy-btn" data-upgrade="goldenChance">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>🎲 Critical Hits</h4>
-        <p>+3% chance for 3x PP</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-critChance">400 PP</div>
-        <button class="buy-btn" data-upgrade="critChance">Buy</button>
-      </div>
-    </div>
-  </div>
-  
-  <!-- BUILDINGS -->
-  <div id="buildings" class="tab-content">
-    <div id="buildings-list"></div>
-  </div>
-  
-  <!-- UPGRADES -->
-  <div id="upgrades" class="tab-content">
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>💫 Shape Variety</h4>
-        <p>Unlock new shape types</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-shapeVariety">300 PP</div>
-        <button class="buy-btn" data-upgrade="shapeVariety">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>⚡ Fever Mode</h4>
-        <p>Events 2x more often</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-feverMode">500 PP</div>
-        <button class="buy-btn" data-upgrade="feverMode">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>🔗 Chain Combos</h4>
-        <p>Click same type for bonus</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-chainCombos">600 PP</div>
-        <button class="buy-btn" data-upgrade="chainCombos">Buy</button>
-      </div>
-    </div>
-    <div class="upgrade-item">
-      <div class="upgrade-info">
-        <h4>🦋 Shape Evolution</h4>
-        <p>Shapes grow over time</p>
-      </div>
-      <div>
-        <div class="upgrade-cost" id="cost-shapeEvolution">800 PP</div>
-        <button class="buy-btn" data-upgrade="shapeEvolution">Buy</button>
-      </div>
-    </div>
-  </div>
-  
-  <!-- PRESTIGE -->
-  <div id="prestige" class="tab-content">
-    <div id="prestige-box">
-      <p><strong>Current Multiplier:</strong> <span id="prestige-mult">1.0x</span></p>
-      <p>Each prestige gives +50% permanent PP boost</p>
-      <p style="color:#FF6B6B;margin-top:8px;">⚠️ Resets PP and upgrades</p>
-    </div>
-    <button id="prestige-btn" class="buy-btn" style="width:100%;padding:12px;background:#B159FF;color:#000;font-size:14px;">
-      Prestige (Need 1,000 PP)
-    </button>
-  </div>
-  
-  <!-- STATS -->
-  <div id="stats" class="tab-content">
-    <div id="stats-grid"></div>
-  </div>
-  
-  <!-- CHALLENGES -->
-  <div id="challenges" class="tab-content">
-    <div id="challenges-list"></div>
-  </div>
-  
-  <!-- COLLECTION -->
-  <div id="collection" class="tab-content">
-    <div id="collection-grid"></div>
-  </div>
-  
-  <!-- ACHIEVEMENTS -->
-  <div id="achievements" class="tab-content">
-    <div id="achievements-grid"></div>
-  </div>
-  
-  <!-- THEMES -->
-  <div id="themes" class="tab-content">
-    <p style="font-size:12px;color:#B0B0B0;margin-bottom:10px;">Change game background theme</p>
-    <div id="theme-selector"></div>
-  </div>
-  
-  <!-- SAVE/LOAD -->
-  <div id="save" class="tab-content">
-    <div id="import-export-area">
-      <h4 style="color:#00F0FF;margin-bottom:10px;">💾 Import/Export Save</h4>
-      <textarea id="save-code" rows="4" placeholder="Paste save code here..."></textarea>
-      <div id="import-export-buttons">
-        <button class="export" id="export-save"><i class="fas fa-download"></i> Export</button>
-        <button class="import" id="import-save"><i class="fas fa-upload"></i> Import</button>
-      </div>
-    </div>
-    <button id="reset-save" style="width:100%;padding:10px;margin-top:10px;background:#FF6B6B;color:#fff;border:none;border-radius:20px;cursor:pointer;font-weight:600;">⚠️ Reset All Progress</button>
-  </div>
+<div id="game-header"><h2>🎮 Neon Clicker</h2><div><button id="aim-btn"><i class="fas fa-bullseye"></i></button><button id="settings-btn"><i class="fas fa-cog"></i></button><button id="close-game"><i class="fas fa-times"></i></button></div></div>
+<div id="stats-row"><div class="stat-box"><h4>PP</h4><p id="pp">0</p></div><div class="stat-box prestige"><h4>Prestige</h4><p id="prestige">0</p></div><div class="stat-box"><h4>Combo</h4><p id="combo">x1.0</p></div><div class="stat-box"><h4>Multiplier</h4><p id="mult">1.0x</p></div></div>
+<div id="powerups-bar"></div><div id="buffs-bar"></div><div id="streak-display"></div>
+<div id="game-area"><div id="boss-health-bar"><div id="boss-health-fill"></div></div></div>
+<div id="tabs"><button class="tab-btn active" data-tab="shop">Shop</button><button class="tab-btn" data-tab="buildings">Buildings</button><button class="tab-btn" data-tab="upgrades">Upgrades</button><button class="tab-btn" data-tab="prestige">Prestige</button><button class="tab-btn" data-tab="stats">Stats</button><button class="tab-btn" data-tab="achievements">Trophies</button><button class="tab-btn" data-tab="themes">Themes</button><button class="tab-btn" data-tab="save">Save</button></div>
+<div id="shop" class="tab-content active"><div class="upgrade-item"><div class="upgrade-info"><h4>⚡ Click +1</h4><p>+1 PP per click</p></div><div><div class="upgrade-cost" id="cost-clickPower">10 PP</div><button class="buy-btn" data-up="clickPower">Buy</button></div></div>
+<div class="upgrade-item"><div class="upgrade-info"><h4>🤖 Auto Clicker</h4><p>+1 PP/sec</p></div><div><div class="upgrade-cost" id="cost-autoClicker">50 PP</div><button class="buy-btn" data-up="autoClicker">Buy</button></div></div>
+<div class="upgrade-item"><div class="upgrade-info"><h4>🎯 Max Shapes +1</h4><p>More shapes</p></div><div><div class="upgrade-cost" id="cost-maxShapes">100 PP</div><button class="buy-btn" data-up="maxShapes">Buy</button></div></div>
+<div class="upgrade-item"><div class="upgrade-info"><h4>⭐ Golden Chance</h4><p>+5% golden</p></div><div><div class="upgrade-cost" id="cost-goldenChance">200 PP</div><button class="buy-btn" data-up="goldenChance">Buy</button></div></div>
+<div class="upgrade-item"><div class="upgrade-info"><h4>🎲 Critical Hits</h4><p>+3% crit</p></div><div><div class="upgrade-cost" id="cost-critChance">400 PP</div><button class="buy-btn" data-up="critChance">Buy</button></div></div></div>
+<div id="buildings" class="tab-content"><div id="buildings-list"></div></div>
+<div id="upgrades" class="tab-content"><div class="upgrade-item"><div class="upgrade-info"><h4>💫 Shape Variety</h4><p>Unlock shapes</p></div><div><div class="upgrade-cost" id="cost-shapeVariety">300 PP</div><button class="buy-btn" data-up="shapeVariety">Buy</button></div></div>
+<div class="upgrade-item"><div class="upgrade-info"><h4>⚡ Fever Mode</h4><p>2x events</p></div><div><div class="upgrade-cost" id="cost-feverMode">500 PP</div><button class="buy-btn" data-up="feverMode">Buy</button></div></div>
+<div class="upgrade-item"><div class="upgrade-info"><h4>🔗 Chain Combos</h4><p>Chain bonus</p></div><div><div class="upgrade-cost" id="cost-chainCombos">600 PP</div><button class="buy-btn" data-up="chainCombos">Buy</button></div></div></div>
+<div id="prestige" class="tab-content"><div id="prestige-box"><p><strong>Multiplier:</strong><span id="prestige-mult">1.0x</span></p><p>Each prestige +50% PP</p><p style="color:#FF6B6B">⚠️ Resets PP</p></div><button id="prestige-btn" class="buy-btn" style="width:100%;padding:12px;background:#B159FF">Prestige (1000 PP)</button></div>
+<div id="stats" class="tab-content"><div id="stats-grid"></div></div>
+<div id="achievements" class="tab-content"><div id="achievements-grid"></div></div>
+<div id="themes" class="tab-content"><p style="font-size:12px;color:#B0B0B0;margin-bottom:10px">Game theme</p><div id="theme-selector"></div></div>
+<div id="save" class="tab-content"><div id="import-export-area"><h4 style="color:#00F0FF;margin-bottom:10px">💾 Save Code</h4><textarea id="save-code" rows="4" placeholder="Paste save code..."></textarea><div id="import-export-buttons"><button class="export" id="export-save">Export</button><button class="import" id="import-save">Import</button></div></div><button id="reset-save" style="width:100%;padding:10px;margin-top:10px;background:#FF6B6B;color:#fff;border:none;border-radius:20px;cursor:pointer;font-weight:600">⚠️ Reset Progress</button></div>
 </div>
-
-<!-- SETTINGS MODAL -->
-<div id="settings-modal">
-  <div id="settings-header">
-    <h3>⚙️ Settings</h3>
-    <button id="close-settings"><i class="fas fa-times"></i></button>
-  </div>
-  
-  <div class="setting-row">
-    <label>🥔 Potato Mode (Low Performance)</label>
-    <label class="toggle">
-      <input type="checkbox" id="potato-mode">
-      <span class="slider"></span>
-    </label>
-  </div>
-  <div class="setting-row">
-    <label>✨ Animations</label>
-    <label class="toggle">
-      <input type="checkbox" id="animations" checked>
-      <span class="slider"></span>
-    </label>
-  </div>
-  <div class="setting-row">
-    <label>🎆 Particles</label>
-    <label class="toggle">
-      <input type="checkbox" id="particles" checked>
-      <span class="slider"></span>
-    </label>
-  </div>
-  <div class="setting-row">
-    <label>💥 Screen Effects</label>
-    <label class="toggle">
-      <input type="checkbox" id="screen-effects" checked>
-      <span class="slider"></span>
-    </label>
-  </div>
-  <div class="setting-row">
-    <label>🔊 Sound Effects</label>
-    <label class="toggle">
-      <input type="checkbox" id="sounds">
-      <span class="slider"></span>
-    </label>
-  </div>
-  
-  <button id="save-settings-btn">Save Settings</button>
-</div>
-
-<!-- AIM TRAINER MODAL -->
-<div id="aim-trainer-modal">
-  <div id="modal-header">
-    <h3>🎯 Aim Trainer</h3>
-    <button id="close-modal"><i class="fas fa-times"></i></button>
-  </div>
-  <p style="font-size:13px;color:#B0B0B0;margin-bottom:10px;">Click as many targets as possible in 30 seconds!</p>
-  <div id="aim-trainer-area"></div>
-  <button id="start-aim" style="width:100%;padding:10px;margin-top:15px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600;">Start Game (100 PP Entry)</button>
-</div>
-
-<!-- OFFLINE PROGRESS MODAL -->
-<div id="offline-modal">
-  <div id="modal-header">
-    <h3>⏰ Welcome Back!</h3>
-    <button id="close-offline"><i class="fas fa-times"></i></button>
-  </div>
-  <p style="font-size:14px;margin-bottom:15px;">You earned PP while away:</p>
-  <p id="offline-earnings" style="font-size:24px;font-weight:700;color:#00F0FF;text-align:center;margin-bottom:15px;">+0 PP</p>
-  <button id="claim-offline" style="width:100%;padding:10px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600;">Claim</button>
-</div>
-
+<div id="settings-modal" class="modal"><div class="modal-header"><h3>⚙️ Settings</h3><button id="close-settings"><i class="fas fa-times"></i></button></div>
+<div class="setting-row"><label>🥔 Potato Mode</label><label class="toggle"><input type="checkbox" id="potato-mode"><span class="slider"></span></label></div>
+<div class="setting-row"><label>✨ Animations</label><label class="toggle"><input type="checkbox" id="animations" checked><span class="slider"></span></label></div>
+<div class="setting-row"><label>🎆 Particles</label><label class="toggle"><input type="checkbox" id="particles" checked><span class="slider"></span></label></div>
+<div class="setting-row"><label>🔊 Sounds</label><label class="toggle"><input type="checkbox" id="sounds"><span class="slider"></span></label></div>
+<button id="save-settings" class="modal-btn">Save</button></div>
+<div id="aim-modal" class="modal"><div class="modal-header"><h3>🎯 Aim Trainer</h3><button id="close-aim"><i class="fas fa-times"></i></button></div>
+<p style="font-size:13px;color:#B0B0B0;margin-bottom:10px">Click targets in 30 seconds!</p><div id="aim-trainer-area"></div>
+<button id="start-aim" class="modal-btn">Start (100 PP)</button></div>
+<div id="offline-modal" class="modal"><div class="modal-header"><h3>⏰ Welcome Back!</h3><button id="close-offline"><i class="fas fa-times"></i></button></div>
+<p style="font-size:14px;margin-bottom:15px">Earned while away:</p><p id="offline-earnings" style="font-size:24px;font-weight:700;color:#00F0FF;text-align:center;margin-bottom:15px">+0 PP</p>
+<button id="claim-offline" class="modal-btn">Claim</button></div>
 <div id="notification-area"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-// ============ PORTFOLIO SCRIPTS ============
-const text=["BSIT Student","Aspiring IT Professional","Open for Part Time Work"];
-let index=0,charIndex=0;
-const typingDiv=document.getElementById("typing");
-function typeEffect(){if(charIndex<text[index].length){typingDiv.textContent+=text[index].charAt(charIndex);charIndex++;setTimeout(typeEffect,80);}else{setTimeout(eraseEffect,1500);}}
-function eraseEffect(){if(charIndex>0){typingDiv.textContent=text[index].substring(0,charIndex-1);charIndex--;setTimeout(eraseEffect,50);}else{index=(index+1)%text.length;setTimeout(typeEffect,200);}}
-typeEffect();
-
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}})},{threshold:0.2});
-document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
-
-const skillObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.width=entry.target.getAttribute('data-width');}})},{threshold:0.5});
-document.querySelectorAll('.skill-fill').forEach(el=>skillObserver.observe(el));
-
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.classList.add('scrolled');}else{navbar.classList.remove('scrolled');}});
-
-const sections=document.querySelectorAll('.section, .hero');
-const navLinks=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{const sectionTop=sec.offsetTop-60;if(window.scrollY>=sectionTop){current=sec.id;}});navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')=='#'+current){link.classList.add('active');}});});
-
-const backBtn=document.getElementById('backToTop');
-window.addEventListener('scroll',()=>{if(window.scrollY>300){backBtn.style.display='block';}else{backBtn.style.display='none';}});
-backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
-
-particlesJS("particles-js",{
-  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":["#00F0FF","#B159FF"]},"shape":{"type":"circle"},"opacity":{"value":0.6,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},"move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false}},
-  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}},
-  "retina_detect":true
-});
-
-// ============ ULTIMATE GAME ENGINE ============
-class UltimateNeonClicker {
-  constructor() {
-    // Core State
-    this.PP = 0;
-    this.prestige = 0;
-    this.prestigeMult = 1;
-    this.combo = 1;
-    this.lastClickTime = 0;
-    
-    // Upgrades
-    this.clickPower = 1;
-    this.autoClickers = 0;
-    this.maxShapes = 3;
-    this.goldenChance = 0;
-    this.shapeVariety = false;
-    this.feverMode = false;
-    this.critChance = 0;
-    this.chainCombos = false;
-    this.shapeEvolution = false;
-    
-    // Levels for cost scaling
-    this.levels = {clickPower:0,autoClicker:0,maxShapes:0,goldenChance:0,shapeVariety:0,feverMode:0,critChance:0,chainCombos:0,shapeEvolution:0};
-    
-    // Base costs
-    this.baseCosts = {clickPower:10,autoClicker:50,maxShapes:100,goldenChance:200,shapeVariety:300,feverMode:500,critChance:400,chainCombos:600,shapeEvolution:800};
-    
-    // Buildings
-    this.buildings = [
-      {id:'script',name:'💻 Code Script',baseCost:500,pps:5,count:0},
-      {id:'bot',name:'🤖 Auto Bot',baseCost:2000,pps:25,count:0},
-      {id:'server',name:'🖥️ Server Farm',baseCost:10000,pps:150,count:0},
-      {id:'ai',name:'🌐 AI Network',baseCost:50000,pps:1000,count:0}
-    ];
-    
-    // Settings
-    this.settings = {
-      potato: false,
-      animations: true,
-      particles: true,
-      screenEffects: true,
-      sounds: false,
-      theme: 'neon'
-    };
-    
-    // Statistics
-    this.stats = {
-      totalClicks: 0,
-      totalPP: 0,
-      shapesClicked: 0,
-      goldenClicked: 0,
-      critHits: 0,
-      playTime: 0,
-      bestCombo: 0,
-      prestigeCount: 0,
-      startTime: Date.now()
-    };
-    
-    // Achievements with tiers
-    this.achievements = [
-      {id:'first',name:'First Click',desc:'Click your first shape',icon:'👆',tiers:[{req:1,unlocked:false}],current:0},
-      {id:'golden',name:'Golden Touch',desc:'Click golden shapes',icon:'⭐',tiers:[{req:1,unlocked:false},{req:10,unlocked:false},{req:50,unlocked:false},{req:100,unlocked:false}],current:0},
-      {id:'combo5',name:'Combo x5',desc:'Reach 5x combo',icon:'🔥',tiers:[{req:5,unlocked:false}],current:0},
-      {id:'combo10',name:'Combo x10',desc:'Reach 10x combo',icon:'💫',tiers:[{req:10,unlocked:false}],current:0},
-      {id:'prestige1',name:'Reborn',desc:'Prestige once',icon:'♻️',tiers:[{req:1,unlocked:false}],current:0},
-      {id:'pp1000',name:'Power Up',desc:'Earn total PP',icon:'⚡',tiers:[{req:1000,unlocked:false},{req:10000,unlocked:false},{req:100000,unlocked:false}],current:0},
-      {id:'clicks100',name:'Dedicated',desc:'Total clicks',icon:'🎯',tiers:[{req:100,unlocked:false},{req:1000,unlocked:false}],current:0}
-    ];
-    
-    // Challenges
-    this.challenges = {
-      daily: [
-        {id:'d1',name:'Click 100 shapes',goal:100,progress:0,reward:200,claimed:false,reset:Date.now()},
-        {id:'d2',name:'Reach x5 combo 3x',goal:3,progress:0,reward:150,claimed:false,reset:Date.now()},
-        {id:'d3',name:'Earn 5,000 PP',goal:5000,progress:0,reward:300,claimed:false,reset:Date.now()}
-      ],
-      weekly: [
-        {id:'w1',name:'Earn 50,000 PP',goal:50000,progress:0,reward:2000,claimed:false,reset:Date.now()}
-      ]
-    };
-    
-    // Collection
-    this.collection = {
-      circle: {count:0,bonus:'None',unlockReq:0},
-      square: {count:0,bonus:'+1% PP',unlockReq:50},
-      triangle: {count:0,bonus:'+2% PP',unlockReq:100},
-      star: {count:0,bonus:'+5% golden chance',unlockReq:200},
-      gold: {count:0,bonus:'+10% crit chance',unlockReq:50}
-    };
-    
-    // Streak
-    this.streak = {current:0,lastClaim:0,days:[]};
-    
-    // Buffs & Power-ups
-    this.buffs = {};
-    this.powerUps = {
-      fever: {active:false,cost:500,duration:30},
-      golden: {active:false,cost:1000,duration:45},
-      crit: {active:false,cost:400,duration:25}
-    };
-    
-    // Shapes
-    this.shapes = [];
-    this.shapeTypes = ['circle'];
-    this.orbs = [];
-    this.bossActive = false;
-    this.bossHealth = 0;
-    this.bossMaxHealth = 0;
-    
-    // Chain combo
-    this.chain = {type:null,count:0,multiplier:1};
-    
-    // DOM
-    this.gameArea = document.getElementById('game-area');
-    this.ppDisplay = document.getElementById('pp-display');
-    this.prestigeDisplay = document.getElementById('prestige-display');
-    this.comboDisplay = document.getElementById('combo-display');
-    this.multDisplay = document.getElementById('mult-display');
-    this.prestigeMultDisplay = document.getElementById('prestige-mult');
-    this.buffsBar = document.getElementById('buffs-bar');
-    this.powerUpsBar = document.getElementById('powerups-bar');
-    this.notificationArea = document.getElementById('notification-area');
-    this.achievementsGrid = document.getElementById('achievements-grid');
-    this.statsGrid = document.getElementById('stats-grid');
-    this.challengesList = document.getElementById('challenges-list');
-    this.collectionGrid = document.getElementById('collection-grid');
-    this.buildingsList = document.getElementById('buildings-list');
-    this.themeSelector = document.getElementById('theme-selector');
-    
-    // Themes
-    this.themes = [
-      {id:'neon',name:'Neon City',colors:{bg:'linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,50,100,0.4))',border:'#00F0FF'}},
-      {id:'space',name:'Deep Space',colors:{bg:'linear-gradient(135deg, rgba(0,0,0,0.8), rgba(50,0,100,0.6))',border:'#B159FF'}},
-      {id:'inferno',name:'Inferno',colors:{bg:'linear-gradient(135deg, rgba(50,0,0,0.7), rgba(100,50,0,0.5))',border:'#FF6B6B'}},
-      {id:'ocean',name:'Ocean',colors:{bg:'linear-gradient(135deg, rgba(0,0,50,0.7), rgba(0,100,100,0.5))',border:'#0099FF'}},
-      {id:'sakura',name:'Sakura',colors:{bg:'linear-gradient(135deg, rgba(50,0,50,0.6), rgba(100,50,100,0.4))',border:'#FF69B4'}}
-    ];
-    
-    // Audio
-    this.audioCtx = null;
-    
-    // Load saved game
-    this.loadGame();
-    
-    // Initialize
-    this.init();
-  }
-  
-  init() {
-    this.setupTabs();
-    this.setupBuyButtons();
-    this.setupSettings();
-    this.setupPrestige();
-    this.setupPowerUps();
-    this.setupImportExport();
-    this.setupAimTrainer();
-    this.startGameLoops();
-    this.spawnInitialShapes();
-    this.updateUI();
-    this.renderAchievements();
-    this.renderStats();
-    this.renderChallenges();
-    this.renderCollection();
-    this.renderBuildings();
-    this.renderThemes();
-    this.checkStreak();
-    this.checkOfflineProgress();
-    this.checkPortfolioEasterEggs();
-  }
-  
-  // ============ AUDIO SYSTEM ============
-  initAudio() {
-    if(!this.settings.sounds || this.audioCtx) return;
-    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  
-  playSound(type) {
-    if(!this.settings.sounds || !this.audioCtx) return;
-    
-    const osc = this.audioCtx.createOscillator();
-    const gain = this.audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(this.audioCtx.destination);
-    
-    switch(type) {
-      case 'click': osc.frequency.value = 800; gain.gain.value = 0.1; break;
-      case 'golden': osc.frequency.value = 1200; gain.gain.value = 0.15; break;
-      case 'crit': osc.frequency.value = 600; gain.gain.value = 0.2; break;
-      case 'purchase': osc.frequency.value = 1000; gain.gain.value = 0.1; break;
-      case 'prestige': osc.frequency.value = 400; gain.gain.value = 0.3; break;
-    }
-    
-    osc.start();
-    osc.stop(this.audioCtx.currentTime + 0.1);
-  }
-  
-  // ============ SHAPE SYSTEM ============
-  spawnShape() {
-    if(this.shapes.length >= this.maxShapes || this.bossActive) return;
-    
-    const shape = document.createElement('div');
-    shape.className = 'game-shape';
-    
-    // Determine type
-    const types = this.shapeVariety ? ['circle','square','triangle','star'] : ['circle'];
-    const type = types[Math.floor(Math.random() * types.length)];
-    shape.dataset.type = type;
-    
-    // Determine if golden
-    let goldenChance = this.goldenChance + (this.collection.gold.count >= 50 ? 0.1 : 0);
-    const isGolden = Math.random() < goldenChance;
-    if(isGolden) {
-      shape.classList.add('shape-gold');
-    } else {
-      shape.classList.add(`shape-${type}`);
-    }
-    
-    // Random size (35-65px)
-    const size = Math.floor(Math.random() * 30) + 35;
-    shape.style.width = `${size}px`;
-    shape.style.height = `${size}px`;
-    
-    // Evolution level
-    shape.dataset.evolution = 1;
-    shape.dataset.spawnTime = Date.now();
-    
-    // Random position
-    const maxX = this.gameArea.offsetWidth - size;
-    const maxY = this.gameArea.offsetHeight - size;
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-    shape.style.left = `${x}px`;
-    shape.style.top = `${y}px`;
-    
-    // Movement velocity
-    shape.dataset.vx = (Math.random() - 0.5) * 1.5;
-    shape.dataset.vy = (Math.random() - 0.5) * 1.5;
-    
-    // PP value based on size
-    let baseValue = Math.floor(size / 5);
-    shape.dataset.value = isGolden ? baseValue * 5 : baseValue;
-    shape.dataset.golden = isGolden;
-    
-    // Click event
-    shape.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.clickShape(shape);
-    });
-    
-    this.gameArea.appendChild(shape);
-    this.shapes.push(shape);
-    
-    // Start animation
-    if(this.settings.animations && !this.settings.potato) {
-      this.animateShape(shape);
-      if(this.shapeEvolution) this.evolveShape(shape);
-    }
-  }
-  
-  animateShape(shape) {
-    if(!this.gameArea.contains(shape)) return;
-    
-    let x = parseFloat(shape.style.left);
-    let y = parseFloat(shape.style.top);
-    let vx = parseFloat(shape.dataset.vx);
-    let vy = parseFloat(shape.dataset.vy);
-    
-    const maxX = this.gameArea.offsetWidth - shape.offsetWidth;
-    const maxY = this.gameArea.offsetHeight - shape.offsetHeight;
-    
-    // Bounce off walls
-    if(x <= 0 || x >= maxX) vx *= -1;
-    if(y <= 0 || y >= maxY) vy *= -1;
-    
-    x += vx;
-    y += vy;
-    
-    // Keep in bounds
-    x = Math.max(0, Math.min(maxX, x));
-    y = Math.max(0, Math.min(maxY, y));
-    
-    shape.style.left = `${x}px`;
-    shape.style.top = `${y}px`;
-    
-    requestAnimationFrame(() => this.animateShape(shape));
-  }
-  
-  evolveShape(shape) {
-    if(!this.gameArea.contains(shape)) return;
-    
-    const age = (Date.now() - parseInt(shape.dataset.spawnTime)) / 1000;
-    const newLevel = Math.floor(age / 5) + 1;
-    
-    if(newLevel > parseInt(shape.dataset.evolution) && newLevel <= 5) {
-      shape.dataset.evolution = newLevel;
-      shape.classList.add('shape-evolved');
-      shape.dataset.value = parseInt(shape.dataset.value) * 1.2;
-      shape.textContent = `+${newLevel}`;
-    }
-    
-    setTimeout(() => this.evolveShape(shape), 1000);
-  }
-  
-  spawnInitialShapes() {
-    for(let i = 0; i < Math.min(3, this.maxShapes); i++) {
-      setTimeout(() => this.spawnShape(), i * 200);
-    }
-  }
-  
-  // ============ ORB SYSTEM ============
-  spawnOrb() {
-    if(this.settings.potato) return;
-    
-    const orb = document.createElement('div');
-    orb.className = 'multiplier-orb';
-    orb.textContent = '2x';
-    
-    const x = Math.random() * (this.gameArea.offsetWidth - 40);
-    const y = Math.random() * (this.gameArea.offsetHeight - 40);
-    orb.style.left = `${x}px`;
-    orb.style.top = `${y}px`;
-    
-    orb.addEventListener('click', () => {
-      this.buffs.double = true;
-      setTimeout(() => {this.buffs.double = false; this.updateBuffs();}, 10000);
-      this.updateBuffs();
-      this.showNotification('⚡ 2x Multiplier for 10 seconds!');
-      orb.remove();
-      this.orbs = this.orbs.filter(o => o !== orb);
-    });
-    
-    this.gameArea.appendChild(orb);
-    this.orbs.push(orb);
-    
-    // Remove after 15 seconds
-    setTimeout(() => {
-      if(orb.parentNode) orb.remove();
-      this.orbs = this.orbs.filter(o => o !== orb);
-    }, 15000);
-  }
-  
-  // ============ CLICK HANDLING ============
-  clickShape(shape) {
-    const baseValue = parseInt(shape.dataset.value);
-    const isGolden = shape.dataset.golden === 'true';
-    const type = shape.dataset.type;
-    
-    // Stats
-    this.stats.totalClicks++;
-    this.stats.shapesClicked++;
-    if(isGolden) this.stats.goldenClicked++;
-    
-    // Collection
-    if(this.collection[type]) {
-      this.collection[type].count++;
-      this.renderCollection();
-    }
-    
-    // Chain combo
-    if(this.chainCombos) {
-      if(type === this.chain.type) {
-        this.chain.count++;
-        this.chain.multiplier = 1 + (this.chain.count * 0.2);
-        if(this.chain.count >= 3) {
-          this.showNotification(`🔗 Chain x${this.chain.count}! +${Math.floor((this.chain.multiplier-1)*100)}%`);
-        }
-      } else {
-        this.chain.type = type;
-        this.chain.count = 1;
-        this.chain.multiplier = 1;
-      }
-    }
-    
-    // Combo system
-    const now = Date.now();
-    if(now - this.lastClickTime < 800) {
-      this.combo = Math.min(this.combo + 0.2, 20);
-      if(this.combo > this.stats.bestCombo) this.stats.bestCombo = this.combo;
-    } else {
-      this.combo = 1;
-      this.chain.count = 0;
-      this.chain.multiplier = 1;
-    }
-    this.lastClickTime = now;
-    
-    // Critical hit
-    let isCrit = false;
-    let critMult = 1;
-    let critChance = this.critChance + (this.collection.gold.count >= 50 ? 0.1 : 0);
-    if(Math.random() < critChance) {
-      isCrit = true;
-      critMult = 3;
-      this.stats.critHits++;
-      this.playSound('crit');
-      if(this.settings.screenEffects) {
-        this.gameArea.style.boxShadow = '0 0 30px rgba(255,107,107,0.8)';
-        setTimeout(() => this.gameArea.style.boxShadow = '', 200);
-      }
-    }
-    
-    // Calculate PP gain
-    let gain = baseValue * this.clickPower * this.combo * critMult * this.chain.multiplier * this.prestigeMult;
-    if(this.buffs.double) gain *= 2;
-    if(this.powerUps.fever.active) gain *= 2;
-    if(this.powerUps.golden.active && isGolden) gain *= 2;
-    gain = Math.floor(gain);
-    
-    if(isCrit) gain *= 3;
-    
-    this.PP += gain;
-    this.stats.totalPP += gain;
-    
-    // Update challenges
-    this.updateChallenges('click', 1);
-    this.updateChallenges('pp', gain);
-    if(this.combo >= 5) this.updateChallenges('combo5', 1);
-    
-    // Visual feedback
-    if(this.settings.particles && !this.settings.potato) {
-      this.createParticles(shape, isGolden);
-    }
-    
-    this.playSound(isGolden ? 'golden' : 'click');
-    
-    // Achievements
-    this.checkAchievements();
-    
-    // Remove and respawn
-    shape.remove();
-    this.shapes = this.shapes.filter(s => s !== shape);
-    setTimeout(() => this.spawnShape(), 150);
-    
-    this.updateUI();
-  }
-  
-  createParticles(shape, isGolden) {
-    const rect = shape.getBoundingClientRect();
-    const gameRect = this.gameArea.getBoundingClientRect();
-    
-    for(let i = 0; i < 6; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.background = isGolden ? '#FFD700' : '#B159FF';
-      
-      const x = rect.left - gameRect.left + rect.width/2;
-      const y = rect.top - gameRect.top + rect.height/2;
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      
-      const tx = (Math.random() - 0.5) * 60;
-      const ty = (Math.random() - 0.5) * 60 - 30;
-      
-      particle.animate([
-        {transform:'translate(0,0)', opacity:1},
-        {transform:`translate(${tx}px,${ty}px)`, opacity:0}
-      ], {duration:500, easing:'ease-out'});
-      
-      this.gameArea.appendChild(particle);
-      setTimeout(() => particle.remove(), 500);
-    }
-  }
-  
-  // ============ GAME LOOPS ============
-  startGameLoops() {
-    // Auto clickers
-    setInterval(() => {
-      if(this.autoClickers > 0) {
-        const gain = this.autoClickers * this.prestigeMult;
-        this.PP += Math.floor(gain);
-        this.stats.totalPP += Math.floor(gain);
-        this.updateChallenges('pp', Math.floor(gain));
-        this.updateUI();
-      }
-    }, 1000);
-    
-    // Buildings passive income
-    setInterval(() => {
-      const pps = this.buildings.reduce((sum, b) => sum + (b.pps * b.count), 0);
-      if(pps > 0) {
-        const gain = pps * this.prestigeMult;
-        this.PP += Math.floor(gain);
-        this.stats.totalPP += Math.floor(gain);
-        this.updateChallenges('pp', Math.floor(gain));
-        this.updateUI();
-      }
-    }, 1000);
-    
-    // Spawn new shapes
-    setInterval(() => {
-      if(this.shapes.length < this.maxShapes && !this.bossActive) {
-        this.spawnShape();
-      }
-    }, 800);
-    
-    // Spawn orbs
-    setInterval(() => {
-      if(this.orbs.length < 2 && Math.random() < 0.3) {
-        this.spawnOrb();
-      }
-    }, 30000);
-    
-    // Random events
-    setInterval(() => {
-      if(Math.random() < (this.feverMode ? 0.04 : 0.02)) {
-        this.triggerEvent();
-      }
-    }, 3000);
-    
-    // Combo decay
-    setInterval(() => {
-      if(this.combo > 1 && Date.now() - this.lastClickTime > 1500) {
-        this.combo = Math.max(1, this.combo - 0.3);
-        this.updateUI();
-      }
-    }, 500);
-    
-    // Play time
-    setInterval(() => {
-      this.stats.playTime++;
-      this.checkAchievements();
-    }, 1000);
-    
-    // Auto-save
-    setInterval(() => this.saveGame(), 30000);
-    
-    // Challenge reset (daily)
-    setInterval(() => this.resetDailyChallenges(), 86400000);
-  }
-  
-  triggerEvent() {
-    const events = [
-      {name:'⚡ Double PP',effect:()=>{this.buffs.double=true;setTimeout(()=>{this.buffs.double=false;this.updateBuffs();},5000);this.updateBuffs();}},
-      {name:'🌟 Shape Burst',effect:()=>{for(let i=0;i<3;i++)setTimeout(()=>this.spawnShape(),i*100);}},
-      {name:'💰 PP Bonus',effect:()=>{const bonus=50*this.prestigeMult;this.PP+=Math.floor(bonus);this.stats.totalPP+=Math.floor(bonus);this.showNotification(`+${Math.floor(bonus)} PP Bonus!`);}},
-      {name:'👹 Boss Spawn',effect:()=>{this.spawnBoss();}}
-    ];
-    
-    const event = events[Math.floor(Math.random() * events.length)];
-    event.effect();
-    this.showNotification(event.name);
-  }
-  
-  // ============ BOSS SYSTEM ============
-  spawnBoss() {
-    this.bossActive = true;
-    this.bossMaxHealth = 1000 * (1 + this.prestige * 0.5);
-    this.bossHealth = this.bossMaxHealth;
-    
-    document.getElementById('boss-health-bar').style.display = 'block';
-    document.getElementById('boss-health-fill').style.width = '100%';
-    
-    const boss = document.createElement('div');
-    boss.className = 'game-shape shape-boss';
-    boss.style.width = '100px';
-    boss.style.height = '100px';
-    boss.style.left = '50%';
-    boss.style.top = '50%';
-    boss.style.transform = 'translate(-50%, -50%)';
-    boss.innerHTML = '👹';
-    boss.dataset.value = 5000;
-    
-    boss.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.damageBoss(100 * this.clickPower);
-    });
-    
-    this.gameArea.appendChild(boss);
-    this.showNotification('👹 NEON BOSS! Click to damage!');
-  }
-  
-  damageBoss(damage) {
-    this.bossHealth -= damage;
-    const percent = Math.max(0, (this.bossHealth / this.bossMaxHealth) * 100);
-    document.getElementById('boss-health-fill').style.width = `${percent}%`;
-    
-    if(this.bossHealth <= 0) {
-      this.defeatBoss();
-    }
-  }
-  
-  defeatBoss() {
-    this.bossActive = false;
-    document.getElementById('boss-health-bar').style.display = 'none';
-    
-    const reward = 5000 * this.prestigeMult;
-    this.PP += reward;
-    this.stats.totalPP += reward;
-    
-    this.showNotification(`🎉 BOSS DEFEATED! +${Math.floor(reward)} PP`);
-    this.playSound('prestige');
-    
-    // Clear boss
-    document.querySelectorAll('.shape-boss').forEach(b => b.remove());
-    
-    // Spawn bonus shapes
-    for(let i = 0; i < 5; i++) setTimeout(() => this.spawnShape(), i * 100);
-  }
-  
-  // ============ SHOP & UPGRADES ============
-  getCost(upgrade) {
-    return Math.floor(this.baseCosts[upgrade] * Math.pow(1.15, this.levels[upgrade]));
-  }
-  
-  getBuildingCost(building) {
-    return Math.floor(building.baseCost * Math.pow(1.2, building.count));
-  }
-  
-  buyUpgrade(upgrade) {
-    const cost = this.getCost(upgrade);
-    if(this.PP < cost) return;
-    
-    this.PP -= cost;
-    this.levels[upgrade]++;
-    
-    switch(upgrade) {
-      case 'clickPower': this.clickPower++; break;
-      case 'autoClicker': this.autoClickers++; break;
-      case 'maxShapes': this.maxShapes++; break;
-      case 'goldenChance': this.goldenChance = Math.min(0.3, this.goldenChance + 0.05); break;
-      case 'shapeVariety': this.shapeVariety = true; this.shapeTypes = ['circle','square','triangle','star']; break;
-      case 'feverMode': this.feverMode = true; break;
-      case 'critChance': this.critChance = Math.min(0.25, this.critChance + 0.03); break;
-      case 'chainCombos': this.chainCombos = true; break;
-      case 'shapeEvolution': this.shapeEvolution = true; break;
-    }
-    
-    this.showNotification('✅ Upgrade Purchased!');
-    this.playSound('purchase');
-    this.updateUI();
-    this.renderBuildings();
-    this.saveGame();
-  }
-  
-  buyBuilding(buildingId) {
-    const building = this.buildings.find(b => b.id === buildingId);
-    const cost = this.getBuildingCost(building);
-    if(this.PP < cost) return;
-    
-    this.PP -= cost;
-    building.count++;
-    
-    this.showNotification(`✅ ${building.name} Purchased!`);
-    this.playSound('purchase');
-    this.renderBuildings();
-    this.saveGame();
-  }
-  
-  setupBuyButtons() {
-    document.querySelectorAll('.buy-btn[data-upgrade]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.buyUpgrade(btn.dataset.upgrade);
-      });
-    });
-  }
-  
-  // ============ POWER-UPS ============
-  setupPowerUps() {
-    this.powerUpsBar.innerHTML = `
-      <button class="powerup-btn fever" id="powerup-fever" disabled>🔥 Fever (500 PP)</button>
-      <button class="powerup-btn golden" id="powerup-golden" disabled>⭐ Golden (1000 PP)</button>
-      <button class="powerup-btn crit" id="powerup-crit" disabled>🎲 Crit (400 PP)</button>
-    `;
-    
-    document.getElementById('powerup-fever').addEventListener('click', () => this.activatePowerUp('fever'));
-    document.getElementById('powerup-golden').addEventListener('click', () => this.activatePowerUp('golden'));
-    document.getElementById('powerup-crit').addEventListener('click', () => this.activatePowerUp('crit'));
-  }
-  
-  activatePowerUp(type) {
-    const powerUp = this.powerUps[type];
-    if(this.PP < powerUp.cost || powerUp.active) return;
-    
-    this.PP -= powerUp.cost;
-    powerUp.active = true;
-    
-    this.showNotification(`⚡ ${type.toUpperCase()} Activated for ${powerUp.duration}s!`);
-    
-    setTimeout(() => {
-      powerUp.active = false;
-      this.showNotification(`${type.toUpperCase()} Ended`);
-    }, powerUp.duration * 1000);
-  }
-  
-  // ============ PRESTIGE ============
-  setupPrestige() {
-    document.getElementById('prestige-btn').addEventListener('click', () => {
-      const requirement = 1000 * Math.pow(1.5, this.prestige);
-      if(this.PP < requirement) {
-        this.showNotification(`❌ Need ${requirement.toLocaleString()} PP!`);
-        return;
-      }
-      
-      if(!confirm(`Prestige for +50% permanent multiplier?\n\nCurrent: ${this.prestigeMult.toFixed(1)}x\nNew: ${(this.prestigeMult*1.5).toFixed(1)}x`)) return;
-      
-      this.prestige++;
-      this.prestigeMult = Math.pow(1.5, this.prestige);
-      this.stats.prestigeCount++;
-      
-      // Reset
-      this.PP = 0;
-      this.combo = 1;
-      this.clickPower = 1;
-      this.autoClickers = 0;
-      this.maxShapes = 3;
-      this.goldenChance = 0;
-      this.shapeVariety = false;
-      this.feverMode = false;
-      this.critChance = 0;
-      this.chainCombos = false;
-      this.shapeEvolution = false;
-      this.levels = {clickPower:0,autoClicker:0,maxShapes:0,goldenChance:0,shapeVariety:0,feverMode:0,critChance:0,chainCombos:0,shapeEvolution:0};
-      this.buildings.forEach(b => b.count = 0);
-      
-      // Clear shapes
-      this.shapes.forEach(s => s.remove());
-      this.shapes = [];
-      
-      // Achievement
-      this.achievements.find(a => a.id === 'prestige1').current = this.prestige;
-      this.checkAchievements();
-      
-      this.spawnInitialShapes();
-      this.updateUI();
-      this.renderBuildings();
-      this.saveGame();
-      this.showNotification(`✨ Prestige Complete! ${this.prestigeMult.toFixed(1)}x Multiplier`);
-      this.playSound('prestige');
-    });
-  }
-  
-  // ============ ACHIEVEMENTS ============
-  checkAchievements() {
-    this.achievements.forEach(ach => {
-      ach.tiers.forEach((tier, index) => {
-        if(!tier.unlocked && ach.current >= tier.req) {
-          tier.unlocked = true;
-          this.showNotification(`🏆 ${ach.name} ${['Bronze','Silver','Gold','Diamond'][index]}!`);
-          this.playSound('purchase');
-        }
-      });
-    });
-    this.renderAchievements();
-  }
-  
-  renderAchievements() {
-    const tierNames = ['bronze','silver','gold','diamond'];
-    this.achievementsGrid.innerHTML = this.achievements.map(ach => {
-      const highestTier = ach.tiers.filter(t => t.unlocked).length - 1;
-      return `
-        <div class="achievement ${highestTier >= 0 ? 'unlocked' : 'locked'}">
-          <div class="ach-icon">${ach.icon}</div>
-          <div class="ach-name">${ach.name}</div>
-          <div class="ach-desc">${ach.desc}</div>
-          ${highestTier >= 0 ? `<div class="ach-tier ${tierNames[highestTier]}">${tierNames[highestTier].toUpperCase()}</div>` : ''}
-        </div>
-      `;
-    }).join('');
-  }
-  
-  // ============ STATISTICS ============
-  renderStats() {
-    const cps = this.stats.playTime > 0 ? (this.stats.totalClicks / this.stats.playTime).toFixed(2) : 0;
-    const hours = Math.floor(this.stats.playTime / 3600);
-    const minutes = Math.floor((this.stats.playTime % 3600) / 60);
-    
-    this.statsGrid.innerHTML = `
-      <div class="stat-item"><h4>Total Clicks</h4><p>${this.stats.totalClicks.toLocaleString()}</p></div>
-      <div class="stat-item"><h4>Total PP Earned</h4><p>${this.stats.totalPP.toLocaleString()}</p></div>
-      <div class="stat-item"><h4>Shapes Clicked</h4><p>${this.stats.shapesClicked.toLocaleString()}</p></div>
-      <div class="stat-item"><h4>Golden Clicked</h4><p>${this.stats.goldenClicked.toLocaleString()}</p></div>
-      <div class="stat-item"><h4>Critical Hits</h4><p>${this.stats.critHits.toLocaleString()}</p></div>
-      <div class="stat-item"><h4>Best Combo</h4><p>x${this.stats.bestCombo.toFixed(1)}</p></div>
-      <div class="stat-item"><h4>Prestige Count</h4><p>${this.stats.prestigeCount}</p></div>
-      <div class="stat-item"><h4>Play Time</h4><p>${hours}h ${minutes}m</p></div>
-      <div class="stat-item"><h4>Clicks/Second</h4><p>${cps}</p></div>
-      <div class="stat-item"><h4>PP/Second</h4><p>${(this.autoClickers + this.buildings.reduce((s,b)=>s+(b.pps*b.count),0)).toLocaleString()}</p></div>
-    `;
-  }
-  
-  // ============ CHALLENGES ============
-  updateChallenges(type, amount) {
-    [...this.challenges.daily, ...this.challenges.weekly].forEach(challenge => {
-      if(!challenge.claimed) {
-        if(type === 'click' && challenge.name.includes('Click')) challenge.progress += amount;
-        if(type === 'pp' && challenge.name.includes('PP')) challenge.progress += amount;
-        if(type === 'combo5' && challenge.name.includes('combo')) challenge.progress += amount;
-      }
-    });
-    this.renderChallenges();
-  }
-  
-  renderChallenges() {
-    this.challengesList.innerHTML = `
-      <h4 style="color:#00F0FF;margin-bottom:10px;">Daily Challenges</h4>
-      ${this.challenges.daily.map(c => this.renderChallengeItem(c)).join('')}
-      <h4 style="color:#B159FF;margin:15px 0 10px;">Weekly Challenges</h4>
-      ${this.challenges.weekly.map(c => this.renderChallengeItem(c)).join('')}
-    `;
-    
-    // Add claim buttons
-    document.querySelectorAll('.claim-challenge').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const challengeId = btn.dataset.id;
-        const challenge = [...this.challenges.daily, ...this.challenges.weekly].find(c => c.id === challengeId);
-        if(challenge && challenge.progress >= challenge.goal && !challenge.claimed) {
-          challenge.claimed = true;
-          this.PP += challenge.reward;
-          this.showNotification(`🎁 Challenge Complete! +${challenge.reward} PP`);
-          this.renderChallenges();
-        }
-      });
-    });
-  }
-  
-  renderChallengeItem(challenge) {
-    const percent = Math.min(100, (challenge.progress / challenge.goal) * 100);
-    const canClaim = challenge.progress >= challenge.goal && !challenge.claimed;
-    return `
-      <div class="challenge-item">
-        <div class="challenge-header">
-          <span class="challenge-name">${challenge.name}</span>
-          <span class="challenge-reward">+${challenge.reward} PP</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${percent}%"></div></div>
-        ${canClaim ? `<button class="claim-challenge buy-btn" data-id="${challenge.id}" style="margin-top:8px;width:100%;">Claim Reward</button>` : ''}
-        ${challenge.claimed ? `<p style="font-size:11px;color:#00F0FF;margin-top:5px;">✅ Claimed</p>` : ''}
-      </div>
-    `;
-  }
-  
-  resetDailyChallenges() {
-    const now = Date.now();
-    this.challenges.daily.forEach(c => {
-      if(now - c.reset > 86400000) {
-        c.progress = 0;
-        c.claimed = false;
-        c.reset = now;
-      }
-    });
-  }
-  
-  // ============ COLLECTION ============
-  renderCollection() {
-    this.collectionGrid.innerHTML = Object.entries(this.collection).map(([type, data]) => {
-      const unlocked = data.count >= data.unlockReq;
-      return `
-        <div class="collection-item ${unlocked || data.unlockReq === 0 ? '' : 'locked'}">
-          <div class="collection-icon">${type === 'gold' ? '⭐' : type === 'circle' ? '🔵' : type === 'square' ? '🟣' : type === 'triangle' ? '🔺' : '⭐'}</div>
-          <div class="collection-name">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
-          <div class="collection-count">${data.count} clicked</div>
-          ${unlocked ? `<div class="collection-bonus">${data.bonus}</div>` : `<div class="collection-bonus" style="color:#FF6B6B">Unlock at ${data.unlockReq}</div>`}
-        </div>
-      `;
-    }).join('');
-  }
-  
-  // ============ BUILDINGS ============
-  renderBuildings() {
-    this.buildingsList.innerHTML = this.buildings.map(b => {
-      const cost = this.getBuildingCost(b);
-      const canBuy = this.PP >= cost;
-      return `
-        <div class="building-item">
-          <div class="building-info">
-            <h4>${b.name}</h4>
-            <p>${b.pps} PP/sec | Owned: ${b.count}</p>
-          </div>
-          <div style="text-align:right;">
-            <div class="building-count">${cost.toLocaleString()} PP</div>
-            <button class="buy-btn" data-building="${b.id}" ${!canBuy ? 'disabled' : ''}>Buy</button>
-          </div>
-        </div>
-      `;
-    }).join('');
-    
-    document.querySelectorAll('.buy-btn[data-building]').forEach(btn => {
-      btn.addEventListener('click', () => this.buyBuilding(btn.dataset.building));
-    });
-  }
-  
-  // ============ THEMES ============
-  renderThemes() {
-    this.themeSelector.innerHTML = this.themes.map(theme => `
-      <div class="theme-option ${this.settings.theme === theme.id ? 'active' : ''}" data-theme="${theme.id}">
-        <div class="theme-preview" style="background:${theme.colors.bg}"></div>
-        <div class="theme-name">${theme.name}</div>
-      </div>
-    `).join('');
-    
-    document.querySelectorAll('.theme-option').forEach(opt => {
-      opt.addEventListener('click', () => {
-        this.settings.theme = opt.dataset.theme;
-        const theme = this.themes.find(t => t.id === this.settings.theme);
-        this.gameArea.style.background = theme.colors.bg;
-        this.gameArea.style.borderColor = theme.colors.border;
-        this.renderThemes();
-        this.saveGame();
-      });
-    });
-  }
-  
-  // ============ STREAK SYSTEM ============
-  checkStreak() {
-    const today = new Date().toDateString();
-    const lastClaim = new Date(this.streak.lastClaim).toDateString();
-    const diff = Math.floor((new Date(today) - new Date(lastClaim)) / 86400000);
-    
-    if(diff === 1) {
-      this.streak.current++;
-    } else if(diff > 1) {
-      this.streak.current = 1;
-    }
-    
-    if(this.streak.current > 0) {
-      document.getElementById('streak-display').style.display = 'block';
-      document.getElementById('streak-display').innerHTML = `
-        <h4>🔥 Login Streak: ${this.streak.current} Days</h4>
-        <div class="streak-days">
-          ${[1,2,3,4,5,6,7].map(d => `
-            <div class="streak-day ${d <= this.streak.current ? 'claimed' : ''} ${d === 1 ? 'today' : ''}">${d}</div>
-          `).join('')}
-        </div>
-        ${this.streak.current >= 7 ? '<p style="color:#FFD700;margin-top:8px;font-size:12px;">🎁 7-day bonus ready!</p>' : ''}
-      `;
-    }
-  }
-  
-  // ============ OFFLINE PROGRESS ============
-  checkOfflineProgress() {
-    const now = Date.now();
-    const lastSave = parseInt(localStorage.getItem('neon_lastSave') || now);
-    const secondsAway = (now - lastSave) / 1000;
-    
-    if(secondsAway > 60) {
-      const pps = this.autoClickers + this.buildings.reduce((s,b) => s + (b.pps * b.count), 0);
-      const earned = Math.min(pps * secondsAway, pps * 28800); // 8 hour cap
-      
-      if(earned > 0) {
-        document.getElementById('offline-earnings').textContent = `+${Math.floor(earned).toLocaleString()} PP`;
-        document.getElementById('offline-modal').style.display = 'block';
-        
-        document.getElementById('claim-offline').addEventListener('click', () => {
-          this.PP += Math.floor(earned);
-          this.stats.totalPP += Math.floor(earned);
-          document.getElementById('offline-modal').style.display = 'none';
-          this.showNotification(`⏰ Claimed ${Math.floor(earned).toLocaleString()} PP from offline progress!`);
-          this.updateUI();
-        });
-      }
-    }
-  }
-  
-  // ============ IMPORT/EXPORT ============
-  setupImportExport() {
-    document.getElementById('export-save').addEventListener('click', () => {
-      const save = btoa(JSON.stringify(this.getSaveData()));
-      document.getElementById('save-code').value = `NEON-${save.substring(0, 100)}`;
-      this.showNotification('📋 Save code generated! Copy it.');
-    });
-    
-    document.getElementById('import-save').addEventListener('click', () => {
-      const code = document.getElementById('save-code').value.trim();
-      if(code.startsWith('NEON-')) {
-        try {
-          const save = JSON.parse(atob(code.replace('NEON-','')));
-          this.loadSaveData(save);
-          this.showNotification('✅ Save imported successfully!');
-          this.updateUI();
-        } catch(e) {
-          this.showNotification('❌ Invalid save code!');
-        }
-      } else {
-        this.showNotification('❌ Invalid save code format!');
-      }
-    });
-    
-    document.getElementById('reset-save').addEventListener('click', () => {
-      if(confirm('⚠️ Reset ALL progress? This cannot be undone!')) {
-        localStorage.removeItem('neon_save');
-        localStorage.removeItem('neon_settings');
-        location.reload();
-      }
-    });
-  }
-  
-  // ============ AIM TRAINER ============
-  setupAimTrainer() {
-    document.getElementById('aim-trainer-btn').addEventListener('click', () => {
-      document.getElementById('aim-trainer-modal').style.display = 'block';
-    });
-    
-    document.getElementById('close-modal').addEventListener('click', () => {
-      document.getElementById('aim-trainer-modal').style.display = 'none';
-    });
-    
-    document.getElementById('start-aim').addEventListener('click', () => {
-      if(this.PP < 100) {
-        this.showNotification('❌ Need 100 PP to play!');
-        return;
-      }
-      this.PP -= 100;
-      this.startAimGame();
-    });
-  }
-  
-  startAimGame() {
-    const area = document.getElementById('aim-trainer-area');
-    area.innerHTML = '<div id="aim-timer">30</div><div id="aim-score">0</div>';
-    document.getElementById('start-aim').style.display = 'none';
-    
-    let score = 0;
-    let time = 30;
-    
-    const spawnTarget = () => {
-      if(time <= 0) {
-        const bonus = score * 10;
-        this.PP += bonus;
-        this.showNotification(`🎯 Aim Trainer Complete! +${bonus} PP`);
-        document.getElementById('start-aim').style.display = 'block';
-        return;
-      }
-      
-      const target = document.createElement('div');
-      target.className = 'aim-target';
-      target.style.left = `${Math.random() * (area.offsetWidth - 50)}px`;
-      target.style.top = `${Math.random() * (area.offsetHeight - 50)}px`;
-      
-      target.addEventListener('click', () => {
-        score++;
-        document.getElementById('aim-score').textContent = score;
-        target.remove();
-        spawnTarget();
-      });
-      
-      area.appendChild(target);
-      
-      // Remove after 1 second
-      setTimeout(() => {if(target.parentNode) target.remove();}, 1000);
-    };
-    
-    const timer = setInterval(() => {
-      time--;
-      document.getElementById('aim-timer').textContent = time;
-      if(time > 0) spawnTarget();
-    }, 1000);
-    
-    spawnTarget();
-  }
-  
-  // ============ SETTINGS ============
-  setupSettings() {
-    document.getElementById('settings-btn').addEventListener('click', () => {
-      document.getElementById('settings-modal').style.display = 'block';
-      document.getElementById('potato-mode').checked = this.settings.potato;
-      document.getElementById('animations').checked = this.settings.animations;
-      document.getElementById('particles').checked = this.settings.particles;
-      document.getElementById('screen-effects').checked = this.settings.screenEffects;
-      document.getElementById('sounds').checked = this.settings.sounds;
-    });
-    
-    document.getElementById('close-settings').addEventListener('click', () => {
-      document.getElementById('settings-modal').style.display = 'none';
-    });
-    
-    document.getElementById('save-settings-btn').addEventListener('click', () => {
-      this.settings.potato = document.getElementById('potato-mode').checked;
-      this.settings.animations = document.getElementById('animations').checked;
-      this.settings.particles = document.getElementById('particles').checked;
-      this.settings.screenEffects = document.getElementById('screen-effects').checked;
-      this.settings.sounds = document.getElementById('sounds').checked;
-      
-      if(this.settings.potato) {
-        this.settings.animations = false;
-        this.settings.particles = false;
-        this.settings.screenEffects = false;
-      }
-      
-      if(this.settings.sounds) this.initAudio();
-      
-      localStorage.setItem('neon_settings', JSON.stringify(this.settings));
-      document.getElementById('settings-modal').style.display = 'none';
-      this.showNotification('⚙️ Settings Saved!');
-    });
-  }
-  
-  // ============ PORTFOLIO EASTER EGGS ============
-  checkPortfolioEasterEggs() {
-    // Easter egg: Click while on #work section
-    let workClicks = 0;
-    document.getElementById('work').addEventListener('mouseenter', () => {
-      const handler = (e) => {
-        if(e.target.closest('#game-container')) {
-          workClicks++;
-          if(workClicks >= 5) {
-            this.PP += 100;
-            this.showNotification('💼 Work Experience Bonus: +100 PP!');
-            workClicks = 0;
-          }
-        }
-      };
-      document.addEventListener('click', handler, {once:true});
-    });
-  }
-  
-  // ============ UI ============
-  updateUI() {
-    this.ppDisplay.textContent = this.PP.toLocaleString();
-    this.prestigeDisplay.textContent = this.prestige;
-    this.comboDisplay.textContent = `x${this.combo.toFixed(1)}`;
-    this.multDisplay.textContent = `${(this.prestigeMult * (this.buffs.double?2:1) * (this.powerUps.fever.active?2:1)).toFixed(1)}x`;
-    this.prestigeMultDisplay.textContent = `${this.prestigeMult.toFixed(1)}x`;
-    
-    // Update costs
-    Object.keys(this.baseCosts).forEach(key => {
-      const costEl = document.getElementById(`cost-${key}`);
-      if(costEl) costEl.textContent = `${this.getCost(key)} PP`;
-    });
-    
-    // Update buttons
-    document.querySelectorAll('.buy-btn[data-upgrade]').forEach(btn => {
-      const cost = this.getCost(btn.dataset.upgrade);
-      btn.disabled = this.PP < cost;
-    });
-    
-    // Update building buttons
-    document.querySelectorAll('.buy-btn[data-building]').forEach(btn => {
-      const building = this.buildings.find(b => b.id === btn.dataset.building);
-      if(building) {
-        btn.disabled = this.PP < this.getBuildingCost(building);
-      }
-    });
-    
-    // Prestige button
-    const prestigeReq = 1000 * Math.pow(1.5, this.prestige);
-    document.getElementById('prestige-btn').textContent = `Prestige (Need ${prestigeReq.toLocaleString()} PP)`;
-    document.getElementById('prestige-btn').disabled = this.PP < prestigeReq;
-    
-    // Power-up buttons
-    document.getElementById('powerup-fever').disabled = this.PP < this.powerUps.fever.cost || this.powerUps.fever.active;
-    document.getElementById('powerup-golden').disabled = this.PP < this.powerUps.golden.cost || this.powerUps.golden.active;
-    document.getElementById('powerup-crit').disabled = this.PP < this.powerUps.crit.cost || this.powerUps.crit.active;
-    
-    this.updateBuffs();
-    this.renderStats();
-    this.renderBuildings();
-  }
-  
-  updateBuffs() {
-    this.buffsBar.innerHTML = '';
-    if(this.buffs.double) this.buffsBar.innerHTML += '<span class="buff-badge gold">⚡ 2x PP</span>';
-    if(this.powerUps.fever.active) this.buffsBar.innerHTML += '<span class="buff-badge fever">🔥 Fever</span>';
-    if(this.powerUps.golden.active) this.buffsBar.innerHTML += '<span class="buff-badge gold">⭐ Golden</span>';
-    if(this.powerUps.crit.active) this.buffsBar.innerHTML += '<span class="buff-badge crit">🎲 Crit</span>';
-    if(this.combo > 1) this.buffsBar.innerHTML += `<span class="buff-badge chain">🔥 Combo x${this.combo.toFixed(1)}</span>`;
-    if(this.chainCombos && this.chain.count >= 2) this.buffsBar.innerHTML += `<span class="buff-badge chain">🔗 Chain x${this.chain.count}</span>`;
-  }
-  
-  showNotification(message) {
-    const notif = document.createElement('div');
-    notif.className = 'event-notification';
-    notif.textContent = message;
-    this.notificationArea.appendChild(notif);
-    setTimeout(() => notif.remove(), 2400);
-  }
-  
-  // ============ TABS ============
-  setupTabs() {
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
-  }
-  
-  // ============ SAVE/LOAD ============
-  getSaveData() {
-    return {
-      PP: this.PP, prestige: this.prestige, prestigeMult: this.prestigeMult,
-      clickPower: this.clickPower, autoClickers: this.autoClickers, maxShapes: this.maxShapes,
-      goldenChance: this.goldenChance, shapeVariety: this.shapeVariety, feverMode: this.feverMode,
-      critChance: this.critChance, chainCombos: this.chainCombos, shapeEvolution: this.shapeEvolution,
-      levels: this.levels, buildings: this.buildings.map(b => ({id:b.id,count:b.count})),
-      stats: this.stats, achievements: this.achievements.map(a => ({id:a.id,current:a.current,tiers:a.tiers.map(t => ({req:t.req,unlocked:t.unlocked}))})),
-      challenges: this.challenges, collection: this.collection, streak: this.streak,
-      settings: this.settings, powerUps: this.powerUps
-    };
-  }
-  
-  loadSaveData(data) {
-    Object.assign(this, data);
-    // Restore buildings
-    if(data.buildings) {
-      data.buildings.forEach(saved => {
-        const building = this.buildings.find(b => b.id === saved.id);
-        if(building) building.count = saved.count;
-      });
-    }
-  }
-  
-  saveGame() {
-    localStorage.setItem('neon_save', JSON.stringify(this.getSaveData()));
-    localStorage.setItem('neon_lastSave', Date.now().toString());
-  }
-  
-  loadGame() {
-    const save = JSON.parse(localStorage.getItem('neon_save') || '{}');
-    if(save.PP !== undefined) this.loadSaveData(save);
-    
-    const settings = JSON.parse(localStorage.getItem('neon_settings') || '{}');
-    this.settings = {...this.settings, ...settings};
-  }
-}
-
-// ============ INITIALIZE GAME ============
-let game = null;
-
-document.getElementById('game-open-btn').addEventListener('click', () => {
-  document.getElementById('game-container').style.display = 'block';
-  if(!game) {
-    game = new UltimateNeonClicker();
-  }
-});
-
-document.getElementById('close-game').addEventListener('click', () => {
-  document.getElementById('game-container').style.display = 'none';
-});
-
-document.getElementById('close-offline').addEventListener('click', () => {
-  document.getElementById('offline-modal').style.display = 'none';
-});
-
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape') {
-    document.getElementById('game-container').style.display = 'none';
-    document.getElementById('settings-modal').style.display = 'none';
-    document.getElementById('aim-trainer-modal').style.display = 'none';
-    document.getElementById('offline-modal').style.display = 'none';
-  }
-});
+// Portfolio
+const txt=["BSIT Student","Aspiring IT Pro","Open for Work"],typing=document.getElementById("typing");
+let ti=0,ci=0;function type(){if(ci<txt[ti].length){typing.textContent+=txt[ti][ci++];setTimeout(type,80)}else{setTimeout(erase,1500)}}
+function erase(){if(ci>0){typing.textContent=txt[ti].substring(0,--ci);setTimeout(erase,50)}else{ti=(ti+1)%txt.length;setTimeout(type,200)}}
+type();
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity=1;x.target.style.transform='translateY(0)'}}),{threshold:.2});
+document.querySelectorAll('[data-animate]').forEach(el=>obs.observe(el));
+const sObs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.style.width=x.target.getAttribute('data-width')}),{threshold:.5});
+document.querySelectorAll('.skill-fill').forEach(el=>sObs.observe(el));
+const nav=document.getElementById('navbar');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+const secs=document.querySelectorAll('.section,.hero'),links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-60)cur=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur))});
+const back=document.getElementById('backToTop');window.addEventListener('scroll',()=>back.style.display=window.scrollY>300?'block':'none');
+back.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+particlesJS("particles-js",{particles:{number:{value:60,density:{enable:true,value_area:800}},color:{value:["#00F0FF","#B159FF"]},shape:{type:"circle"},opacity:{value:.6,random:true},size:{value:3,random:true},line_linked:{enable:true,distance:150,color:"#00F0FF",opacity:.3,width:1},move:{enable:true,speed:2,direction:"none",random:true,straight:false,bounce:false}},interactivity:{detect_on:"canvas",events:{onhover:{enable:true,mode:"grab"},onclick:{enable:true,mode:"push"}}},retina_detect:true});
+// Game
+class Game{
+constructor(){this.PP=0;this.prestige=0;this.prestigeMult=1;this.combo=1;this.lastClick=0;this.clickPower=1;this.autoClickers=0;this.maxShapes=3;this.goldenChance=0;this.shapeVariety=false;this.feverMode=false;this.critChance=0;this.chainCombos=false;this.levels={};this.baseCosts={clickPower:10,autoClicker:50,maxShapes:100,goldenChance:200,shapeVariety:300,feverMode:500,critChance:400,chainCombos:600};this.buildings=[{id:'script',name:'💻 Script',baseCost:500,pps:5,count:0},{id:'bot',name:'🤖 Bot',baseCost:2000,pps:25,count:0},{id:'server',name:'🖥️ Server',baseCost:10000,pps:150,count:0}];this.settings={potato:false,animations:true,particles:true,sounds:false,theme:'neon'};this.stats={clicks:0,totalPP:0,shapes:0,golden:0,crits:0,bestCombo:0,prestigeCount:0,playTime:0};this.achievements=[{id:'first',name:'First Click',desc:'Click first shape',icon:'👆',req:1,done:false},{id:'golden',name:'Golden Touch',desc:'Click 10 golden',icon:'⭐',req:10,done:false},{id:'combo5',name:'Combo x5',desc:'Reach 5x combo',icon:'🔥',req:5,done:false},{id:'pp1000',name:'Power Up',desc:'Earn 1000 PP',icon:'⚡',req:1000,done:false}];this.shapes=[];this.orbs=[];this.bossActive=false;this.bossHealth=0;this.chain={type:null,count:0,mult:1};this.buffs={};this.powerUps={fever:{active:false,cost:500},golden:{active:false,cost:1000},crit:{active:false,cost:400}};this.themes=[{id:'neon',bg:'linear-gradient(135deg,rgba(0,0,0,.6),rgba(0,50,100,.4))',border:'#00F0FF'},{id:'space',bg:'linear-gradient(135deg,rgba(0,0,0,.8),rgba(50,0,100,.6))',border:'#B159FF'},{id:'inferno',bg:'linear-gradient(135deg,rgba(50,0,0,.7),rgba(100,50,0,.5))',border:'#FF6B6B'}];this.audioCtx=null;this.load();this.init()}
+init(){this.bindTabs();this.bindBuy();this.bindSettings();this.bindPrestige();this.bindPowerUps();this.bindIO();this.bindAim();this.loops();this.spawnShapes();this.update();this.renderAch();this.renderStats();this.renderBuildings();this.renderThemes();this.checkStreak();this.checkOffline()}
+bindTabs(){document.querySelectorAll('.tab-btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')})}
+bindBuy(){document.querySelectorAll('.buy-btn[data-up]').forEach(b=>b.onclick=()=>this.buy(b.dataset.up))}
+bindSettings(){document.getElementById('settings-btn').onclick=()=>{document.getElementById('settings-modal').style.display='block';document.getElementById('potato-mode').checked=this.settings.potato;document.getElementById('animations').checked=this.settings.animations;document.getElementById('particles').checked=this.settings.particles;document.getElementById('sounds').checked=this.settings.sounds};document.getElementById('close-settings').onclick=()=>document.getElementById('settings-modal').style.display='none';document.getElementById('save-settings').onclick=()=>{this.settings.potato=document.getElementById('potato-mode').checked;this.settings.animations=document.getElementById('animations').checked;this.settings.particles=document.getElementById('particles').checked;this.settings.sounds=document.getElementById('sounds').checked;if(this.settings.potato){this.settings.animations=false;this.settings.particles=false}localStorage.setItem('neon_settings',JSON.stringify(this.settings));document.getElementById('settings-modal').style.display='none';this.notify('⚙️ Saved!')}}
+bindPrestige(){document.getElementById('prestige-btn').onclick=()=>{const req=1000*Math.pow(1.5,this.prestige);if(this.PP<req){this.notify('❌ Need '+req.toLocaleString()+' PP!');return}if(!confirm('Prestige for +50% multiplier?'))return;this.prestige++;this.prestigeMult=Math.pow(1.5,this.prestige);this.stats.prestigeCount++;this.PP=0;this.combo=1;this.clickPower=1;this.autoClickers=0;this.maxShapes=3;this.goldenChance=0;this.shapeVariety=false;this.feverMode=false;this.critChance=0;this.chainCombos=false;this.levels={};this.buildings.forEach(b=>b.count=0);this.shapes.forEach(s=>s.remove());this.shapes=[];this.spawnShapes();this.update();this.renderBuildings();this.save();this.notify('✨ Prestige! '+this.prestigeMult.toFixed(1)+'x')}}
+bindPowerUps(){document.getElementById('powerups-bar').innerHTML='<button class="powerup-btn fever" id="pu-fever">🔥 Fever (500)</button><button class="powerup-btn golden" id="pu-golden">⭐ Golden (1000)</button><button class="powerup-btn crit" id="pu-crit">🎲 Crit (400)</button>';document.getElementById('pu-fever').onclick=()=>this.activate('fever');document.getElementById('pu-golden').onclick=()=>this.activate('golden');document.getElementById('pu-crit').onclick=()=>this.activate('crit')}
+activate(type){const p=this.powerUps[type];if(this.PP<p.cost||p.active)return;this.PP-=p.cost;p.active=true;this.notify('⚡ '+type.toUpperCase()+' Active!');setTimeout(()=>{p.active=false;this.notify(type.toUpperCase()+' Ended')},30000)}
+bindIO(){document.getElementById('export-save').onclick=()=>{const code=btoa(JSON.stringify(this.getSave()));document.getElementById('save-code').value='NEON-'+code.substring(0,100);this.notify('📋 Copied!')};document.getElementById('import-save').onclick=()=>{const code=document.getElementById('save-code').value.trim();if(code.startsWith('NEON-')){try{const data=JSON.parse(atob(code.replace('NEON-','')));this.loadSave(data);this.notify('✅ Imported!');this.update()}catch(e){this.notify('❌ Invalid!')}}else{this.notify('❌ Invalid format!')}};document.getElementById('reset-save').onclick=()=>{if(confirm('⚠️ Reset all?')){localStorage.removeItem('neon_save');location.reload()}}}
+bindAim(){document.getElementById('aim-btn').onclick=()=>document.getElementById('aim-modal').style.display='block';document.getElementById('close-aim').onclick=()=>document.getElementById('aim-modal').style.display='none';document.getElementById('start-aim').onclick=()=>{if(this.PP<100){this.notify('❌ Need 100 PP!');return}this.PP-=100;this.startAim()}}
+startAim(){const area=document.getElementById('aim-trainer-area');area.innerHTML='<div id="aim-timer">30</div><div id="aim-score">0</div>';document.getElementById('start-aim').style.display='none';let score=0,time=30;const spawn=()=>{if(time<=0){this.PP+=score*10;this.notify('🎯 +'+(score*10)+' PP!');document.getElementById('start-aim').style.display='block';return}const t=document.createElement('div');t.className='aim-target';t.style.left=Math.random()*(area.offsetWidth-50)+'px';t.style.top=Math.random()*(area.offsetHeight-50)+'px';t.onclick=()=>{score++;document.getElementById('aim-score').textContent=score;t.remove();spawn()};area.appendChild(t);setTimeout(()=>{if(t.parentNode)t.remove()},1000)};const timer=setInterval(()=>{time--;document.getElementById('aim-timer').textContent=time;if(time>0)spawn()},1000);spawn()}
+cost(up){return Math.floor(this.baseCosts[up]*Math.pow(1.15,this.levels[up]||0))}
+bCost(b){return Math.floor(b.baseCost*Math.pow(1.2,b.count))}
+buy(up){const c=this.cost(up);if(this.PP<c)return;this.PP-=c;this.levels[up]=(this.levels[up]||0)+1;switch(up){case'clickPower':this.clickPower++;break;case'autoClicker':this.autoClickers++;break;case'maxShapes':this.maxShapes++;break;case'goldenChance':this.goldenChance=Math.min(.3,this.goldenChance+.05);break;case'shapeVariety':this.shapeVariety=true;break;case'feverMode':this.feverMode=true;break;case'critChance':this.critChance=Math.min(.25,this.critChance+.03);break;case'chainCombos':this.chainCombos=true;break}this.notify('✅ Bought!');this.update();this.renderBuildings();this.save()}
+buyBuilding(id){const b=this.buildings.find(x=>x.id===id);const c=this.bCost(b);if(this.PP<c)return;this.PP-=c;b.count++;this.notify('✅ '+b.name+'!');this.renderBuildings();this.save()}
+spawnShape(){if(this.shapes.length>=this.maxShapes||this.bossActive)return;const s=document.createElement('div');s.className='game-shape';const types=this.shapeVariety?['circle','square','triangle','star']:['circle'];const type=types[Math.floor(Math.random()*types.length)];s.dataset.type=type;const golden=Math.random()<this.goldenChance;if(golden){s.classList.add('shape-gold')}else{s.classList.add('shape-'+type)}const size=Math.floor(Math.random()*30)+35;s.style.width=size+'px';s.style.height=size+'px';s.dataset.value=golden?Math.floor(size/5)*5:Math.floor(size/5);s.dataset.golden=golden;s.dataset.spawnTime=Date.now();s.style.left=Math.random()*(document.getElementById('game-area').offsetWidth-size)+'px';s.style.top=Math.random()*(document.getElementById('game-area').offsetHeight-size)+'px';s.dataset.vx=(Math.random()-.5)*1.5;s.dataset.vy=(Math.random()-.5)*1.5;s.onclick=(e)=>{e.stopPropagation();this.clickShape(s)};document.getElementById('game-area').appendChild(s);this.shapes.push(s);if(this.settings.animations&&!this.settings.potato)this.animate(s)}
+animate(s){if(!document.getElementById('game-area').contains(s))return;let x=parseFloat(s.style.left),y=parseFloat(s.style.top),vx=parseFloat(s.dataset.vx),vy=parseFloat(s.dataset.vy);const maxX=document.getElementById('game-area').offsetWidth-s.offsetWidth,maxY=document.getElementById('game-area').offsetHeight-s.offsetHeight;if(x<=0||x>=maxX)vx*=-1;if(y<=0||y>=maxY)vy*=-1;x+=vx;y+=vy;x=Math.max(0,Math.min(maxX,x));y=Math.max(0,Math.min(maxY,y));s.style.left=x+'px';s.style.top=y+'px';requestAnimationFrame(()=>this.animate(s))}
+spawnShapes(){for(let i=0;i<Math.min(3,this.maxShapes);i++)setTimeout(()=>this.spawnShape(),i*200)}
+spawnOrb(){if(this.settings.potato)return;const o=document.createElement('div');o.className='multiplier-orb';o.textContent='2x';o.style.left=Math.random()*(document.getElementById('game-area').offsetWidth-40)+'px';o.style.top=Math.random()*(document.getElementById('game-area').offsetHeight-40)+'px';o.onclick=()=>{this.buffs.double=true;setTimeout(()=>{this.buffs.double=false;this.updateBuffs()},10000);this.updateBuffs();this.notify('⚡ 2x for 10s!');o.remove()};document.getElementById('game-area').appendChild(o);this.orbs.push(o);setTimeout(()=>{if(o.parentNode)o.remove()},15000)}
+clickShape(s){const base=parseInt(s.dataset.value),golden=s.dataset.golden==='true',type=s.dataset.type;this.stats.clicks++;this.stats.shapes++;if(golden)this.stats.golden++;if(this.chainCombos){if(type===this.chain.type){this.chain.count++;this.chain.mult=1+(this.chain.count*.2)}else{this.chain.type=type;this.chain.count=1;this.chain.mult=1}}const now=Date.now();if(now-this.lastClick<800){this.combo=Math.min(this.combo+.2,20);if(this.combo>this.stats.bestCombo)this.stats.bestCombo=this.combo}else{this.combo=1;this.chain.count=0;this.chain.mult=1}this.lastClick=now;let isCrit=false,critMult=1;if(Math.random()<this.critChance){isCrit=true;critMult=3;this.stats.crits++}let gain=base*this.clickPower*this.combo*critMult*this.chain.mult*this.prestigeMult;if(this.buffs.double)gain*=2;if(this.powerUps.fever.active)gain*=2;gain=Math.floor(gain);this.PP+=gain;this.stats.totalPP+=gain;if(this.settings.particles&&!this.settings.potato)this.particles(s,golden);s.remove();this.shapes=this.shapes.filter(x=>x!==s);setTimeout(()=>this.spawnShape(),150);this.update();this.checkAch()}
+particles(s,golden){const rect=s.getBoundingClientRect(),game=document.getElementById('game-area').getBoundingClientRect();for(let i=0;i<6;i++){const p=document.createElement('div');p.className='particle';p.style.background=golden?'#FFD700':'#B159FF';p.style.left=(rect.left-game.left+rect.width/2)+'px';p.style.top=(rect.top-game.top+rect.height/2)+'px';const tx=(Math.random()-.5)*60,ty=(Math.random()-.5)*60-30;p.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${tx}px,${ty}px)`,opacity:0}],{duration:500,easing:'ease-out'});document.getElementById('game-area').appendChild(p);setTimeout(()=>p.remove(),500)}}
+loops(){setInterval(()=>{if(this.autoClickers>0){const g=this.autoClickers*this.prestigeMult;this.PP+=Math.floor(g);this.stats.totalPP+=Math.floor(g);this.update()}},1000);setInterval(()=>{const pps=this.buildings.reduce((s,b)=>s+(b.pps*b.count),0);if(pps>0){const g=pps*this.prestigeMult;this.PP+=Math.floor(g);this.stats.totalPP+=Math.floor(g);this.update()}},1000);setInterval(()=>{if(this.shapes.length<this.maxShapes&&!this.bossActive)this.spawnShape()},800);setInterval(()=>{if(this.orbs.length<2&&Math.random()<.3)this.spawnOrb()},30000);setInterval(()=>{if(Math.random()<(this.feverMode?.04:.02))this.event()},3000);setInterval(()=>{if(this.combo>1&&Date.now()-this.lastClick>1500){this.combo=Math.max(1,this.combo-.3);this.update()}},500);setInterval(()=>{this.stats.playTime++;this.checkAch()},1000);setInterval(()=>this.save(),30000)}
+event(){const events=[{name:'⚡ Double PP',fn:()=>{this.buffs.double=true;setTimeout(()=>{this.buffs.double=false;this.updateBuffs()},5000);this.updateBuffs()}},{name:'🌟 Burst',fn:()=>{for(let i=0;i<3;i++)setTimeout(()=>this.spawnShape(),i*100)}},{name:'💰 Bonus',fn:()=>{const b=50*this.prestigeMult;this.PP+=Math.floor(b);this.stats.totalPP+=Math.floor(b);this.notify('+'+Math.floor(b)+' PP!')}},{name:'👹 Boss',fn:()=>this.spawnBoss()}];const e=events[Math.floor(Math.random()*events.length)];e.fn();this.notify(e.name)}
+spawnBoss(){this.bossActive=true;this.bossHealth=1000*(1+this.prestige*.5);document.getElementById('boss-health-bar').style.display='block';document.getElementById('boss-health-fill').style.width='100%';const b=document.createElement('div');b.className='game-shape shape-boss';b.style.width='100px';b.style.height='100px';b.style.left='50%';b.style.top='50%';b.style.transform='translate(-50%,-50%)';b.innerHTML='👹';b.onclick=(e)=>{e.stopPropagation();this.damageBoss(100*this.clickPower)};document.getElementById('game-area').appendChild(b);this.notify('👹 BOSS!')}
+damageBoss(dmg){this.bossHealth-=dmg;const pct=Math.max(0,(this.bossHealth/(1000*(1+this.prestige*.5)))*100);document.getElementById('boss-health-fill').style.width=pct+'%';if(this.bossHealth<=0){this.bossActive=false;document.getElementById('boss-health-bar').style.display='none';const r=5000*this.prestigeMult;this.PP+=r;this.stats.totalPP+=r;this.notify('🎉 BOSS! +'+Math.floor(r)+' PP');document.querySelectorAll('.shape-boss').forEach(x=>x.remove());for(let i=0;i<5;i++)setTimeout(()=>this.spawnShape(),i*100)}}
+renderAch(){const t=['bronze','silver','gold','diamond'];document.getElementById('achievements-grid').innerHTML=this.achievements.map(a=>`<div class="achievement ${a.done?'unlocked':'locked'}"><div class="ach-icon">${a.icon}</div><div class="ach-name">${a.name}</div><div class="ach-desc">${a.desc}</div>${a.done?`<div class="ach-tier ${t[0]}">${t[0].toUpperCase()}</div>`:''}</div>`).join('')}
+checkAch(){this.achievements.forEach(a=>{if(!a.done&&this.stats.totalPP>=a.req){a.done=true;this.notify('🏆 '+a.name+'!')}});this.renderAch()}
+renderStats(){const h=Math.floor(this.stats.playTime/3600),m=Math.floor((this.stats.playTime%3600)/60);document.getElementById('stats-grid').innerHTML=`<div class="stat-item"><h4>Clicks</h4><p>${this.stats.clicks.toLocaleString()}</p></div><div class="stat-item"><h4>Total PP</h4><p>${this.stats.totalPP.toLocaleString()}</p></div><div class="stat-item"><h4>Shapes</h4><p>${this.stats.shapes.toLocaleString()}</p></div><div class="stat-item"><h4>Golden</h4><p>${this.stats.golden.toLocaleString()}</p></div><div class="stat-item"><h4>Crits</h4><p>${this.stats.crits.toLocaleString()}</p></div><div class="stat-item"><h4>Best Combo</h4><p>x${this.stats.bestCombo.toFixed(1)}</p></div><div class="stat-item"><h4>Prestige</h4><p>${this.stats.prestigeCount}</p></div><div class="stat-item"><h4>Time</h4><p>${h}h ${m}m</p></div>`}
+renderBuildings(){document.getElementById('buildings-list').innerHTML=this.buildings.map(b=>{const c=this.bCost(b),can=this.PP>=c;return`<div class="building-item"><div class="building-info"><h4>${b.name}</h4><p>${b.pps} PP/s | ${b.count}</p></div><div style="text-align:right"><div class="building-count">${c.toLocaleString()} PP</div><button class="buy-btn" data-b="${b.id}" ${!can?'disabled':''}>Buy</button></div></div>`}).join('');document.querySelectorAll('.buy-btn[data-b]').forEach(b=>b.onclick=()=>this.buyBuilding(b.dataset.b))}
+renderThemes(){document.getElementById('theme-selector').innerHTML=this.themes.map(t=>`<div class="theme-option ${this.settings.theme===t.id?'active':''}" data-t="${t.id}"><div class="theme-preview" style="background:${t.bg}"></div><div class="theme-name">${t.id}</div></div>`).join('');document.querySelectorAll('.theme-option').forEach(o=>o.onclick=()=>{this.settings.theme=o.dataset.t;const t=this.themes.find(x=>x.id===this.settings.theme);document.getElementById('game-area').style.background=t.bg;document.getElementById('game-area').style.borderColor=t.border;this.renderThemes();this.save()})}
+checkStreak(){const today=new Date().toDateString(),last=localStorage.getItem('neon_lastClaim')||'';const diff=Math.floor((new Date(today)-new Date(last||today))/86400000);let streak=parseInt(localStorage.getItem('neon_streak')||'0');if(diff===1)streak++;else if(diff>1)streak=1;if(streak>0){localStorage.setItem('neon_streak',streak);localStorage.setItem('neon_lastClaim',today);document.getElementById('streak-display').style.display='block';document.getElementById('streak-display').innerHTML=`<h4>🔥 Streak: ${streak} Days</h4><div class="streak-days">${[1,2,3,4,5,6,7].map(d=>`<div class="streak-day ${d<=streak?'claimed':''} ${d===1?'today':''}">${d}</div>`).join('')}</div>`}}
+checkOffline(){const now=Date.now(),last=parseInt(localStorage.getItem('neon_lastSave')||now),sec=(now-last)/1000;if(sec>60){const pps=this.autoClickers+this.buildings.reduce((s,b)=>s+(b.pps*b.count),0),earned=Math.min(pps*sec,pps*28800);if(earned>0){document.getElementById('offline-earnings').textContent='+'+Math.floor(earned).toLocaleString()+' PP';document.getElementById('offline-modal').style.display='block';document.getElementById('claim-offline').onclick=()=>{this.PP+=Math.floor(earned);this.stats.totalPP+=Math.floor(earned);document.getElementById('offline-modal').style.display='none';this.notify('⏰ Claimed '+Math.floor(earned)+' PP!');this.update()}}}}
+update(){document.getElementById('pp').textContent=this.PP.toLocaleString();document.getElementById('prestige').textContent=this.prestige;document.getElementById('combo').textContent='x'+this.combo.toFixed(1);document.getElementById('mult').textContent=(this.prestigeMult*(this.buffs.double?2:1)*(this.powerUps.fever.active?2:1)).toFixed(1)+'x';document.getElementById('prestige-mult').textContent=this.prestigeMult.toFixed(1)+'x';Object.keys(this.baseCosts).forEach(k=>{const el=document.getElementById('cost-'+k);if(el)el.textContent=this.cost(k)+' PP'});document.querySelectorAll('.buy-btn[data-up]').forEach(b=>b.disabled=this.PP<this.cost(b.dataset.up));document.getElementById('prestige-btn').textContent='Prestige ('+(1000*Math.pow(1.5,this.prestige)).toLocaleString()+' PP)';document.getElementById('prestige-btn').disabled=this.PP<1000*Math.pow(1.5,this.prestige);document.getElementById('pu-fever').disabled=this.PP<this.powerUps.fever.cost||this.powerUps.fever.active;document.getElementById('pu-golden').disabled=this.PP<this.powerUps.golden.cost||this.powerUps.golden.active;document.getElementById('pu-crit').disabled=this.PP<this.powerUps.crit.cost||this.powerUps.crit.active;this.updateBuffs();this.renderStats()}
+updateBuffs(){document.getElementById('buffs-bar').innerHTML='';if(this.buffs.double)document.getElementById('buffs-bar').innerHTML+='<span class="buff-badge gold">⚡ 2x</span>';if(this.powerUps.fever.active)document.getElementById('buffs-bar').innerHTML+='<span class="buff-badge fever">🔥 Fever</span>';if(this.powerUps.golden.active)document.getElementById('buffs-bar').innerHTML+='<span class="buff-badge gold">⭐ Golden</span>';if(this.combo>1)document.getElementById('buffs-bar').innerHTML+=`<span class="buff-badge chain">🔥 x${this.combo.toFixed(1)}</span>`}
+notify(msg){const n=document.createElement('div');n.className='event-notification';n.textContent=msg;document.getElementById('notification-area').appendChild(n);setTimeout(()=>n.remove(),2400)}
+getSave(){return{PP:this.PP,prestige:this.prestige,prestigeMult:this.prestigeMult,clickPower:this.clickPower,autoClickers:this.autoClickers,maxShapes:this.maxShapes,goldenChance:this.goldenChance,shapeVariety:this.shapeVariety,feverMode:this.feverMode,critChance:this.critChance,chainCombos:this.chainCombos,levels:this.levels,buildings:this.buildings.map(b=>({id:b.id,count:b.count})),stats:this.stats,achievements:this.achievements,settings:this.settings,powerUps:this.powerUps}}
+loadSave(d){Object.assign(this,d);if(d.buildings){d.buildings.forEach(s=>{const b=this.buildings.find(x=>x.id===s.id);if(b)b.count=s.count})}}
+save(){localStorage.setItem('neon_save',JSON.stringify(this.getSave()));localStorage.setItem('neon_lastSave',Date.now().toString())}
+load(){const s=JSON.parse(localStorage.getItem('neon_save')||'{}');if(s.PP!==undefined)this.loadSave(s);const st=JSON.parse(localStorage.getItem('neon_settings')||'{}');this.settings={...this.settings,...st}}}
+let game=null;
+document.getElementById('game-open-btn').onclick=()=>{document.getElementById('game-container').style.display='block';if(!game)game=new Game()};
+document.getElementById('close-game').onclick=()=>document.getElementById('game-container').style.display='none';
+document.getElementById('close-offline').onclick=()=>document.getElementById('offline-modal').style.display='none';
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('game-container').style.display='none';document.getElementById('settings-modal').style.display='none';document.getElementById('aim-modal').style.display='none';document.getElementById('offline-modal').style.display='none'}});
 </script>
 </body>
 </html>
+
