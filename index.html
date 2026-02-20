@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;overflow-x:hidden;position:relative;}
+body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;position:relative;overflow-x:hidden;}
 
 nav{position:fixed;top:0;left:0;width:100%;padding:15px 10%;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,42,0.6);backdrop-filter:blur(5px);z-index:1000;transition:0.3s;}
 nav.scrolled{background:rgba(11,15,42,0.95);}
@@ -56,22 +56,83 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 
-/* Game button */
-#open-game-btn{position:fixed;bottom:20px;left:20px;padding:12px 18px;background:#00F0FF;color:#000;border:none;border-radius:50px;cursor:pointer;z-index:2000;box-shadow:0 0 10px rgba(0,240,255,0.5);transition:0.3s;}
-#open-game-btn:hover{transform:scale(1.1);}
+/* Game styles */
+#game-open-btn{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  padding:12px 18px;
+  border:none;
+  border-radius:12px;
+  background:#B159FF;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  z-index:2000;
+  box-shadow:0 0 15px rgba(0,240,255,0.7);
+}
+#game-overlay{
+  display:none;
+  position:fixed;
+  top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.9);
+  z-index:1999;
+  overflow:hidden;
+}
+#game-container{
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%, -50%);
+  background:rgba(0,0,0,0.7);
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  color:#E0E0E0;
+  width:80%;
+  max-width:800px;
+  box-shadow:0 0 25px rgba(0,240,255,0.7);
+}
+#game-stats{display:flex;justify-content:space-around;margin-bottom:10px;}
+#game-stats div{font-weight:600;}
+#game-icons{position:relative;width:100%;height:300px;overflow:hidden;margin-bottom:15px;}
+.game-icon{
+  position:absolute;
+  width:50px; height:50px;
+  border-radius:50%;
+  background:#00F0FF;
+  cursor:pointer;
+  box-shadow:0 0 15px #00F0FF;
+  transition:all 0.2s;
+}
+.game-icon:hover{transform:scale(1.2);}
 
-/* Game overlay & container */
-#game-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1500;justify-content:center;align-items:center;}
-#game-container{background:rgba(0,0,0,0.85);padding:20px;border-radius:15px;text-align:center;position:relative;min-width:300px;max-width:90vw;min-height:300px;max-height:90vh;overflow:hidden;box-shadow:0 0 25px rgba(0,240,255,0.8);}
-#game-close{position:absolute;top:10px;right:10px;background:#B159FF;color:#000;border:none;padding:5px 10px;border-radius:10px;cursor:pointer;}
+/* Power-up styles */
+.powerup{
+  position:absolute;
+  width:40px; height:40px;
+  border-radius:50%;
+  background:#B159FF;
+  box-shadow:0 0 12px #B159FF;
+  cursor:pointer;
+  transition:all 0.2s;
+}
 
-/* PP text & stats */
-#pp-display{font-size:16px;margin-top:10px;color:#00F0FF;}
-#prestige-display{font-size:14px;margin-top:5px;color:#B159FF;}
+/* Particle effect */
+.particle{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  pointer-events:none;
+  opacity:1;
+  background:#00F0FF;
+  box-shadow:0 0 10px #00F0FF;
+  transition:opacity 0.5s;
+}
 </style>
 </head>
 <body>
 
+<!-- Portfolio navbar and content -->
 <nav id="navbar">
   <div class="logo">Lloyd Espineli</div>
   <div class="nav-links">
@@ -85,48 +146,71 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <div id="particles-js"></div>
 
 <div class="main">
-  <div class="hero" id="hero" data-animate>
-    <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
-    <div class="hero-info">
-      <h1>Lloyd Espineli C.</h1>
-      <div class="typing" id="typing"></div>
-      <p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p>
+
+<div class="hero" id="hero" data-animate>
+  <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
+  <div class="hero-info">
+    <h1>Lloyd Espineli C.</h1>
+    <div class="typing" id="typing"></div>
+    <p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p>
+    <div class="contact" id="contact">
+      <p>Phone: +63 966 348 3648</p>
+      <p>Email: lloyd.espineli@gmail.com</p>
+      <p>Address: 32 Urbano St. Bagbag, Novaliches QC</p>
+    </div>
+    <div class="buttons">
+      <a href="mailto:lloyd.espineli@gmail.com">Email Me</a>
+      <a href="tel:+639663483648">Call Me</a>
+      <a href="cv.pdf" download>Download CV</a>
+    </div>
+    <div class="socials">
+      <a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/lyyspnlee_"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/Unwilleds"><i class="fab fa-github"></i></a>
     </div>
   </div>
+</div>
 
-  <div class="section" id="work" data-animate>
-    <h2>Work Experience</h2>
-    <div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team. Coached basic to advanced strokes. Handled students aged 5 to 20.</div></div>
-    <div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground. Used time and billing system. Managed sessions and payments.</div></div>
-    <div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer. Handled cash, recorded sales, and assisted customers.</div></div>
-  </div>
+<div class="section" id="work" data-animate>
+  <h2>Work Experience</h2>
+  <div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team. Coached basic to advanced strokes. Handled students aged 5 to 20.</div></div>
+  <div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground. Used time and billing system. Managed sessions and payments.</div></div>
+  <div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer. Handled cash, recorded sales, and assisted customers.</div></div>
+</div>
 
-  <div class="section" id="skills" data-animate>
-    <h2>Skills</h2>
-    <div class="skills">
-      <span>Good Communication Skills</span>
-      <span>Good Computer Skills</span>
-      <span>Critical Thinking</span>
-      <span>Fast Learner</span>
-      <span>Adaptability</span>
-    </div>
+<div class="section" id="skills" data-animate>
+  <h2>Skills</h2>
+  <div class="skills">
+    <span>Good Communication Skills</span>
+    <span>Good Computer Skills</span>
+    <span>Critical Thinking</span>
+    <span>Fast Learner</span>
+    <span>Adaptability</span>
   </div>
+  <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+  <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+  <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
+</div>
+
 </div>
 
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-<!-- Game Button -->
-<button id="open-game-btn">Open Game</button>
+<!-- Game open button -->
+<button id="game-open-btn">Open Game</button>
 
-<!-- Game Overlay -->
+<!-- Game overlay -->
 <div id="game-overlay">
   <div id="game-container">
-    <button id="game-close">X</button>
-    <h3>Neon Clicker RPG</h3>
-    <div id="game-area" style="position:relative;width:100%;height:70%;overflow:hidden;"></div>
-    <div id="pp-display">PP: 0</div>
-    <div id="prestige-display">Prestige: 0</div>
+    <h3>Neon Clicker</h3>
+    <div id="game-stats">
+      <div>PP: <span id="pp">0</span></div>
+      <div>Prestige: <span id="prestige">0</span></div>
+      <div>Combo: <span id="combo">1x</span></div>
+    </div>
+    <div id="game-icons"></div>
+    <button id="close-game">Close</button>
   </div>
 </div>
 
@@ -144,9 +228,18 @@ typeEffect();
 const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}})},{threshold:0.2});
 document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
 
+// Skill bar animation
+const skillObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.width=entry.target.getAttribute('data-width');}})},{threshold:0.5});
+document.querySelectorAll('.skill-fill').forEach(el=>skillObserver.observe(el));
+
 // Navbar scroll background
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.classList.add('scrolled');}else{navbar.classList.remove('scrolled');}});
+
+// Nav active link
+const sections=document.querySelectorAll('.section, .hero');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{const sectionTop=sec.offsetTop-60;if(window.scrollY>=sectionTop){current=sec.id;}});navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')=='#'+current){link.classList.add('active');}});});
 
 // Back to top
 const backBtn=document.getElementById('backToTop');
@@ -155,99 +248,84 @@ backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})
 
 // Particles.js configuration
 particlesJS("particles-js",{
-  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":["#00F0FF","#B159FF"]},"shape":{"type":"circle"},"opacity":{"value":0.6,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},"move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}},
-  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}},
+  "particles":{
+    "number":{"value":60,"density":{"enable":true,"value_area":800}},
+    "color":{"value":["#00F0FF","#B159FF"]},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.6,"random":true},
+    "size":{"value":3,"random":true},
+    "line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},
+    "move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}
+  },
+  "interactivity":{
+    "detect_on":"canvas",
+    "events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}
+  },
   "retina_detect":true
 });
 
-// Open / Close Game
-const openBtn = document.getElementById('open-game-btn');
+// Game logic
+const openBtn = document.getElementById('game-open-btn');
+const closeBtn = document.getElementById('close-game');
 const overlay = document.getElementById('game-overlay');
-const closeBtn = document.getElementById('game-close');
-openBtn.addEventListener('click',()=>{overlay.style.display='flex';});
-closeBtn.addEventListener('click',()=>{overlay.style.display='none';});
+const iconsContainer = document.getElementById('game-icons');
+let PP = 0, prestige = 0, combo = 1;
+const ppDisplay = document.getElementById('pp');
+const prestigeDisplay = document.getElementById('prestige');
+const comboDisplay = document.getElementById('combo');
 
-// Game Logic
-const gameArea=document.getElementById('game-area');
-let PP=0;
-let Prestige=0;
-let multiplier=1;
-const ppDisplay=document.getElementById('pp-display');
-const prestigeDisplay=document.getElementById('prestige-display');
+openBtn.addEventListener('click', ()=>{overlay.style.display='block';});
+closeBtn.addEventListener('click', ()=>{overlay.style.display='none';});
 
-// Click spawn function
-function spawnCircle(){
-  const circle=document.createElement('div');
-  const size=Math.random()*50+30;
-  circle.style.width=size+'px';
-  circle.style.height=size+'px';
-  circle.style.background='#00F0FF';
-  circle.style.borderRadius='50%';
-  circle.style.position='absolute';
-  circle.style.left=Math.random()*(gameArea.clientWidth-size)+'px';
-  circle.style.top=Math.random()*(gameArea.clientHeight-size)+'px';
-  circle.style.cursor='pointer';
-  circle.style.boxShadow='0 0 15px #00F0FF';
-  circle.style.transition='transform 0.2s';
-  gameArea.appendChild(circle);
+// Function to spawn icons
+function spawnIcon(){
+  const icon = document.createElement('div');
+  icon.classList.add('game-icon');
+  const size = Math.random()*30+30;
+  icon.style.width = size+'px';
+  icon.style.height = size+'px';
+  icon.style.left = Math.random()*(iconsContainer.clientWidth-size)+'px';
+  icon.style.top = Math.random()*(iconsContainer.clientHeight-size)+'px';
+  iconsContainer.appendChild(icon);
 
-  circle.addEventListener('click',()=>{
-    PP+=Math.floor(1*multiplier);
-    ppDisplay.textContent='PP: '+PP;
-    circle.remove();
-    spawnExplosion(circle.style.left,circle.style.top,circle.style.background);
-    if(Math.random()<0.1) spawnPowerUp();
+  icon.addEventListener('click', ()=>{
+    // PP increase and combo
+    PP += 1*combo;
+    combo++;
+    ppDisplay.textContent = PP;
+    comboDisplay.textContent = combo+'x';
+    createParticles(icon.offsetLeft+size/2, icon.offsetTop+size/2);
+    iconsContainer.removeChild(icon);
+    spawnIcon(); // respawn icon
   });
 
-  // Auto remove after 5s
-  setTimeout(()=>{if(circle.parentElement) circle.remove();},5000);
+  setTimeout(()=>{
+    if(iconsContainer.contains(icon)){
+      iconsContainer.removeChild(icon);
+      spawnIcon();
+      combo = 1;
+      comboDisplay.textContent = combo+'x';
+    }
+  },4000);
 }
 
-// Explosion animation
-function spawnExplosion(x,y,color){
+// Particle effect
+function createParticles(x,y){
   for(let i=0;i<8;i++){
-    const p=document.createElement('div');
-    p.style.width='6px';
-    p.style.height='6px';
-    p.style.background=color;
-    p.style.position='absolute';
-    p.style.left=x;
-    p.style.top=y;
-    p.style.borderRadius='50%';
-    p.style.opacity=1;
-    p.style.transition='all 0.5s linear';
-    gameArea.appendChild(p);
-    setTimeout(()=>{p.style.transform=`translate(${Math.random()*50-25}px,${Math.random()*50-25}px)`;p.style.opacity=0;},10);
-    setTimeout(()=>{p.remove();},500);
+    const p = document.createElement('div');
+    p.classList.add('particle');
+    p.style.left = x+'px';
+    p.style.top = y+'px';
+    iconsContainer.appendChild(p);
+    const dx = (Math.random()-0.5)*60;
+    const dy = (Math.random()-0.5)*60;
+    p.animate([{transform:`translate(0px,0px)`, opacity:1},{transform:`translate(${dx}px,${dy}px)`, opacity:0}],{duration:400, easing:'ease-out'});
+    setTimeout(()=>{iconsContainer.removeChild(p)},400);
   }
 }
 
-// Spawn initial circles
-setInterval(spawnCircle,1000);
-
-// Power-ups
-function spawnPowerUp(){
-  const pu=document.createElement('div');
-  pu.style.width='30px';
-  pu.style.height='30px';
-  pu.style.background='#B159FF';
-  pu.style.position='absolute';
-  pu.style.left=Math.random()*(gameArea.clientWidth-30)+'px';
-  pu.style.top=Math.random()*(gameArea.clientHeight-30)+'px';
-  pu.style.borderRadius='10px';
-  pu.style.cursor='pointer';
-  pu.style.boxShadow='0 0 15px #B159FF';
-  gameArea.appendChild(pu);
-
-  pu.addEventListener('click',()=>{
-    multiplier*=2;
-    setTimeout(()=>{multiplier/=2;},5000);
-    pu.remove();
-  });
-
-  setTimeout(()=>{if(pu.parentElement) pu.remove();},7000);
-}
+// Initial icons
+for(let i=0;i<5;i++) spawnIcon();
 </script>
-
 </body>
 </html>
