@@ -29,8 +29,8 @@ nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
 .desc{font-size:15px;line-height:1.5;color:#E0E0E0;margin-bottom:15px;}
 .contact p{font-size:14px;margin-bottom:6px;color:#B0B0B0;}
 .buttons{margin-top:15px;display:flex;gap:12px;flex-wrap:wrap;}
-.buttons a{text-decoration:none;padding:10px 22px;border-radius:30px;font-size:14px;color:#E0E0E0;border:2px solid #00F0FF;transition:0.3s;box-shadow:0 0 15px rgba(0,240,255,0.5);}
-.buttons a:hover{background:#00F0FF;color:#000;transform:scale(1.05);box-shadow:0 0 25px rgba(0,240,255,1);}
+.buttons a, .buttons button{text-decoration:none;padding:10px 22px;border-radius:30px;font-size:14px;color:#E0E0E0;border:2px solid #00F0FF;transition:0.3s;box-shadow:0 0 15px rgba(0,240,255,0.5);background:none;cursor:pointer;}
+.buttons a:hover, .buttons button:hover{background:#00F0FF;color:#000;transform:scale(1.05);box-shadow:0 0 25px rgba(0,240,255,1);}
 .socials{margin-top:15px;display:flex;gap:15px;}
 .socials a{color:#E0E0E0;font-size:20px;transition:0.3s;}
 .socials a:hover{transform:scale(1.2);color:#B159FF;text-shadow:0 0 8px #B159FF;}
@@ -55,45 +55,24 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 
-  #game-container{
+/* Game Modal */
+#game-modal{
   position:fixed;
-  top:80px;
-  right:20px;
-  background:rgba(0,0,0,0.7);
-  padding:20px;
-  border-radius:15px;
-  text-align:center;
-  z-index:1500;
-  width:150px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.9);
+  padding:30px;
+  border-radius:20px;
+  display:none;
+  z-index:2000;
   color:#E0E0E0;
-  box-shadow:0 0 15px rgba(0,240,255,0.5);
+  box-shadow:0 0 25px #00F0FF, 0 0 50px #B159FF;
+  width:350px;
+  text-align:center;
 }
-
-#game-circle{
-  width:40px;
-  height:40px;
-  background:#00F0FF;
-  border-radius:50%;
-  margin:10px auto;
-  cursor:pointer;
-  transition:all 0.2s;
-  position:relative;
-}
-
-#game-circle:hover{
-  transform:scale(1.2);
-}
-
-#reset-game{
-  padding:5px 10px;
-  border-radius:10px;
-  border:none;
-  background:#B159FF;
-  color:#000;
-  cursor:pointer;
-  margin-top:10px;
-}
-  
+#game-content h2, #game-content h3{color:#00F0FF;text-shadow:0 0 8px #B159FF;}
+#game-content button{margin:10px;padding:10px 20px;border:none;border-radius:15px;background:#00F0FF;color:#000;cursor:pointer;box-shadow:0 0 15px #00F0FF;transition:0.3s;}
+#game-content button:hover{transform:scale(1.1);box-shadow:0 0 25px #B159FF;}
 </style>
 </head>
 <body>
@@ -127,6 +106,7 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
       <a href="mailto:lloyd.espineli@gmail.com">Email Me</a>
       <a href="tel:+639663483648">Call Me</a>
       <a href="cv.pdf" download>Download CV</a>
+      <button id="game-btn">Open Game</button>
     </div>
     <div class="socials">
       <a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a>
@@ -162,16 +142,40 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-  <div id="game-container">
-  <h3>Click the Circle!</h3>
-  <div id="game-circle"></div>
-  <p>Score: <span id="score">0</span></p>
-  <button id="reset-game">Reset</button>
+<!-- Game Modal -->
+<div id="game-modal">
+  <div id="game-content">
+    <h2>Portfolio Growth Simulator</h2>
+    <p>Portfolio Points: <span id="pp">0</span></p>
+    <button id="click-btn">Build Portfolio</button>
+
+    <h3>Upgrades</h3>
+    <div class="upgrade" data-cost="10" data-pp="1">
+      Skills (Level <span class="level">0</span>) - Cost: <span class="cost">10</span> PP
+      <button class="buy-btn">Buy</button>
+    </div>
+    <div class="upgrade" data-cost="50" data-pp="5">
+      Work Experience (Level <span class="level">0</span>) - Cost: <span class="cost">50</span> PP
+      <button class="buy-btn">Buy</button>
+    </div>
+    <div class="upgrade" data-cost="200" data-pp="10">
+      Projects (Level <span class="level">0</span>) - Cost: <span class="cost">200</span> PP
+      <button class="buy-btn">Buy</button>
+    </div>
+
+    <h3>Buffs</h3>
+    <button id="double-click">Double Click 20s (Cost: 50 PP)</button>
+    <button id="double-auto">Double Auto 30s (Cost: 100 PP)</button>
+
+    <h3>Rebirth / Prestige</h3>
+    <button id="prestige-btn">Prestige</button>
+
+    <button id="close-game">Close</button>
+  </div>
 </div>
 
-<!-- Particles.js library -->
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
 <script>
 // Typing effect
 const text=["BSIT Student","Aspiring IT Professional","Open for Part Time Work"];
@@ -203,53 +207,72 @@ const backBtn=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{if(window.scrollY>300){backBtn.style.display='block';}else{backBtn.style.display='none';}});
 backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
-// Particles.js configuration
+// Particles.js
 particlesJS("particles-js",{
-  "particles":{
-    "number":{"value":60,"density":{"enable":true,"value_area":800}},
-    "color":{"value":["#00F0FF","#B159FF"]},
-    "shape":{"type":"circle"},
-    "opacity":{"value":0.6,"random":true},
-    "size":{"value":3,"random":true},
-    "line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},
-    "move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}
-  },
-  "interactivity":{
-    "detect_on":"canvas",
-    "events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}
-  },
+  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":["#00F0FF","#B159FF"]},"shape":{"type":"circle"},"opacity":{"value":0.6,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},"move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}},
+  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}},
   "retina_detect":true
 });
 
-  let score = 0;
-const circle = document.getElementById('game-circle');
-const scoreDisplay = document.getElementById('score');
-const resetBtn = document.getElementById('reset-game');
+// Game logic
+const gameModal=document.getElementById('game-modal');
+const gameBtn=document.getElementById('game-btn');
+const closeGame=document.getElementById('close-game');
+const ppDisplay=document.getElementById('pp');
+const clickBtn=document.getElementById('click-btn');
+const upgrades=document.querySelectorAll('.upgrade');
+const doubleClickBtn=document.getElementById('double-click');
+const doubleAutoBtn=document.getElementById('double-auto');
+const prestigeBtn=document.getElementById('prestige-btn');
 
-function moveCircle() {
-  const maxX = window.innerWidth - 100;
-  const maxY = window.innerHeight - 100;
-  const x = Math.floor(Math.random() * maxX);
-  const y = Math.floor(Math.random() * maxY);
-  circle.style.position = 'absolute';
-  circle.style.left = x + 'px';
-  circle.style.top = y + 'px';
-}
+let pp=0,prestige=0,autoPP=0,clickMultiplier=1,autoMultiplier=1;
 
-circle.addEventListener('click', () => {
-  score++;
-  scoreDisplay.textContent = score;
-  moveCircle();
+gameBtn.addEventListener('click',()=>gameModal.style.display='block');
+closeGame.addEventListener('click',()=>gameModal.style.display='none');
+
+clickBtn.addEventListener('click',()=>{pp+=1*clickMultiplier; updatePP();});
+
+upgrades.forEach(upg=>{
+  const levelSpan=upg.querySelector('.level');
+  const costSpan=upg.querySelector('.cost');
+  const buyBtn=upg.querySelector('.buy-btn');
+  buyBtn.addEventListener('click',()=>{
+    let cost=parseInt(upg.dataset.cost);
+    let gain=parseInt(upg.dataset.pp);
+    if(pp>=cost){
+      pp-=cost;
+      levelSpan.textContent=parseInt(levelSpan.textContent)+1;
+      upg.dataset.cost=Math.floor(cost*1.5);
+      costSpan.textContent=upg.dataset.cost;
+      autoPP+=gain*autoMultiplier;
+      updatePP();
+    }
+  });
 });
 
-resetBtn.addEventListener('click', () => {
-  score = 0;
-  scoreDisplay.textContent = score;
-  moveCircle();
+setInterval(()=>{pp+=autoPP*autoMultiplier; updatePP();},1000);
+
+doubleClickBtn.addEventListener('click',()=>{if(pp>=50){pp-=50; clickMultiplier=2; setTimeout(()=>{clickMultiplier=1;},20000); updatePP();}});
+doubleAutoBtn.addEventListener('click',()=>{if(pp>=100){pp-=100; autoMultiplier=2; setTimeout(()=>{autoMultiplier=1;},30000); updatePP();}});
+
+prestigeBtn.addEventListener('click',()=>{
+  if(pp>=500){
+    prestige+=Math.floor(pp/500);
+    pp=0;
+    autoPP=0;
+    upgrades.forEach(upg=>{
+      upg.querySelector('.level').textContent=0;
+      upg.dataset.cost=Math.floor(parseInt(upg.dataset.cost)/1.5);
+      upg.querySelector('.cost').textContent=upg.dataset.cost;
+    });
+    clickMultiplier=1+prestige*0.1;
+    autoMultiplier=1+prestige*0.1;
+    updatePP();
+    alert('Prestige achieved! Permanent +10% multiplier per prestige.');
+  }
 });
 
-// Initialize circle position
-moveCircle();
+function updatePP(){ppDisplay.textContent=Math.floor(pp);}
 </script>
 
 </body>
