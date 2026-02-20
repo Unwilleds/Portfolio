@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Clicker Ultimate</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="game-body">
+    <div id="game-container" style="display:block; position:static; transform:none; width:100%; max-width:100%; height:100vh; border:none; border-radius:0; box-shadow:none;">
+        <div id="game-header">
+            <div style="display:flex;align-items:center;gap:10px;">
+                <a href="index.html" style="color:#00F0FF;text-decoration:none;font-size:14px;"><i class="fas fa-arrow-left"></i> Portfolio</a>
+                <h2>🎮 Neon Clicker Ultimate</h2>
+            </div>
+            <span id="save-indicator">SAVED</span>
+            <div id="game-header-buttons">
+                <button id="aim-trainer-btn" title="Aim Trainer"><i class="fas fa-bullseye"></i></button>
+                <button id="settings-btn" title="Settings"><i class="fas fa-cog"></i></button>
+                <button id="close-game" title="Close" onclick="window.location.href='index.html'"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div id="stats-row">
+            <div class="stat-box">
+                <h4>PP</h4>
+                <p id="pp-display">0</p>
+            </div>
+            <div class="stat-box prestige">
+                <h4>Prestige</h4>
+                <p id="prestige-display">0</p>
+            </div>
+            <div class="stat-box">
+                <h4>Combo</h4>
+                <p id="combo-display">x1.0</p>
+            </div>
+            <div class="stat-box">
+                <h4>Multiplier</h4>
+                <p id="mult-display">1.0x</p>
+            </div>
+        </div>
+        <div id="powerups-bar"></div>
+        <div id="buffs-bar"></div>
+        <div id="streak-display" style="display:none;"></div>
+        <div id="game-area">
+            <div id="boss-health-bar"><div id="boss-health-fill"></div></div>
+        </div>
+        <div id="tabs">
+            <button class="tab-btn active" data-tab="shop">Shop</button>
+            <button class="tab-btn" data-tab="buildings">Buildings</button>
+            <button class="tab-btn" data-tab="upgrades">Upgrades</button>
+            <button class="tab-btn" data-tab="prestige">Prestige</button>
+            <button class="tab-btn" data-tab="stats">Stats</button>
+            <button class="tab-btn" data-tab="challenges">Challenges</button>
+            <button class="tab-btn" data-tab="collection">Collection</button>
+            <button class="tab-btn" data-tab="achievements">Trophies</button>
+            <button class="tab-btn" data-tab="log">Activity Log</button>
+            <button class="tab-btn" data-tab="themes">Themes</button>
+            <button class="tab-btn" data-tab="save">Save/Load</button>
+        </div>
+        
+        <!-- TAB CONTENTS -->
+        <div id="shop" class="tab-content active"></div>
+        <div id="buildings" class="tab-content"><div id="buildings-list"></div></div>
+        <div id="upgrades" class="tab-content"></div>
+        <div id="prestige" class="tab-content">
+            <div id="prestige-box">
+                <p><strong>Current Multiplier:</strong> <span id="prestige-mult">1.0x</span></p>
+                <p>Each prestige gives +50% permanent PP boost</p>
+                <p style="color:#FF6B6B;margin-top:8px;">⚠️ Resets PP and upgrades</p>
+            </div>
+            <button id="prestige-btn" class="buy-btn" style="width:100%;padding:12px;background:#B159FF;color:#000;font-size:14px;">Prestige (Need 1,000 PP)</button>
+        </div>
+        <div id="stats" class="tab-content"><div id="stats-grid"></div></div>
+        <div id="challenges" class="tab-content"><div id="challenges-list"></div></div>
+        <div id="collection" class="tab-content"><div id="collection-grid"></div></div>
+        <div id="achievements" class="tab-content"><div id="achievements-grid"></div></div>
+        <div id="log" class="tab-content"><div id="activity-log" style="height:300px;overflow-y:auto;background:rgba(0,0,0,0.3);padding:10px;border-radius:10px;font-size:12px;font-family:monospace;"></div></div>
+        <div id="themes" class="tab-content"><p style="font-size:12px;color:#B0B0B0;margin-bottom:10px;">Change game background theme</p><div id="theme-selector"></div></div>
+        <div id="save" class="tab-content">
+            <div id="import-export-area">
+                <h4 style="color:#00F0FF;margin-bottom:10px;">💾 Import/Export Save</h4>
+                <textarea id="save-code" rows="4" placeholder="Paste save code here..."></textarea>
+                <div id="import-export-buttons">
+                    <button class="export" id="export-save"><i class="fas fa-download"></i> Export</button>
+                    <button class="import" id="import-save"><i class="fas fa-upload"></i> Import</button>
+                </div>
+            </div>
+            <button id="reset-save" style="width:100%;padding:10px;margin-top:10px;background:#FF6B6B;color:#fff;border:none;border-radius:20px;cursor:pointer;font-weight:600;">⚠️ Reset All Progress</button>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div id="settings-modal">
+        <div id="settings-header">
+            <h3>⚙️ Settings</h3>
+            <button id="close-settings"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="setting-row">
+            <label>🥔 Potato Mode (Low Performance)</label>
+            <label class="toggle"><input type="checkbox" id="potato-mode"><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+            <label>✨ Animations</label>
+            <label class="toggle"><input type="checkbox" id="animations" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+            <label>🎆 Particles</label>
+            <label class="toggle"><input type="checkbox" id="particles" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-row">
+            <label>🔊 Sound Effects</label>
+            <label class="toggle"><input type="checkbox" id="sounds"><span class="slider"></span></label>
+        </div>
+        <button id="save-settings-btn">Save Settings</button>
+    </div>
+
+    <div id="aim-trainer-modal">
+        <div id="modal-header">
+            <h3>🎯 Aim Trainer</h3>
+            <button id="close-modal"><i class="fas fa-times"></i></button>
+        </div>
+        <p style="font-size:13px;color:#B0B0B0;margin-bottom:10px;">Click as many targets as possible in 30 seconds!</p>
+        <div id="aim-trainer-area"></div>
+        <button id="start-aim" style="width:100%;padding:10px;margin-top:15px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600;">Start Game (100 PP Entry)</button>
+    </div>
+
+    <div id="offline-modal">
+        <div id="modal-header">
+            <h3>⏰ Welcome Back!</h3>
+            <button id="close-offline"><i class="fas fa-times"></i></button>
+        </div>
+        <p style="font-size:14px;margin-bottom:15px;">You earned PP while away:</p>
+        <p id="offline-earnings" style="font-size:24px;font-weight:700;color:#00F0FF;text-align:center;margin-bottom:15px;">+0 PP</p>
+        <button id="claim-offline" style="width:100%;padding:10px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600;">Claim</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
