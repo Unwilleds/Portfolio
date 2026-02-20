@@ -8,14 +8,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
-body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;position:relative;overflow-x:hidden;}
+body{background:#0B0F2A;color:#E0E0E0;scroll-behavior:smooth;overflow-x:hidden;position:relative;}
+
 nav{position:fixed;top:0;left:0;width:100%;padding:15px 10%;display:flex;justify-content:space-between;align-items:center;background:rgba(11,15,42,0.6);backdrop-filter:blur(5px);z-index:1000;transition:0.3s;}
 nav.scrolled{background:rgba(11,15,42,0.95);}
 nav .logo{font-weight:600;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #00F0FF;}
 nav .nav-links a{color:#E0E0E0;text-decoration:none;margin-left:20px;transition:0.3s;position:relative;}
 nav .nav-links a.active::after{content:"";position:absolute;left:0;bottom:-5px;width:100%;height:2px;background:#B159FF;border-radius:2px;}
 nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
+
 .main{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 10% 60px;}
+
 .hero, .section{opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;position:relative;}
 .hero{background:rgba(0,0,0,0.35);border-radius:20px;padding:40px 50px;display:flex;align-items:center;gap:30px;max-width:900px;width:100%;box-shadow:0 0 25px rgba(0,255,255,0.2);margin-bottom:50px;}
 .profile-wrap{width:200px;height:200px;border-radius:50%;overflow:hidden;border:3px solid #00F0FF;box-shadow:0 0 25px rgba(0,240,255,0.8);animation:float 4s ease-in-out infinite;transition:0.3s;}
@@ -32,26 +35,39 @@ nav .nav-links a:hover{color:#00F0FF;text-shadow:0 0 6px #00F0FF;}
 .socials{margin-top:15px;display:flex;gap:15px;}
 .socials a{color:#E0E0E0;font-size:20px;transition:0.3s;}
 .socials a:hover{transform:scale(1.2);color:#B159FF;text-shadow:0 0 8px #B159FF;}
+
 .section{background:rgba(0,0,0,0.35);border-radius:20px;padding:30px 40px;max-width:900px;width:100%;box-shadow:0 0 20px rgba(0,240,255,0.1);margin-bottom:30px;}
 .section h2{margin-bottom:15px;color:#00F0FF;text-shadow:0 0 8px #B159FF;}
+
 .card{background:rgba(255,255,255,0.05);border-radius:15px;padding:15px 20px;margin-bottom:12px;transition:0.3s;display:flex;justify-content:space-between;align-items:center;position:relative;}
 .card:hover{box-shadow:0 0 25px rgba(0,240,255,0.7);transform:translateY(-5px);}
 .card .year{font-weight:600;font-size:16px;color:#B159FF;margin-right:15px;}
+
 .skills span{display:inline-block;background:rgba(0,240,255,0.1);padding:8px 14px;border-radius:20px;margin:5px;font-size:13px;box-shadow:0 0 10px rgba(0,240,255,0.4);}
 .skill-bar{background:rgba(0,240,255,0.05);border-radius:20px;height:12px;margin:8px 0;overflow:hidden;}
 .skill-fill{height:100%;width:0%;background:#B159FF;border-radius:20px;transition:width 1.5s ease-in-out;}
+
 footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:1px solid #00F0FF;text-shadow:0 0 6px #B159FF;}
 #backToTop{position:fixed;bottom:20px;right:20px;background:#00F0FF;color:#000;padding:10px 15px;border:none;border-radius:50px;cursor:pointer;display:none;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1000;transition:0.3s;}
 #backToTop:hover{transform:scale(1.1);}
+
 #particles-js{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;}
+
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
-#game-container{position:fixed;bottom:20px;right:20px;width:350px;max-width:95vw;background:rgba(0,0,0,0.85);padding:20px;border-radius:20px;box-shadow:0 0 25px rgba(0,240,255,0.5);color:#E0E0E0;z-index:2000;transition:0.3s;}
-#game-toggle{position:absolute;top:-40px;right:0;background:#00F0FF;color:#000;padding:5px 12px;border:none;border-radius:10px;cursor:pointer;font-weight:600;}
-#game-canvas{width:100%;height:300px;background:rgba(0,0,0,0.1);border-radius:15px;margin-bottom:10px;cursor:pointer;}
-#prestige-btn,#reset-game{padding:8px 15px;margin:5px;border:none;border-radius:10px;cursor:pointer;font-weight:600;}
-#prestige-btn{background:#B159FF;color:#000;}
-#reset-game{background:#00F0FF;color:#000;}
+
+/* Game button */
+#open-game-btn{position:fixed;bottom:20px;left:20px;padding:12px 18px;background:#00F0FF;color:#000;border:none;border-radius:50px;cursor:pointer;z-index:2000;box-shadow:0 0 10px rgba(0,240,255,0.5);transition:0.3s;}
+#open-game-btn:hover{transform:scale(1.1);}
+
+/* Game overlay & container */
+#game-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:1500;justify-content:center;align-items:center;}
+#game-container{background:rgba(0,0,0,0.85);padding:20px;border-radius:15px;text-align:center;position:relative;min-width:300px;max-width:90vw;min-height:300px;max-height:90vh;overflow:hidden;box-shadow:0 0 25px rgba(0,240,255,0.8);}
+#game-close{position:absolute;top:10px;right:10px;background:#B159FF;color:#000;border:none;padding:5px 10px;border-radius:10px;cursor:pointer;}
+
+/* PP text & stats */
+#pp-display{font-size:16px;margin-top:10px;color:#00F0FF;}
+#prestige-display{font-size:14px;margin-top:5px;color:#B159FF;}
 </style>
 </head>
 <body>
@@ -69,62 +85,49 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <div id="particles-js"></div>
 
 <div class="main">
-<div class="hero" id="hero" data-animate>
-  <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
-  <div class="hero-info">
-    <h1>Lloyd Espineli C.</h1>
-    <div class="typing" id="typing"></div>
-    <p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p>
-    <div class="contact" id="contact">
-      <p>Phone: +63 966 348 3648</p>
-      <p>Email: lloyd.espineli@gmail.com</p>
-      <p>Address: 32 Urbano St. Bagbag, Novaliches QC</p>
-    </div>
-    <div class="buttons">
-      <a href="mailto:lloyd.espineli@gmail.com">Email Me</a>
-      <a href="tel:+639663483648">Call Me</a>
-      <a href="cv.pdf" download>Download CV</a>
-    </div>
-    <div class="socials">
-      <a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.instagram.com/lyyspnlee_"><i class="fab fa-instagram"></i></a>
-      <a href="https://github.com/Unwilleds"><i class="fab fa-github"></i></a>
+  <div class="hero" id="hero" data-animate>
+    <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
+    <div class="hero-info">
+      <h1>Lloyd Espineli C.</h1>
+      <div class="typing" id="typing"></div>
+      <p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p>
     </div>
   </div>
-</div>
 
-<div class="section" id="work" data-animate>
-  <h2>Work Experience</h2>
-  <div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team. Coached basic to advanced strokes. Handled students aged 5 to 20.</div></div>
-  <div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground. Used time and billing system. Managed sessions and payments.</div></div>
-  <div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer. Handled cash, recorded sales, and assisted customers.</div></div>
-</div>
-
-<div class="section" id="skills" data-animate>
-  <h2>Skills</h2>
-  <div class="skills">
-    <span>Good Communication Skills</span>
-    <span>Good Computer Skills</span>
-    <span>Critical Thinking</span>
-    <span>Fast Learner</span>
-    <span>Adaptability</span>
+  <div class="section" id="work" data-animate>
+    <h2>Work Experience</h2>
+    <div class="card"><div class="year">2024</div><div>Assistant Swimming Instructor. Macuha Swim Team. Coached basic to advanced strokes. Handled students aged 5 to 20.</div></div>
+    <div class="card"><div class="year">2025</div><div>Computer Shop Attendant. Titans Underground. Used time and billing system. Managed sessions and payments.</div></div>
+    <div class="card"><div class="year">2025</div><div>Cashier. MNM Fish Dealer. Handled cash, recorded sales, and assisted customers.</div></div>
   </div>
-  <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-  <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
-  <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
-</div>
+
+  <div class="section" id="skills" data-animate>
+    <h2>Skills</h2>
+    <div class="skills">
+      <span>Good Communication Skills</span>
+      <span>Good Computer Skills</span>
+      <span>Critical Thinking</span>
+      <span>Fast Learner</span>
+      <span>Adaptability</span>
+    </div>
+  </div>
 </div>
 
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-<div id="game-container">
-  <button id="game-toggle">Hide Game</button>
-  <h3>Click the Circles!</h3>
-  <canvas id="game-canvas"></canvas>
-  <p>PP: <span id="score">0</span> | Prestige: <span id="prestige">0</span> | Combo: <span id="combo">x1</span></p>
-  <button id="reset-game">Reset</button>
-  <button id="prestige-btn">Prestige / Rebirth</button>
+<!-- Game Button -->
+<button id="open-game-btn">Open Game</button>
+
+<!-- Game Overlay -->
+<div id="game-overlay">
+  <div id="game-container">
+    <button id="game-close">X</button>
+    <h3>Neon Clicker RPG</h3>
+    <div id="game-area" style="position:relative;width:100%;height:70%;overflow:hidden;"></div>
+    <div id="pp-display">PP: 0</div>
+    <div id="prestige-display">Prestige: 0</div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -141,115 +144,110 @@ typeEffect();
 const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}})},{threshold:0.2});
 document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
 
-// Skill bar animation
-const skillObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.width=entry.target.getAttribute('data-width');}})},{threshold:0.5});
-document.querySelectorAll('.skill-fill').forEach(el=>skillObserver.observe(el));
-
 // Navbar scroll background
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.classList.add('scrolled');}else{navbar.classList.remove('scrolled');}});
-
-// Nav active link
-const sections=document.querySelectorAll('.section, .hero');
-const navLinks=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{const sectionTop=sec.offsetTop-60;if(window.scrollY>=sectionTop){current=sec.id;}});navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')=='#'+current){link.classList.add('active');}});});
 
 // Back to top
 const backBtn=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{if(window.scrollY>300){backBtn.style.display='block';}else{backBtn.style.display='none';}});
 backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
-// Particles.js
+// Particles.js configuration
 particlesJS("particles-js",{
   "particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":["#00F0FF","#B159FF"]},"shape":{"type":"circle"},"opacity":{"value":0.6,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},"move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}},
   "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}},
   "retina_detect":true
 });
 
-// ---------------- Advanced Game ----------------
-const canvas=document.getElementById('game-canvas');
-const ctx=canvas.getContext('2d');
-let score=0,prestige=0,ppMultiplier=1,combo=0,comboTimeout;
-let circles=[],particles=[];
+// Open / Close Game
+const openBtn = document.getElementById('open-game-btn');
+const overlay = document.getElementById('game-overlay');
+const closeBtn = document.getElementById('game-close');
+openBtn.addEventListener('click',()=>{overlay.style.display='flex';});
+closeBtn.addEventListener('click',()=>{overlay.style.display='none';});
 
-function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
-window.addEventListener('resize',resizeCanvas);
-resizeCanvas();
+// Game Logic
+const gameArea=document.getElementById('game-area');
+let PP=0;
+let Prestige=0;
+let multiplier=1;
+const ppDisplay=document.getElementById('pp-display');
+const prestigeDisplay=document.getElementById('prestige-display');
 
-// Circle class
-class Circle{
-  constructor(x,y,r,color){this.x=x;this.y=y;this.r=r;this.color=color;this.vx=(Math.random()*2+1)*(Math.random()<0.5?-1:1);this.vy=(Math.random()*2+1)*(Math.random()<0.5?-1:1);}
-  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.color;ctx.shadowBlur=15;ctx.shadowColor=this.color;ctx.fill();}
-  move(){this.x+=this.vx;this.y+=this.vy;if(this.x-this.r<0||this.x+this.r>canvas.width)this.vx*=-1;if(this.y-this.r<0||this.y+this.r>canvas.height)this.vy*=-1;}
+// Click spawn function
+function spawnCircle(){
+  const circle=document.createElement('div');
+  const size=Math.random()*50+30;
+  circle.style.width=size+'px';
+  circle.style.height=size+'px';
+  circle.style.background='#00F0FF';
+  circle.style.borderRadius='50%';
+  circle.style.position='absolute';
+  circle.style.left=Math.random()*(gameArea.clientWidth-size)+'px';
+  circle.style.top=Math.random()*(gameArea.clientHeight-size)+'px';
+  circle.style.cursor='pointer';
+  circle.style.boxShadow='0 0 15px #00F0FF';
+  circle.style.transition='transform 0.2s';
+  gameArea.appendChild(circle);
+
+  circle.addEventListener('click',()=>{
+    PP+=Math.floor(1*multiplier);
+    ppDisplay.textContent='PP: '+PP;
+    circle.remove();
+    spawnExplosion(circle.style.left,circle.style.top,circle.style.background);
+    if(Math.random()<0.1) spawnPowerUp();
+  });
+
+  // Auto remove after 5s
+  setTimeout(()=>{if(circle.parentElement) circle.remove();},5000);
 }
 
-// Particle class for click effects
-class Particle{
-  constructor(x,y,color){this.x=x;this.y=y;this.r=Math.random()*4+2;this.color=color;this.vx=(Math.random()-0.5)*4;this.vy=(Math.random()-0.5)*4;this.alpha=1;}
-  draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=this.color;ctx.globalAlpha=this.alpha;ctx.fill();ctx.globalAlpha=1;}
-  update(){this.x+=this.vx;this.y+=this.vy;this.alpha-=0.02;}
-}
-
-function spawnCircles(n){
-  for(let i=0;i<n;i++){
-    let r=Math.random()*25+15;
-    let x=Math.random()*(canvas.width-2*r)+r;
-    let y=Math.random()*(canvas.height-2*r)+r;
-    let color=Math.random()<0.5?"#00F0FF":"#B159FF";
-    circles.push(new Circle(x,y,r,color));
+// Explosion animation
+function spawnExplosion(x,y,color){
+  for(let i=0;i<8;i++){
+    const p=document.createElement('div');
+    p.style.width='6px';
+    p.style.height='6px';
+    p.style.background=color;
+    p.style.position='absolute';
+    p.style.left=x;
+    p.style.top=y;
+    p.style.borderRadius='50%';
+    p.style.opacity=1;
+    p.style.transition='all 0.5s linear';
+    gameArea.appendChild(p);
+    setTimeout(()=>{p.style.transform=`translate(${Math.random()*50-25}px,${Math.random()*50-25}px)`;p.style.opacity=0;},10);
+    setTimeout(()=>{p.remove();},500);
   }
 }
-spawnCircles(8);
 
-function drawGame(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  circles.forEach(c=>{c.draw();c.move();});
-  particles.forEach((p,i)=>{p.draw();p.update();if(p.alpha<=0)particles.splice(i,1);});
-  requestAnimationFrame(drawGame);
-}
-drawGame();
+// Spawn initial circles
+setInterval(spawnCircle,1000);
 
-// Click detection
-canvas.addEventListener('click',e=>{
-  const rect=canvas.getBoundingClientRect();
-  const mx=e.clientX-rect.left;
-  const my=e.clientY-rect.top;
-  let clicked=false;
-  circles.forEach((c,i)=>{
-    const dx=mx-c.x,dy=my-c.y;
-    if(Math.sqrt(dx*dx+dy*dy)<c.r){
-      clicked=true;
-      score+=1*ppMultiplier*(combo||1);
-      document.getElementById('score').textContent=score;
-      for(let j=0;j<10;j++)particles.push(new Particle(c.x,c.y,c.color));
-      // combo system
-      combo++;
-      document.getElementById('combo').textContent='x'+combo;
-      clearTimeout(comboTimeout);
-      comboTimeout=setTimeout(()=>{combo=0;document.getElementById('combo').textContent='x1';},2000);
-      // move circle
-      c.x=Math.random()*(canvas.width-2*c.r)+c.r;
-      c.y=Math.random()*(canvas.height-2*c.r)+c.r;
-    }
+// Power-ups
+function spawnPowerUp(){
+  const pu=document.createElement('div');
+  pu.style.width='30px';
+  pu.style.height='30px';
+  pu.style.background='#B159FF';
+  pu.style.position='absolute';
+  pu.style.left=Math.random()*(gameArea.clientWidth-30)+'px';
+  pu.style.top=Math.random()*(gameArea.clientHeight-30)+'px';
+  pu.style.borderRadius='10px';
+  pu.style.cursor='pointer';
+  pu.style.boxShadow='0 0 15px #B159FF';
+  gameArea.appendChild(pu);
+
+  pu.addEventListener('click',()=>{
+    multiplier*=2;
+    setTimeout(()=>{multiplier/=2;},5000);
+    pu.remove();
   });
-  if(!clicked){combo=0;document.getElementById('combo').textContent='x1';}
-});
 
-// Reset & Prestige
-document.getElementById('reset-game').addEventListener('click',()=>{
-  score=0;combo=0;ppMultiplier=1;document.getElementById('score').textContent=score;
-});
-document.getElementById('prestige-btn').addEventListener('click',()=>{
-  if(score>=50){prestige++;ppMultiplier+=0.5;score=0;document.getElementById('prestige').textContent=prestige;document.getElementById('score').textContent=score;}
-});
-
-// Hide / show game
-const gameContainer=document.getElementById('game-container');
-const toggleBtn=document.getElementById('game-toggle');
-toggleBtn.addEventListener('click',()=>{
-  if(gameContainer.style.height!=='50px'){gameContainer.style.height='50px';canvas.style.display='none';toggleBtn.textContent='Show Game';} 
-  else{gameContainer.style.height='auto';canvas.style.display='block';toggleBtn.textContent='Hide Game';}
-});
+  setTimeout(()=>{if(pu.parentElement) pu.remove();},7000);
+}
 </script>
+
 </body>
 </html>
