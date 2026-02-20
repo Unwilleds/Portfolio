@@ -54,6 +54,46 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
+
+  #game-container{
+  position:fixed;
+  top:80px;
+  right:20px;
+  background:rgba(0,0,0,0.7);
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  z-index:1500;
+  width:150px;
+  color:#E0E0E0;
+  box-shadow:0 0 15px rgba(0,240,255,0.5);
+}
+
+#game-circle{
+  width:40px;
+  height:40px;
+  background:#00F0FF;
+  border-radius:50%;
+  margin:10px auto;
+  cursor:pointer;
+  transition:all 0.2s;
+  position:relative;
+}
+
+#game-circle:hover{
+  transform:scale(1.2);
+}
+
+#reset-game{
+  padding:5px 10px;
+  border-radius:10px;
+  border:none;
+  background:#B159FF;
+  color:#000;
+  cursor:pointer;
+  margin-top:10px;
+}
+  
 </style>
 </head>
 <body>
@@ -122,6 +162,13 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
+  <div id="game-container">
+  <h3>Click the Circle!</h3>
+  <div id="game-circle"></div>
+  <p>Score: <span id="score">0</span></p>
+  <button id="reset-game">Reset</button>
+</div>
+
 <!-- Particles.js library -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
@@ -173,6 +220,36 @@ particlesJS("particles-js",{
   },
   "retina_detect":true
 });
+
+  let score = 0;
+const circle = document.getElementById('game-circle');
+const scoreDisplay = document.getElementById('score');
+const resetBtn = document.getElementById('reset-game');
+
+function moveCircle() {
+  const maxX = window.innerWidth - 100;
+  const maxY = window.innerHeight - 100;
+  const x = Math.floor(Math.random() * maxX);
+  const y = Math.floor(Math.random() * maxY);
+  circle.style.position = 'absolute';
+  circle.style.left = x + 'px';
+  circle.style.top = y + 'px';
+}
+
+circle.addEventListener('click', () => {
+  score++;
+  scoreDisplay.textContent = score;
+  moveCircle();
+});
+
+resetBtn.addEventListener('click', () => {
+  score = 0;
+  scoreDisplay.textContent = score;
+  moveCircle();
+});
+
+// Initialize circle position
+moveCircle();
 </script>
 
 </body>
