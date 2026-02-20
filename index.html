@@ -203,8 +203,8 @@ font-size: 32px;
 </div>
 
 <div class="socials">
-  <a href="#"><i class="fab fa-facebook"></i></a>
-  <a href="#"><i class="fab fa-github"></i></a>
-  <a href="#"><i class="fab fa-linkedin"></i></a>
+  <a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a>
+  <a href="https://www.instagram.com/lyyspnlee_"><i class="fab fa-instagram"></i></a>
+  <a href="https://github.com/Unwilleds"><i class="fab fa-github"></i></a>
 </div>
 </div> </div> <div class="section"> <h2>Work Experience</h2> <div class="card"> <p>Assistant Swimming Instructor. Macuha Swim Team. 2024</p> <p>Coached basic to advanced strokes. Handled students aged 5 to 20.</p> </div> <div class="card"> <p>Computer Shop Attendant. Titans Underground. 2025</p> <p>Used time and billing system. Managed sessions and payments.</p> </div> <div class="card"> <p>Cashier. MNM Fish Dealer. 2025</p> <p>Handled cash, recorded sales, and assisted customers.</p> </div> </div> <div class="section"> <h2>Skills</h2> <div class="skills"> <span>Good Communication Skills</span> <span>Good Computer Skills</span> <span>Critical Thinking</span> <span>Fast Learner</span> <span>Adaptability</span> </div> </div> </div> <script> const text = ["BSIT Student", "Aspiring IT Professional", "Open for Part Time Work"]; let index = 0; let char = 0; const typingDiv = document.getElementById("typing"); function typeEffect() { if (char < text[index].length) { typingDiv.textContent += text[index].charAt(char); char++; setTimeout(typeEffect, 80); } else { setTimeout(eraseEffect, 1500); } } function eraseEffect() { if (char > 0) { typingDiv.textContent = text[index].substring(0, char - 1); char--; setTimeout(eraseEffect, 50); } else { index = (index + 1) % text.length; setTimeout(typeEffect, 200); } } typeEffect(); </script> </body> </html>
