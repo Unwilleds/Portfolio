@@ -91,6 +91,7 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 .upgrade-info h4{color:#00F0FF;margin-bottom:3px;font-size:14px;}
 .upgrade-info p{font-size:11px;color:#B0B0B0;}
 .upgrade-cost{font-weight:700;color:#FF6B6B;font-size:13px;margin-bottom:5px;}
+.upgrade-level{font-size:10px;color:#00F0FF;background:rgba(0,240,255,0.2);padding:2px 6px;border-radius:10px;}
 .buy-btn{background:#00F0FF;color:#000;border:none;padding:6px 14px;border-radius:20px;cursor:pointer;font-weight:600;font-size:12px;transition:0.2s;}
 .buy-btn:hover{transform:scale(1.05);box-shadow:0 0 12px rgba(0,240,255,0.7);}
 .buy-btn:disabled{background:#444;color:#777;cursor:not-allowed;transform:none;}
@@ -181,6 +182,8 @@ input:checked+.slider:before{transform:translateX(20px);background:#000;}
 .theme-name{font-size:12px;font-weight:600;}
 #save-indicator{font-size:10px;color:#00F0FF;opacity:0;transition:opacity 0.5s;margin-left:10px;}
 #save-indicator.visible{opacity:1;}
+.floating-text{position:absolute;pointer-events:none;font-weight:700;font-size:16px;text-shadow:0 0 5px #000;animation:floatUp 1s forwards;z-index:100;}
+@keyframes floatUp{to{transform:translateY(-50px);opacity:0;}}
 @media(max-width:600px){
 #stats-row{grid-template-columns:repeat(2,1fr);}
 #achievements-grid, #collection-grid{grid-template-columns:repeat(2,1fr);}
