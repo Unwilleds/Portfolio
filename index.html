@@ -7,239 +7,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Poppins, sans-serif; }
-
+* { margin:0; padding:0; box-sizing:border-box; font-family:Poppins,sans-serif; }
 body {
-min-height: 100vh;
-background: linear-gradient(270deg, #6a11cb, #2575fc, #00c9ff, #92fe9d);
-background-size: 800% 800%;
+min-height:100vh;
+background:linear-gradient(270deg,#6a11cb,#2575fc,#00c9ff,#92fe9d);
+background-size:800% 800%;
 animation: gradientMove 15s ease infinite;
-color: #ffffff;
-scroll-behavior: smooth;
+color:#fff;
+scroll-behavior:smooth;
+position:relative;
 }
-
 nav {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-background: rgba(0,0,0,0.7);
-padding: 15px 10%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-z-index: 1000;
-backdrop-filter: blur(5px);
+position:fixed;
+top:0; left:0;
+width:100%;
+padding:15px 10%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(5px);
+z-index:1000;
+transition:0.3s;
 }
-
-nav .logo {
-font-weight: 600;
-font-size: 20px;
+nav.scrolled { background:rgba(0,0,0,0.85); }
+nav .logo { font-weight:600; font-size:20px; }
+nav .nav-links a { color:#fff; text-decoration:none; margin-left:20px; transition:0.3s; position:relative; }
+nav .nav-links a.active::after {
+content:""; position:absolute; left:0; bottom:-5px; width:100%; height:2px; background:#00ffff;
 }
-
-nav .nav-links a {
-color: #ffffff;
-text-decoration: none;
-margin-left: 20px;
-transition: 0.3s;
-}
-
-nav .nav-links a:hover {
-color: #00ffff;
-}
-
-.main {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-padding: 100px 10% 60px 10%;
-}
-
-.hero {
-background: rgba(0,0,0,0.6);
-border-radius: 20px;
-padding: 40px 50px;
-display: flex;
-align-items: center;
-gap: 30px;
-max-width: 900px;
-width: 100%;
-box-shadow: 0 0 25px rgba(255,255,255,0.25);
-margin-bottom: 50px;
-opacity: 0;
-transform: translateY(50px);
-transition: all 0.8s ease-out;
-}
-
-.profile-wrap {
-width: 200px;
-height: 200px;
-border-radius: 50%;
-overflow: hidden;
-border: 3px solid #ffffff;
-box-shadow: 0 0 25px rgba(255,255,255,0.9);
-animation: float 4s ease-in-out infinite;
-}
-
-.profile-wrap img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-
-.hero-info {
-max-width: 500px;
-}
-
-.hero-info h1 {
-font-size: 38px;
-margin-bottom: 5px;
-}
-
-.typing {
-font-size: 16px;
-color: #dddddd;
-margin-bottom: 10px;
-min-height: 22px;
-}
-
-.desc {
-font-size: 15px;
-line-height: 1.5;
-color: #e0e0e0;
-margin-bottom: 15px;
-}
-
-.contact p {
-font-size: 14px;
-margin-bottom: 6px;
-color: #cfcfcf;
-}
-
-.buttons {
-margin-top: 15px;
-display: flex;
-gap: 12px;
-flex-wrap: wrap;
-}
-
-.buttons a {
-text-decoration: none;
-padding: 10px 22px;
-border-radius: 30px;
-font-size: 14px;
-color: #ffffff;
-border: 2px solid #ffffff;
-transition: 0.3s;
-box-shadow: 0 0 15px rgba(255,255,255,0.6);
-}
-
-.buttons a:hover {
-background: #ffffff;
-color: #000000;
-transform: scale(1.05);
-box-shadow: 0 0 25px rgba(255,255,255,1);
-}
-
-.socials {
-margin-top: 15px;
-display: flex;
-gap: 15px;
-}
-
-.socials a {
-color: #ffffff;
-font-size: 20px;
-transition: 0.3s;
-}
-
-.socials a:hover {
-transform: scale(1.2);
-color: #00ffff;
-}
-
-.section {
-background: rgba(0,0,0,0.55);
-border-radius: 20px;
-padding: 30px 40px;
-max-width: 900px;
-width: 100%;
-box-shadow: 0 0 20px rgba(255,255,255,0.2);
-margin-bottom: 30px;
-opacity: 0;
-transform: translateY(50px);
-transition: all 0.8s ease-out;
-}
-
-.section h2 {
-margin-bottom: 15px;
-color: #ffffff;
-}
-
-.card {
-background: rgba(255,255,255,0.05);
-border-radius: 15px;
-padding: 15px 20px;
-margin-bottom: 12px;
-transition: 0.3s;
-}
-
-.card:hover {
-box-shadow: 0 0 20px rgba(255,255,255,0.4);
-transform: translateY(-5px);
-}
-
-.skills span {
-display: inline-block;
-background: rgba(255,255,255,0.1);
-padding: 8px 14px;
-border-radius: 20px;
-margin: 5px;
-font-size: 13px;
-box-shadow: 0 0 10px rgba(255,255,255,0.4);
-}
-
-footer {
-text-align: center;
-padding: 20px 10%;
-background: rgba(0,0,0,0.7);
-border-top: 1px solid #ffffff;
-}
-
-@keyframes gradientMove {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
-}
-
-@keyframes float {
-0% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
-100% { transform: translateY(0); }
-}
-
-@media (max-width: 700px) {
-.hero {
-flex-direction: column;
-text-align: center;
-padding: 30px 20px;
-}
-
-.profile-wrap {
-width: 160px;
-height: 160px;
-}
-
-.hero-info h1 {
-font-size: 32px;
-}
-}
+nav .nav-links a:hover { color:#00ffff; }
+.main { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:100px 10% 60px; }
+.hero, .section { opacity:0; transform:translateY(50px); transition:all 0.8s ease-out; }
+.hero { background:rgba(0,0,0,0.6); border-radius:20px; padding:40px 50px; display:flex; align-items:center; gap:30px; max-width:900px; width:100%; box-shadow:0 0 25px rgba(255,255,255,0.25); margin-bottom:50px; }
+.profile-wrap { width:200px; height:200px; border-radius:50%; overflow:hidden; border:3px solid #fff; box-shadow:0 0 25px rgba(255,255,255,0.9); animation:float 4s ease-in-out infinite; }
+.profile-wrap img { width:100%; height:100%; object-fit:cover; }
+.hero-info { max-width:500px; }
+.hero-info h1 { font-size:38px; margin-bottom:5px; }
+.typing { font-size:16px; color:#ddd; margin-bottom:10px; min-height:22px; }
+.desc { font-size:15px; line-height:1.5; color:#e0e0e0; margin-bottom:15px; }
+.contact p { font-size:14px; margin-bottom:6px; color:#cfcfcf; }
+.buttons { margin-top:15px; display:flex; gap:12px; flex-wrap:wrap; }
+.buttons a { text-decoration:none; padding:10px 22px; border-radius:30px; font-size:14px; color:#fff; border:2px solid #fff; transition:0.3s; box-shadow:0 0 15px rgba(255,255,255,0.6); }
+.buttons a:hover { background:#fff; color:#000; transform:scale(1.05); box-shadow:0 0 25px rgba(255,255,255,1); }
+.socials { margin-top:15px; display:flex; gap:15px; }
+.socials a { color:#fff; font-size:20px; transition:0.3s; }
+.socials a:hover { transform:scale(1.2); color:#00ffff; }
+.section { background:rgba(0,0,0,0.55); border-radius:20px; padding:30px 40px; max-width:900px; width:100%; box-shadow:0 0 20px rgba(255,255,255,0.2); margin-bottom:30px; }
+.section h2 { margin-bottom:15px; color:#fff; }
+.card { background:rgba(255,255,255,0.05); border-radius:15px; padding:15px 20px; margin-bottom:12px; transition:0.3s; }
+.card:hover { box-shadow:0 0 20px rgba(255,255,255,0.4); transform:translateY(-5px); }
+.skills span { display:inline-block; background:rgba(255,255,255,0.1); padding:8px 14px; border-radius:20px; margin:5px; font-size:13px; box-shadow:0 0 10px rgba(255,255,255,0.4); }
+.skill-bar { background:rgba(255,255,255,0.1); border-radius:20px; height:12px; margin:8px 0; overflow:hidden; }
+.skill-fill { height:100%; width:0%; background:#00ffff; border-radius:20px; transition:width 1.5s ease-in-out; }
+footer { text-align:center; padding:20px 10%; background:rgba(0,0,0,0.7); border-top:1px solid #fff; }
+#backToTop { position:fixed; bottom:20px; right:20px; background:#00ffff; color:#000; padding:10px 15px; border:none; border-radius:50px; cursor:pointer; display:none; box-shadow:0 0 10px rgba(0,255,255,0.5); z-index:1000; transition:0.3s; }
+#backToTop:hover { transform:scale(1.1); }
+@keyframes gradientMove {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
+@media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="navbar">
   <div class="logo">Lloyd Espineli</div>
   <div class="nav-links">
     <a href="#hero">Home</a>
@@ -251,15 +82,11 @@ font-size: 32px;
 
 <div class="main">
 <div class="hero" id="hero" data-animate>
-  <div class="profile-wrap">
-    <img src="photo.jpg" alt="Profile">
-  </div>
+  <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
   <div class="hero-info">
     <h1>Lloyd Espineli C.</h1>
     <div class="typing" id="typing"></div>
-    <p class="desc">
-      18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.
-    </p>
+    <p class="desc">18 year old BSIT student at Quezon City University. Looking for part time work to gain experience and build professional skills.</p>
     <div class="contact" id="contact">
       <p>Phone: +63 966 348 3648</p>
       <p>Email: lloyd.espineli@gmail.com</p>
@@ -268,7 +95,7 @@ font-size: 32px;
     <div class="buttons">
       <a href="mailto:lloyd.espineli@gmail.com">Email Me</a>
       <a href="tel:+639663483648">Call Me</a>
-      <a href="#">Download CV</a>
+      <a href="cv.pdf" download>Download CV</a>
     </div>
     <div class="socials">
       <a href="https://www.facebook.com/llyd.spnlee"><i class="fab fa-facebook"></i></a>
@@ -280,18 +107,9 @@ font-size: 32px;
 
 <div class="section" id="work" data-animate>
   <h2>Work Experience</h2>
-  <div class="card">
-    <p>Assistant Swimming Instructor. Macuha Swim Team. 2024</p>
-    <p>Coached basic to advanced strokes. Handled students aged 5 to 20.</p>
-  </div>
-  <div class="card">
-    <p>Computer Shop Attendant. Titans Underground. 2025</p>
-    <p>Used time and billing system. Managed sessions and payments.</p>
-  </div>
-  <div class="card">
-    <p>Cashier. MNM Fish Dealer. 2025</p>
-    <p>Handled cash, recorded sales, and assisted customers.</p>
-  </div>
+  <div class="card"><p>Assistant Swimming Instructor. Macuha Swim Team. 2024</p><p>Coached basic to advanced strokes. Handled students aged 5 to 20.</p></div>
+  <div class="card"><p>Computer Shop Attendant. Titans Underground. 2025</p><p>Used time and billing system. Managed sessions and payments.</p></div>
+  <div class="card"><p>Cashier. MNM Fish Dealer. 2025</p><p>Handled cash, recorded sales, and assisted customers.</p></div>
 </div>
 
 <div class="section" id="skills" data-animate>
@@ -303,50 +121,46 @@ font-size: 32px;
     <span>Fast Learner</span>
     <span>Adaptability</span>
   </div>
+  <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+  <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
+  <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
 </div>
 
 </div>
 
-<footer>
-  &copy; 2026 Lloyd Espineli. All rights reserved.
-</footer>
+<footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
+
+<button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
 <script>
 // Typing effect
-const text = ["BSIT Student", "Aspiring IT Professional", "Open for Part Time Work"];
-let index = 0;
-let char = 0;
-const typingDiv = document.getElementById("typing");
-function typeEffect() {
-  if (char < text[index].length) {
-    typingDiv.textContent += text[index].charAt(char);
-    char++;
-    setTimeout(typeEffect, 80);
-  } else { setTimeout(eraseEffect, 1500); }
-}
-function eraseEffect() {
-  if (char > 0) {
-    typingDiv.textContent = text[index].substring(0, char - 1);
-    char--;
-    setTimeout(eraseEffect, 50);
-  } else {
-    index = (index + 1) % text.length;
-    setTimeout(typeEffect, 200);
-  }
-}
+const text=["BSIT Student","Aspiring IT Professional","Open for Part Time Work"];
+let index=0,charIndex=0;
+const typingDiv=document.getElementById("typing");
+function typeEffect(){if(charIndex<text[index].length){typingDiv.textContent+=text[index].charAt(charIndex);charIndex++;setTimeout(typeEffect,80);}else{setTimeout(eraseEffect,1500);}}
+function eraseEffect(){if(charIndex>0){typingDiv.textContent=text[index].substring(0,charIndex-1);charIndex--;setTimeout(eraseEffect,50);}else{index=(index+1)%text.length;setTimeout(typeEffect,200);}}
 typeEffect();
 
-// Scroll animation
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.2 });
+// Scroll animations
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}})},{threshold:0.2});
+document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
 
-document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+// Skill bar animation
+const skillObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.width=entry.target.getAttribute('data-width');}})},{threshold:0.5});
+document.querySelectorAll('.skill-fill').forEach(el=>skillObserver.observe(el));
+
+// Navbar scroll background
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.classList.add('scrolled');}else{navbar.classList.remove('scrolled');}});
+// Nav active link
+const sections=document.querySelectorAll('section, .hero');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{const sectionTop=sec.offsetTop-60;if(window.scrollY>=sectionTop){current=sec.id;}});navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')=='#'+current){link.classList.add('active');}});});
+
+// Back to top
+const backBtn=document.getElementById('backToTop');
+window.addEventListener('scroll',()=>{if(window.scrollY>300){backBtn.style.display='block';}else{backBtn.style.display='none';}});
+backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 </script>
 
 </body>
