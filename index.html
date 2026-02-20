@@ -55,72 +55,18 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 
-/* Clicker Game Styles */
-#open-game-btn{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  z-index:2000;
-  padding:10px 15px;
-  border-radius:50px;
-  border:none;
-  background:#B159FF;
-  color:#000;
-  cursor:pointer;
-  box-shadow:0 0 15px #B159FF;
-  font-weight:600;
-  transition:0.3s;
-}
-#open-game-btn:hover{transform:scale(1.1);}
+/* Game Styles */
+#game-open-btn{position:fixed;bottom:20px;left:20px;background:#00F0FF;color:#000;padding:12px 18px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 10px rgba(0,240,255,0.5);z-index:1500;transition:0.3s;}
+#game-open-btn:hover{transform:scale(1.1);}
 
-#game-overlay{
-  display:none;
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.85);
-  z-index:1999;
-  justify-content:center;
-  align-items:center;
-}
-#game-container{
-  position:relative;
-  width:90%;
-  max-width:600px;
-  background:rgba(0,0,0,0.9);
-  border-radius:20px;
-  padding:20px;
-  text-align:center;
-  color:#E0E0E0;
-  box-shadow:0 0 25px rgba(0,240,255,0.7);
-}
-#click-icon{
-  width:80px;
-  height:80px;
-  margin:15px auto;
-  background:#00F0FF;
-  border-radius:50%;
-  cursor:pointer;
-  box-shadow:0 0 15px #00F0FF;
-  position:relative;
-  transition:transform 0.1s;
-}
+#game-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.95);padding:30px;border-radius:20px;text-align:center;z-index:2000;width:90%;max-width:500px;color:#E0E0E0;display:none;box-shadow:0 0 25px rgba(0,240,255,0.7);}
+#game-header{margin-bottom:15px;font-size:20px;color:#00F0FF;text-shadow:0 0 8px #B159FF;}
+#pp-display,#prestige-display,#combo-display{margin:6px 0;font-weight:600;}
+#click-icon{width:80px;height:80px;background:#00F0FF;border-radius:20px;margin:15px auto;cursor:pointer;position:relative;box-shadow:0 0 20px rgba(0,240,255,0.5);transition:transform 0.2s;}
 #click-icon:hover{transform:scale(1.2);}
-#pp-display, #gems-display, #prestige-display{margin:10px 0;font-weight:600;font-size:16px;}
-#shop-container{margin-top:15px;text-align:left;}
-.shop-item{
-  display:flex;justify-content:space-between;margin:6px 0;padding:5px 8px;background:rgba(255,255,255,0.05);border-radius:12px;cursor:pointer;
-  transition:0.3s;
-}
-.shop-item:hover{background:rgba(0,240,255,0.15);}
-.buff-msg{
-  position:absolute;
-  top:-20px;left:50%;
-  transform:translateX(-50%);
-  color:#B159FF;
-  font-weight:600;
-  animation:floatUp 1s ease-out forwards;
-}
-@keyframes floatUp{0%{opacity:1;transform:translateX(-50%) translateY(0);}100%{opacity:0;transform:translateX(-50%) translateY(-30px);}}
+.buff-btn{margin:5px;padding:6px 12px;border:none;border-radius:8px;background:#B159FF;color:#000;cursor:pointer;transition:0.3s;}
+.buff-btn:hover{transform:scale(1.05);}
+.particle{position:absolute;width:6px;height:6px;background:#B159FF;border-radius:50%;pointer-events:none;opacity:1;animation:float 0.7s linear forwards;}
 </style>
 </head>
 <body>
@@ -138,7 +84,6 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 <div id="particles-js"></div>
 
 <div class="main">
-
 <div class="hero" id="hero" data-animate>
   <div class="profile-wrap"><img src="photo.jpg" alt="Profile"></div>
   <div class="hero-info">
@@ -183,37 +128,26 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
   <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
   <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
 </div>
-
 </div>
 
 <footer>&copy; 2026 Lloyd Espineli. All rights reserved.</footer>
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+<button id="game-open-btn">Open Game</button>
 
-<!-- Open Game Button -->
-<button id="open-game-btn">Open Game</button>
-
-<!-- Game Overlay -->
-<div id="game-overlay">
-  <div id="game-container">
-    <h3>Click the Icon!</h3>
-    <div id="click-icon"></div>
-    <div id="pp-display">PP: 0</div>
-    <div id="gems-display">Gems: 0</div>
-    <div id="prestige-display">Prestige: 0</div>
-    <div id="shop-container">
-      <h4>Shop</h4>
-      <div class="shop-item" data-pp="50" data-gem="0">Double PP (50 PP)</div>
-      <div class="shop-item" data-pp="0" data-gem="5">Auto Click 5s (5 Gems)</div>
-      <div class="shop-item" data-pp="200" data-gem="0">Increase Icon Size (200 PP)</div>
-    </div>
-    <button id="close-game" style="margin-top:10px;padding:8px 12px;border:none;border-radius:10px;background:#B159FF;color:#000;cursor:pointer;">Close Game</button>
-  </div>
+<div id="game-container">
+  <div id="game-header">Clicker Game</div>
+  <div id="pp-display">PP: 0</div>
+  <div id="prestige-display">Prestige: 0</div>
+  <div id="combo-display">Combo: x1</div>
+  <div id="click-icon"></div>
+  <button class="buff-btn" id="doublePP">Double PP (5 clicks)</button>
+  <button class="buff-btn" id="autoPP">AutoPP (5 sec)</button>
+  <button class="buff-btn" id="resetPrestige">Rebirth / Prestige</button>
 </div>
 
-<!-- Particles.js library -->
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 <script>
-/* Typing effect */
+// Typing effect
 const text=["BSIT Student","Aspiring IT Professional","Open for Part Time Work"];
 let index=0,charIndex=0;
 const typingDiv=document.getElementById("typing");
@@ -221,81 +155,110 @@ function typeEffect(){if(charIndex<text[index].length){typingDiv.textContent+=te
 function eraseEffect(){if(charIndex>0){typingDiv.textContent=text[index].substring(0,charIndex-1);charIndex--;setTimeout(eraseEffect,50);}else{index=(index+1)%text.length;setTimeout(typeEffect,200);}}
 typeEffect();
 
-/* Scroll animations */
+// Scroll animations
 const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity=1;entry.target.style.transform='translateY(0)';}})},{threshold:0.2});
 document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
 
-/* Skill bar animation */
+// Skill bar animation
 const skillObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.width=entry.target.getAttribute('data-width');}})},{threshold:0.5});
 document.querySelectorAll('.skill-fill').forEach(el=>skillObserver.observe(el));
 
-/* Navbar scroll */
+// Navbar scroll background
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.classList.add('scrolled');}else{navbar.classList.remove('scrolled');}});
 
-/* Nav active link */
+// Nav active link
 const sections=document.querySelectorAll('.section, .hero');
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{let current='';sections.forEach(sec=>{const sectionTop=sec.offsetTop-60;if(window.scrollY>=sectionTop){current=sec.id;}});navLinks.forEach(link=>{link.classList.remove('active');if(link.getAttribute('href')=='#'+current){link.classList.add('active');}});});
 
-/* Back to top */
+// Back to top
 const backBtn=document.getElementById('backToTop');
 window.addEventListener('scroll',()=>{if(window.scrollY>300){backBtn.style.display='block';}else{backBtn.style.display='none';}});
 backBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
 
-/* Particles.js config */
+// Particles.js configuration
 particlesJS("particles-js",{
-  "particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":["#00F0FF","#B159FF"]},"shape":{"type":"circle"},"opacity":{"value":0.6,"random":true},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},"move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}},
-  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}},
+  "particles":{
+    "number":{"value":60,"density":{"enable":true,"value_area":800}},
+    "color":{"value":["#00F0FF","#B159FF"]},
+    "shape":{"type":"circle"},
+    "opacity":{"value":0.6,"random":true},
+    "size":{"value":3,"random":true},
+    "line_linked":{"enable":true,"distance":150,"color":"#00F0FF","opacity":0.3,"width":1},
+    "move":{"enable":true,"speed":2,"direction":"none","random":true,"straight":false,"bounce":false,"attract":{"enable":false}}
+  },
+  "interactivity":{
+    "detect_on":"canvas",
+    "events":{"onhover":{"enable":true,"mode":"grab"},"onclick":{"enable":true,"mode":"push"}}
+  },
   "retina_detect":true
 });
 
-/* Clicker Game Logic */
-let PP=0,GEMS=0,PRESTIGE=0;
-let clickValue=1,autoClick=null;
+// Game Logic
+let PP = 0;
+let prestige = 0;
+let combo = 1;
+let clickStreak = 0;
+let doubleActive=false;
+let autoActive=false;
 
-const clickIcon=document.getElementById('click-icon');
 const ppDisplay=document.getElementById('pp-display');
-const gemsDisplay=document.getElementById('gems-display');
 const prestigeDisplay=document.getElementById('prestige-display');
-const shopItems=document.querySelectorAll('.shop-item');
+const comboDisplay=document.getElementById('combo-display');
+const clickIcon=document.getElementById('click-icon');
+const gameContainer=document.getElementById('game-container');
+const gameOpenBtn=document.getElementById('game-open-btn');
 
-clickIcon.addEventListener('click',()=>{
-  PP+=clickValue;
-  if(Math.random()<0.05) GEMS++; // random gem drop
-  ppDisplay.textContent="PP: "+PP;
-  gemsDisplay.textContent="Gems: "+GEMS;
-  spawnClickEffect();
+// Open game button
+gameOpenBtn.addEventListener('click',()=>{gameContainer.style.display='block';});
+
+// Click icon logic
+clickIcon.addEventListener('click', e=>{
+  let gain=1*combo;
+  if(doubleActive) gain*=2;
+  PP+=gain;
+  clickStreak++;
+  if(clickStreak%10===0) combo++;
+  ppDisplay.textContent='PP: '+PP;
+  comboDisplay.textContent='Combo: x'+combo;
+  createParticles(e.clientX,e.clientY);
 });
 
-/* Shop */
-shopItems.forEach(item=>{
-  item.addEventListener('click',()=>{
-    const costPP=parseInt(item.getAttribute('data-pp'));
-    const costGem=parseInt(item.getAttribute('data-gem'));
-    if(PP>=costPP && GEMS>=costGem){
-      PP-=costPP; GEMS-=costGem;
-      ppDisplay.textContent="PP: "+PP;
-      gemsDisplay.textContent="Gems: "+GEMS;
-      if(item.textContent.includes('Double PP')) clickValue*=2;
-      if(item.textContent.includes('Auto Click')) autoClick=setInterval(()=>{PP+=clickValue; ppDisplay.textContent="PP: "+PP;},5000);
-      if(item.textContent.includes('Increase Icon Size')) clickIcon.style.width=clickIcon.style.height=parseInt(clickIcon.style.width.replace('px',''))+20+'px';
-    }
-  });
+// Buffs
+document.getElementById('doublePP').addEventListener('click',()=>{
+  doubleActive=true;
+  setTimeout(()=>doubleActive=false,5000);
+});
+document.getElementById('autoPP').addEventListener('click',()=>{
+  if(autoActive) return;
+  autoActive=true;
+  const interval=setInterval(()=>{PP++;ppDisplay.textContent='PP: '+PP;},500);
+  setTimeout(()=>{clearInterval(interval);autoActive=false;},5000);
+});
+document.getElementById('resetPrestige').addEventListener('click',()=>{
+  prestige++;
+  PP=0;
+  combo=1;
+  clickStreak=0;
+  ppDisplay.textContent='PP: '+PP;
+  prestigeDisplay.textContent='Prestige: '+prestige;
+  comboDisplay.textContent='Combo: x'+combo;
 });
 
-/* Open/Close Game */
-const gameOverlay=document.getElementById('game-overlay');
-document.getElementById('open-game-btn').addEventListener('click',()=>{gameOverlay.style.display='flex';});
-document.getElementById('close-game').addEventListener('click',()=>{gameOverlay.style.display='none';});
-
-/* Click effect */
-function spawnClickEffect(){
-  const effect=document.createElement('div');
-  effect.className='buff-msg';
-  effect.textContent='+PP';
-  clickIcon.appendChild(effect);
-  setTimeout(()=>effect.remove(),800);
+// Particle effect
+function createParticles(x,y){
+  for(let i=0;i<10;i++){
+    const p=document.createElement('div');
+    p.classList.add('particle');
+    document.body.appendChild(p);
+    p.style.left=(x-3)+'px';
+    p.style.top=(y-3)+'px';
+    const dx=(Math.random()-0.5)*50;
+    const dy=(Math.random()-0.5)*50;
+    p.animate([{transform:`translate(0,0)`,opacity:1},{transform:`translate(${dx}px,${dy}px)`,opacity:0}],{duration:700,easing:'ease-out'});
+    setTimeout(()=>p.remove(),700);
+  }
 }
 </script>
 </body>
