@@ -43,9 +43,7 @@
         <div id="powerups-bar"></div>
         <div id="buffs-bar"></div>
         <div id="streak-display" style="display:none;"></div>
-        <div id="game-area">
-            <div id="boss-health-bar"><div id="boss-health-fill"></div></div>
-        </div>
+        <div id="game-area"></div>
         <div id="tabs">
             <button class="tab-btn active" data-tab="shop">Shop</button>
             <button class="tab-btn" data-tab="buildings">Buildings</button>
@@ -133,6 +131,8 @@
         <p id="offline-earnings" style="font-size:24px;font-weight:700;color:#00F0FF;text-align:center;margin-bottom:15px;">+0 PP</p>
         <button id="claim-offline" style="width:100%;padding:10px;background:#00F0FF;color:#000;border:none;border-radius:20px;cursor:pointer;font-weight:600;">Claim</button>
     </div>
+
+    <div id="notification-area" style="position:fixed;top:80px;left:50%;transform:translateX(-50%);z-index:9999;pointer-events:none;width:90%;max-width:400px;"></div>
 
     <script src="script.js"></script>
 </body>
