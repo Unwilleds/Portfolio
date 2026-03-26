@@ -39,11 +39,12 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 @media(max-width:700px){.hero{flex-direction:column;text-align:center;padding:30px 20px;}.profile-wrap{width:160px;height:160px;}.hero-info h1{font-size:32px;}}
 
-/* ============ GAME STYLES ============ */
+/* ============ GAME STYLES (FIXED) ============ */
 #game-open-btn{position:fixed;bottom:20px;left:20px;background:#00F0FF;color:#000;padding:12px 20px;border:none;border-radius:50px;cursor:pointer;box-shadow:0 0 15px rgba(0,240,255,0.6);z-index:1500;transition:0.3s;font-weight:600;display:flex;align-items:center;gap:8px;text-decoration:none;}
 #game-open-btn:hover{transform:scale(1.08);box-shadow:0 0 25px rgba(0,240,255,1);}
 #game-open-btn i{animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
 #game-container{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(11,15,42,0.98);padding:20px;border-radius:20px;z-index:2000;width:95%;max-width:800px;color:#E0E0E0;display:none;box-shadow:0 0 40px rgba(0,240,255,0.8);border:2px solid #00F0FF;max-height:95vh;overflow-y:auto;}
 #game-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid rgba(0,240,255,0.3);flex-wrap:wrap;gap:10px;}
 #game-header h2{color:#00F0FF;font-size:20px;text-shadow:0 0 8px #00F0FF;}
@@ -60,7 +61,7 @@ footer{text-align:center;padding:20px 10%;background:rgba(0,0,0,0.7);border-top:
 .game-shape{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;transition:transform 0.08s;box-shadow:0 0 15px rgba(0,240,255,0.7);font-size:14px;font-weight:700;color:#000;}
 .game-shape:hover{transform:scale(1.15);z-index:10;}
 .game-shape:active{transform:scale(0.9);}
-.shape-circle{background:linear-gradient(135deg, #00F0FF, #0099FF);}
+.shape-circle{background:linear-gradient(135deg, #00F0FF, #0099FF);border-radius:50%;}
 .shape-square{background:linear-gradient(135deg, #B159FF, #7B2CBF);border-radius:15px;}
 .shape-triangle{background:linear-gradient(135deg, #FF6B6B, #EE5A24);clip-path:polygon(50% 0%, 0% 100%, 100% 100%);}
 .shape-star{background:linear-gradient(135deg, #FFD166, #FF9E6D);clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);}
@@ -123,11 +124,7 @@ input:checked+.slider:before{transform:translateX(20px);background:#000;}
 .ach-icon{font-size:22px;margin-bottom:5px;}
 .ach-name{font-weight:600;font-size:12px;color:#00F0FF;}
 .ach-desc{font-size:10px;color:#B0B0B0;margin-top:3px;}
-.ach-tier{font-size:10px;margin-top:5px;padding:2px 6px;border-radius:10px;display:inline-block;}
-.ach-tier.bronze{background:#CD7F32;color:#000;}
-.ach-tier.silver{background:#C0C0C0;color:#000;}
-.ach-tier.gold{background:#FFD700;color:#000;}
-.ach-tier.diamond{background:#B9F2FF;color:#000;}
+.ach-tier{font-size:10px;margin-top:5px;padding:2px 6px;border-radius:10px;display:inline-block;background:#444;}
 #stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
 .stat-item{background:rgba(255,255,255,0.05);padding:10px;border-radius:10px;}
 .stat-item h4{font-size:12px;color:#B0B0B0;margin-bottom:5px;}
